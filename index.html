@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; connect-src 'self' https://dados.tiagofelicia.pt https://raw.githubusercontent.com https://huggingface.co https://*.hf.co https://docs.google.com https://re.jrc.ec.europa.eu https://pvgis.ec.europa.eu https://formspree.io https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; frame-src https://1drv.ms https://onedrive.live.com https://www.paypal.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io https://www.paypal.com; upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2c3e50" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+    <title>Simuladores Eletricidade e Gás 2026: Compare e Poupe | Soluções Diferentes</title>
+    <meta name="description" content="Simulador gratuito e independente de Eletricidade e Gás Natural. Compare tarifas indexadas vs fixas, analise o seu ficheiro da E-Redes e calcule a poupança real. Simule o seu projeto de autoconsumo solar" />
+    <link rel="canonical" href="https://www.solucoesdiferentes.pt/" />
+    <link rel="alternate" hreflang="pt-pt" href="https://www.solucoesdiferentes.pt/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.solucoesdiferentes.pt/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Simuladores de Energia: Pare de perder dinheiro na fatura" />
+    <meta property="og:description" content="Ferramenta gratuita para comparar tarifas de luz e gás em Portugal. Descubra a opção mais barata para o seu consumo real." />
+    <meta property="og:url" content="https://www.solucoesdiferentes.pt/" />
+    <meta property="og:image" content="https://www.solucoesdiferentes.pt/images/social/social-share.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="Soluções Diferentes — Simuladores de Energia" />
+    <meta property="og:locale" content="pt_PT" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@solucoesdiferentes.pt" />
+
+    <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/images/site.webmanifest" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="/theme.js"></script>
+   
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Simuladores de Energia Soluções Diferentes",
+      "alternateName": "Soluções Diferentes — Simuladores de Eletricidade, Gás e Autoconsumo",
+      "url": "https://www.solucoesdiferentes.pt",
+      "description": "Ferramentas independentes e gratuitas para simulação e comparação de tarifas de eletricidade, gás natural e autoconsumo solar fotovoltaico em Portugal.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web browser",
+      "browserRequirements": "Requires JavaScript",
+      "isAccessibleForFree": true,
+      "inLanguage": "pt-PT",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "featureList": [
+        "Simulador de tarifários de eletricidade (fixos e indexados ao OMIE)",
+        "Análise de diagramas de carga da E-Redes hora a hora",
+        "Simulador de tarifários de gás natural",
+        "Simulador dual (eletricidade + gás) com ofertas de pacote conjunto — versão beta",
+        "Códigos amigo (referral) de eletricidade e gás",
+        "Simulador de autoconsumo solar fotovoltaico com PVGIS",
+        "Comparação de propostas comerciais e cálculo de Payback",
+        "Histórico de preços OMIE desde 2010",
+        "Contratos futuros OMIP (Diários, Semanais, Mensais, Trimestrais, Anuais)",
+        "Mapa interativo de preços day-ahead em 45 zonas europeias (ENTSO-E)",
+        "Mapa de mix de produção elétrica por país europeu (Energy-Charts)",
+        "Análise de produção vs preço OMIE",
+        "Tarifas reguladas e Tarifa Social de eletricidade e gás",
+        "Tarifas de Acesso às Redes (TAR) e perfis de perdas",
+        "Períodos horários BTN (Simples, Bi-horário, Tri-horário)",
+        "Fórmulas de cálculo de tarifários indexados",
+        "Modo escuro (dark mode) com sincronização entre páginas",
+        "Processamento local sem envio de dados pessoais para servidores"
+      ],
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.solucoesdiferentes.pt/#person",
+        "name": "Soluções Diferentes",
+        "url": "https://www.solucoesdiferentes.pt/",
+        "sameAs": [
+          "https://www.facebook.com/solucoesdiferentes.pt",
+          "https://www.facebook.com/profile.php?id=61555007360529",
+          "https://www.solucoesdiferentes.pt",
+          "https://www.instagram.com/solucoesdiferentes.pt/"
+        ]
+      },
+      "publisher": {
+        "@type": "Person",
+        "@id": "https://www.solucoesdiferentes.pt/#person",
+        "name": "Soluções Diferentes",
+        "url": "https://www.solucoesdiferentes.pt/"
+      }
+    }
+    </script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Saltar para o conteúdo</a>
+
+
+
+<div id="menu-placeholder"></div>
+
+<main id="main-content" class="home-main">
+    <section class="hero-section">
+        <h1>Simuladores de Energia: Compare Tarifas de Eletricidade e Gás</h1>
+        <p>Ferramentas independentes e transparentes para o ajudar a tomar as melhores decisões e a poupar todos os meses.</p>
+    </section>
+
+    <section class="content-section home-tools">
+        <h2>As Principais Ferramentas</h2>
+        <div class="simulator-showcase-container home-grid">
+            <div class="simulator-card">
+                <h3>⚡ Simulador de Eletricidade</h3>
+                <p>Compare todos os tarifários de eletricidade em Portugal, fixos e indexados.<span class="desc-extra"> Use os seus consumos da E-Redes e descubra a opção mais económica.</span></p>
+                <a href="eletricidade-tiagofelicia" class="button-link">Poupar na Eletricidade</a>
+            </div>
+            <div class="simulator-card">
+                <h3>🔥 Simulador de Gás Natural</h3>
+                <p>Compare os tarifários de gás, fixos e indexados ao MIBGAS.<span class="desc-extra"> Insira os dados da sua fatura e encontre a oferta mais vantajosa para o seu perfil de consumo.</span></p>
+                <a href="gas-natural-tiagofelicia" class="button-link">Poupar no Gás</a>
+            </div>
+            <div class="simulator-card">
+                <h3>⚡🔥 Simulador Dual<span class="title-extra"> (Eletricidade + Gás)</span> <span class="badge-beta">beta</span></h3>
+                <p>Encontre a combinação de eletricidade e gás mais barata para a sua casa.<span class="desc-extra"> Inclui as ofertas DUAL, com preços próprios para pacotes conjuntos. <strong>Está em versão beta:</strong> os resultados podem ainda ter erros e a base de ofertas dual está a crescer — agradeço que me reporte qualquer problema.</span></p>
+                <a href="dual-tiagofelicia" class="button-link">Comparar Dual</a>
+            </div>
+            <div class="simulator-card">
+                <h3>☀️ Simulador de Autoconsumo Solar</h3>
+                <p>Planeia instalar painéis solares? Calcule a poupança e o retorno do investimento (Payback).<span class="desc-extra"> Compare propostas comerciais de forma informada.</span></p>
+                <a href="autoconsumo-tiagofelicia" class="button-link">Analisar Investimento</a>
+            </div>
+            <div class="simulator-card">
+                <h3>🤝 Códigos Amigo</h3>
+                <p>Veja quanto vale cada código amigo (referral) de eletricidade e gás.<span class="desc-extra"> Códigos da comunidade e os meus, e como são considerados nos simuladores.</span></p>
+                <a href="codigos-amigo" class="button-link">Ver Códigos Amigo</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section secondary-tools">
+        <h2>Outros Recursos e Ferramentas</h2>
+        <div class="resource-links">
+            <a href="omie-diario">Dashboard OMIE Diário</a>
+            <a href="omip">OMIP - Futuros</a>
+            <a href="sobre">Sobre o Projeto</a>
+        </div>
+    </section>
+
+    <section class="call-to-action-box">
+        <h4>Gosta destas ferramentas?</h4>
+        <p>Se os simuladores lhe foram úteis, considere apoiar o projeto. O seu contributo é fundamental para manter as ferramentas gratuitas e atualizadas.</p>
+        <a href="apoio" class="button-link">💖 Apoiar o Projeto</a>
+    </section>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="script.js"></script>
+<script src="cookie-consent.js"></script>
+
+</body>
+</html>

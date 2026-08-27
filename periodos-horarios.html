@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; connect-src 'self' https://dados.tiagofelicia.pt https://raw.githubusercontent.com https://huggingface.co https://*.hf.co https://docs.google.com https://re.jrc.ec.europa.eu https://pvgis.ec.europa.eu https://formspree.io https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; frame-src https://1drv.ms https://onedrive.live.com https://www.paypal.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io https://www.paypal.com; upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2c3e50" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+    
+    <title>Horas de Vazio, Cheias e Ponta: Períodos Horários Eletricidade (BTN) | Soluções Diferentes</title>
+    <meta name="description" content="Saiba a que horas a eletricidade é mais barata. Consulte as tabelas oficiais de Vazio, Ponta e Cheias para os ciclos Diário e Semanal em Portugal." />
+
+    <link rel="canonical" href="https://www.solucoesdiferentes.pt/periodos-horarios" />
+    <link rel="alternate" hreflang="pt-pt" href="https://www.solucoesdiferentes.pt/periodos-horarios" />
+    <link rel="alternate" hreflang="x-default" href="https://www.solucoesdiferentes.pt/periodos-horarios" />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Horas de Vazio: Quando é mais barato ligar as máquinas?" />
+    <meta property="og:description" content="Tabela completa dos horários de eletricidade em Portugal (Simples, Bi-Horário e Tri-Horário)." />
+    <meta property="og:url" content="https://www.solucoesdiferentes.pt/periodos-horarios" />
+    <meta property="og:image" content="https://www.solucoesdiferentes.pt/images/social/social-share.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="Soluções Diferentes — Simuladores de Energia" />
+    <meta property="og:locale" content="pt_PT" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@solucoesdiferentes.pt" />
+
+    <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/images/site.webmanifest" />
+    
+    <link rel="stylesheet" href="style.css" />
+    <script src="/theme.js"></script>
+
+    <style>
+        #agora-container { margin: 24px 0; border: 2px solid #dee2e6; border-radius: 10px; overflow: hidden; background: white; }
+        #agora-header { background: #343a40; color: white; padding: 10px 16px; display: flex; align-items: center; gap: 10px; }
+        #agora-header-icon { font-size: 1.1em; }
+        #agora-header-title { font-weight: bold; font-size: 1em; }
+        #agora-hora { margin-left: auto; font-size: 0.9em; opacity: 0.8; }
+        #agora-estacao { font-size: 0.8em; background: rgba(255,255,255,0.15); padding: 2px 8px; border-radius: 10px; }
+        #agora-ciclos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: #dee2e6; }
+        .agora-ciclo[data-key="simples"] { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; padding-top: 10px; padding-bottom: 10px; }
+        .agora-ciclo[data-key="simples"] .agora-timeline,
+        .agora-ciclo[data-key="simples"] .agora-ciclo-periodo { display: none; }
+        .agora-ciclo[data-key="simples"] .agora-ciclo-conta { margin: 0; font-size: 0.9em; font-weight: 600; color: #383d41; }
+        .agora-ciclo { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+        .agora-ciclo-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+        .agora-ciclo-nome { font-size: 0.78em; color: #555; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }
+        .agora-ciclo-periodo { font-size: 1.05em; font-weight: bold; white-space: nowrap; }
+        .agora-timeline { position: relative; height: 12px; }
+        .agora-track { display: flex; height: 100%; border-radius: 6px; overflow: hidden; }
+        .agora-seg { height: 100%; }
+        .agora-now { position: absolute; top: -2px; bottom: -2px; width: 2px; margin-left: -1px; background: #111; box-shadow: 0 0 0 1.5px rgba(255,255,255,0.9); border-radius: 1px; }
+        .agora-ciclo-conta { font-size: 0.78em; color: #555; font-variant-numeric: tabular-nums; }
+
+        /* Mobile: cada ciclo ocupa a sua própria linha */
+        @media (max-width: 600px) {
+            #agora-ciclos { grid-template-columns: 1fr; }
+        }
+
+        /* Legenda de cores + barras visuais de 24h das tabelas */
+        .tl-legenda { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 18px 0; font-size: 0.85em; }
+        .tl-legenda-titulo { font-weight: 600; }
+        .tl-legenda-item { display: inline-flex; align-items: center; gap: 6px; }
+        .tl-chip { width: 14px; height: 14px; border-radius: 3px; flex: 0 0 auto; }
+        .tl-figura { margin: 6px 0 26px; }
+        .tl-linha { display: flex; align-items: center; gap: 10px; margin: 5px 0; }
+        .tl-label { flex: 0 0 92px; text-align: right; font-size: 0.8em; color: #555; }
+        .tl-barra { flex: 1 1 auto; display: flex; height: 14px; border-radius: 4px; overflow: hidden; }
+        .tl-seg { height: 100%; }
+        .tl-grupo { font-size: 0.85em; font-weight: 600; margin: 12px 0 2px; }
+        .tl-eixo-escala { flex: 1 1 auto; display: flex; justify-content: space-between; }
+        .tl-eixo-escala span { font-size: 0.68em; color: #888; }
+        @media (max-width: 600px) {
+            .tl-label { flex-basis: 66px; font-size: 0.72em; }
+            .tl-linha { gap: 7px; }
+        }
+
+        /* === DARK MODE — Estilos específicos desta página === */
+        [data-theme="dark"] #agora-container { background: #1e293b; border-color: #475569; }
+        [data-theme="dark"] #agora-header { background: #0f172a; }
+        [data-theme="dark"] #agora-ciclos { background: #475569; }
+        [data-theme="dark"] .agora-ciclo-nome { color: #94a3b8; }
+        /* Caixa informativa inline */
+        [data-theme="dark"] .content-section > div[style*="background-color: #f9f9f9"] { background-color: #1e293b !important; border-color: #475569 !important; }
+        [data-theme="dark"] .content-section > div[style*="background-color: #f9f9f9"] h4 { color: #e2e8f0; }
+        /* Tabelas com cores inline nas linhas */
+        [data-theme="dark"] table caption { color: #cbd5e1; }
+        [data-theme="dark"] tbody tr[style*="background-color: #d4edda"] { background-color: #1a3a2a !important; }
+        [data-theme="dark"] tbody tr[style*="background-color: #d4edda"] td { color: #a7f3d0; }
+        [data-theme="dark"] tbody tr[style*="background-color: #f8d7da"] { background-color: #3a1a1e !important; }
+        [data-theme="dark"] tbody tr[style*="background-color: #f8d7da"] td { color: #fca5a5; }
+        [data-theme="dark"] tbody tr[style*="background-color: #fff3cd"] { background-color: #3a3010 !important; }
+        [data-theme="dark"] tbody tr[style*="background-color: #fff3cd"] td { color: #fde68a; }
+        [data-theme="dark"] .tl-label,
+        [data-theme="dark"] .tl-eixo-escala span { color: #94a3b8; }
+    </style>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Períodos Horários da Eletricidade em Portugal (BTN)",
+      "description": "Consulte os horários oficiais da ERSE para os períodos de Vazio, Ponta e Cheias (BTN) nos ciclos diário e semanal.",
+      "datePublished": "2026-05-21",
+      "dateModified": "2026-05-29",
+      "image": "https://www.solucoesdiferentes.pt/images/social/social-share.jpg",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.solucoesdiferentes.pt/periodos-horarios"
+      },
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.solucoesdiferentes.pt/#person",
+        "name": "Soluções Diferentes"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Soluções Diferentes Simuladores",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.solucoesdiferentes.pt/images/favicon-96x96.png"
+        }
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Início",
+      "item": "https://www.solucoesdiferentes.pt/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Períodos Horários (BTN)",
+      "item": "https://www.solucoesdiferentes.pt/periodos-horarios"
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "A que horas é mais barata a eletricidade?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nos tarifários bi-horário e tri-horário, o período de Vazio é o mais económico. No ciclo diário, o Vazio é igual todos os dias, das 22:00h às 08:00h. No ciclo semanal, o Vazio abrange a madrugada dos dias úteis (das 00:00h às 07:00h), boa parte do sábado e o domingo por inteiro."
+        }
+      },{
+        "@type": "Question",
+        "name": "Qual é a diferença entre o ciclo diário e o ciclo semanal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No ciclo diário, os períodos repetem-se de forma igual todos os dias da semana. No ciclo semanal, os períodos variam consoante o dia: dias úteis, sábados e domingos têm horários diferentes, sendo o domingo inteiramente em Vazio."
+        }
+      },{
+        "@type": "Question",
+        "name": "O horário de verão e de inverno alteram os períodos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim, em vários ciclos. O Horário de Inverno vigora do último domingo de outubro ao último domingo de março, e o Horário de Verão do último domingo de março ao último domingo de outubro, acompanhando a mudança da hora legal."
+        }
+      },{
+        "@type": "Question",
+        "name": "Os feriados nacionais contam como dias úteis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. Para clientes em Baixa Tensão Normal (BTN), os feriados nacionais são considerados dias normais para efeitos de contagem dos períodos horários."
+        }
+      },{
+        "@type": "Question",
+        "name": "Como sei qual é o meu ciclo horário?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O seu ciclo horário (simples, bi-horário ou tri-horário, diário ou semanal) está indicado na sua fatura de eletricidade."
+        }
+      },{
+        "@type": "Question",
+        "name": "Estes horários aplicam-se às Regiões Autónomas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não. Os períodos horários apresentados aplicam-se a Portugal Continental. As Regiões Autónomas dos Açores e da Madeira têm os seus próprios períodos horários."
+        }
+      }]
+    }
+    </script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Saltar para o conteúdo</a>
+
+
+
+<div id="menu-placeholder"></div>
+<nav class="breadcrumb" aria-label="breadcrumb">
+    <ol>
+        <li><a href="/">Início</a></li>
+        <li>Eletricidade e Gás</li>
+        <li aria-current="page">Períodos Horários (BTN)</li>
+    </ol>
+</nav>
+
+
+<main id="main-content">
+    <section class="content-section">
+        <h1>Períodos Horários (BTN): Horas de Vazio, Ponta e Cheias</h1>
+        
+        <p>Conhecer os períodos horários definidos pela ERSE é fundamental para gerir o consumo e poupar na fatura de eletricidade, especialmente em tarifários bi e tri-horários. Os horários apresentados aplicam-se a clientes em <strong>Baixa Tensão Normal (BTN)</strong> em Portugal Continental.</p>
+
+        <!-- INDICADOR DINÂMICO -->
+        <div id="agora-container">
+            <div id="agora-header">
+                <span id="agora-header-icon">🕐</span>
+                <span id="agora-header-title">Período Atual</span>
+                <span id="agora-hora"></span>
+                <span id="agora-estacao"></span>
+            </div>
+            <div id="agora-ciclos"></div>
+        </div>
+
+        <div style="border: 1px solid #ddd; padding: 15px; border-radius: 8px; background-color: #f9f9f9; margin: 30px 0;">
+            <h4 style="margin-top: 0;">Horário de Verão vs. Horário de Inverno</h4>
+            <ul>
+                <li>O <strong>Horário de Inverno</strong> vigora desde o último domingo de outubro até ao último domingo de março.</li>
+                <li>O <strong>Horário de Verão</strong> vigora desde o último domingo de março até ao último domingo de outubro.</li>
+            </ul>
+        </div>
+
+        <div class="tl-legenda" aria-hidden="true">
+            <span class="tl-legenda-titulo">Legenda:</span>
+            <span class="tl-legenda-item"><span class="tl-chip" style="background:#28a745;"></span>Vazio</span>
+            <span class="tl-legenda-item"><span class="tl-chip" style="background:#ffc107;"></span>Cheias</span>
+            <span class="tl-legenda-item"><span class="tl-chip" style="background:#dc3545;"></span>Ponta / Fora de Vazio</span>
+        </div>
+
+        <h3>Opção Simples</h3>
+        <p>Existe um único período, com o mesmo preço a todas as horas do dia, todos os dias do ano.</p>
+
+        <h3 style="margin-top: 40px;">Opção Bi-Horário</h3>
+        <p>Divide o dia em dois períodos: <strong>Vazio</strong> (mais económico) e <strong>Fora de Vazio</strong> (mais caro).</p>
+        
+        <h4>Ciclo Diário</h4>
+        <div class="table-container">
+            <table>
+                <caption>Bi-horário Diário — períodos horários</caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="col-periodo">Período</th>
+                        <th scope="col" class="col-horario-geral">Todos os dias do ano</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #d4edda;">
+                        <td class="col-periodo"><strong>Vazio</strong></td>
+                        <td class="col-horario-geral">22:00h - 08:00h</td>
+                    </tr>
+                    <tr style="background-color: #f8d7da;">
+                        <td class="col-periodo"><strong>Fora de Vazio</strong></td>
+                        <td class="col-horario-geral">08:00h - 22:00h</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tl-figura" data-ciclo="biDiario" aria-hidden="true"></div>
+
+        <h4>Ciclo Semanal</h4>
+        <div class="table-container">
+            <table>
+                <caption>Bi-horário Semanal — períodos horários</caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="col-periodo">Período</th>
+                        <th scope="col" class="col-verao">Horário de Verão</th>
+                        <th scope="col" class="col-inverno">Horário de Inverno</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #d4edda;">
+                        <td class="col-periodo"><strong>Vazio</strong></td>
+                        <td class="col-verao">00:00h - 07:00h (Dias úteis)<br>00:00h - 09:00h | 14:00h - 20:00h | 22:00h - 24:00h (Sábados)<br>Domingos (dia todo)</td>
+                        <td class="col-inverno">00:00h - 07:00h (Dias úteis)<br>00:00h - 09:30h | 13:00h - 18:30h | 22:00h - 24:00h (Sábados)<br>Domingos (dia todo)</td>
+                    </tr>
+                    <tr style="background-color: #f8d7da;">
+                        <td class="col-periodo"><strong>Fora de Vazio</strong></td>
+                        <td class="col-verao">07:00h - 24:00h (Dias úteis, exceto Vazio)<br>09:00h - 14:00h | 20:00h - 22:00h (Sábados)</td>
+                        <td class="col-inverno">07:00h - 24:00h (Dias úteis, exceto Vazio)<br>09:30h - 13:00h | 18:30h - 22:00h (Sábados)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tl-figura" data-ciclo="biSemanal" aria-hidden="true"></div>
+
+        <h3 style="margin-top: 40px;">Opção Tri-Horário</h3>
+        <p>Divide o dia em três períodos: <strong>Vazio</strong> (mais económico), <strong>Cheias</strong> (intermédio) e <strong>Ponta</strong> (mais caro).</p>
+
+        <h4>Ciclo Diário</h4>
+        <div class="table-container">
+            <table>
+                <caption>Tri-horário Diário — períodos horários</caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="col-periodo">Período</th>
+                        <th scope="col" class="col-verao">Horário de Verão</th>
+                        <th scope="col" class="col-inverno">Horário de Inverno</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #d4edda;">
+                        <td class="col-periodo"><strong>Vazio</strong></td>
+                        <td class="col-verao">22:00h - 08:00h</td>
+                        <td class="col-inverno">22:00h - 08:00h</td>
+                    </tr>
+                    <tr style="background-color: #fff3cd;">
+                        <td class="col-periodo"><strong>Cheias</strong></td>
+                        <td class="col-verao">08:00h - 10:30h | 13:00h - 19:30h | 21:00h - 22:00h</td>
+                        <td class="col-inverno">08:00h - 09:00h | 10:30h - 18:00h | 20:30h - 22:00h</td>
+                    </tr>
+                    <tr style="background-color: #f8d7da;">
+                        <td class="col-periodo"><strong>Ponta</strong></td>
+                        <td class="col-verao">10:30h - 13:00h | 19:30h - 21:00h</td>
+                        <td class="col-inverno">09:00h - 10:30h | 18:00h - 20:30h</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tl-figura" data-ciclo="triDiario" aria-hidden="true"></div>
+
+        <h4>Ciclo Semanal</h4>
+        <div class="table-container">
+            <table>
+                <caption>Tri-horário Semanal — períodos horários</caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="col-periodo">Período</th>
+                        <th scope="col" class="col-verao">Horário de Verão</th>
+                        <th scope="col" class="col-inverno">Horário de Inverno</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #d4edda;">
+                        <td class="col-periodo"><strong>Vazio</strong></td>
+                        <td class="col-verao">00:00h - 07:00h (Dias úteis)<br>00:00h - 09:00h | 14:00h - 20:00h | 22:00h - 24:00h (Sábados)<br>Domingos (dia todo)</td>
+                        <td class="col-inverno">00:00h - 07:00h (Dias úteis)<br>00:00h - 09:30h | 13:00h - 18:30h | 22:00h - 24:00h (Sábados)<br>Domingos (dia todo)</td>
+                    </tr>
+                    <tr style="background-color: #fff3cd;">
+                        <td class="col-periodo"><strong>Cheias</strong></td>
+                        <td class="col-verao">07:00h - 09:15h | 12:15h - 24:00h (Dias úteis)<br>09:00h - 14:00h | 20:00h - 22:00h (Sábados)</td>
+                        <td class="col-inverno">07:00h - 09:30h | 12:00h - 18:30h | 21:00h - 24:00h (Dias úteis)<br>09:30h - 13:00h | 18:30h - 22:00h (Sábados)</td>
+                    </tr>
+                    <tr style="background-color: #f8d7da;">
+                        <td class="col-periodo"><strong>Ponta</strong></td>
+                        <td class="col-verao">09:15h - 12:15h (Dias úteis)</td>
+                        <td class="col-inverno">09:30h - 12:00h | 18:30h - 21:00h (Dias úteis)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tl-figura" data-ciclo="triSemanal" aria-hidden="true"></div>
+
+        <h3 style="margin-top: 40px;">Perguntas Frequentes</h3>
+
+        <h4>A que horas é mais barata a eletricidade?</h4>
+        <p>Nos tarifários bi-horário e tri-horário, o período de <strong>Vazio</strong> é o mais económico. No <strong>ciclo diário</strong>, o Vazio é igual todos os dias, das 22:00h às 08:00h. No <strong>ciclo semanal</strong>, o Vazio abrange a madrugada dos dias úteis (das 00:00h às 07:00h), boa parte do sábado e o domingo por inteiro.</p>
+
+        <h4>Qual é a diferença entre o ciclo diário e o ciclo semanal?</h4>
+        <p>No <strong>ciclo diário</strong>, os períodos repetem-se de forma igual todos os dias da semana. No <strong>ciclo semanal</strong>, os períodos variam consoante o dia: dias úteis, sábados e domingos têm horários diferentes, sendo o domingo inteiramente em Vazio.</p>
+
+        <h4>O horário de verão e de inverno alteram os períodos?</h4>
+        <p>Sim, em vários ciclos. O <strong>Horário de Inverno</strong> vigora do último domingo de outubro ao último domingo de março, e o <strong>Horário de Verão</strong> do último domingo de março ao último domingo de outubro, acompanhando a mudança da hora legal.</p>
+
+        <h4>Os feriados nacionais contam como dias úteis?</h4>
+        <p>Sim. Para clientes em <strong>Baixa Tensão Normal (BTN)</strong>, os feriados nacionais são considerados dias "normais" para efeitos de contagem dos períodos horários.</p>
+
+        <h4>Como sei qual é o meu ciclo horário?</h4>
+        <p>O seu ciclo horário (simples, bi-horário ou tri-horário, diário ou semanal) está indicado na sua <strong>fatura de eletricidade</strong>.</p>
+
+        <h4>Estes horários aplicam-se às Regiões Autónomas?</h4>
+        <p>Não. Os períodos horários apresentados aplicam-se a <strong>Portugal Continental</strong>. As Regiões Autónomas dos Açores e da Madeira têm os seus próprios períodos horários.</p>
+
+    </section>
+</main>
+
+<div id="footer-placeholder"></div>
+
+
+<script src="script.js"></script>
+<script>
+(function() {
+    const CORES = {
+        'Vazio':         { bg: '#d4edda', text: '#155724', border: '#28a745' },
+        'Fora de Vazio': { bg: '#f8d7da', text: '#721c24', border: '#dc3545' },
+        'Cheias':        { bg: '#fff3cd', text: '#856404', border: '#ffc107' },
+        'Ponta':         { bg: '#f8d7da', text: '#721c24', border: '#dc3545' },
+        'Simples':       { bg: '#e2e3e5', text: '#383d41', border: '#6c757d' },
+    };
+
+    function horaEmMinutos(h, m) { return h * 60 + m; }
+
+    function isSummer(date) {
+        const year = date.getFullYear();
+        // Último domingo de março: começa no dia 31 e recua até domingo (getDay()===0)
+        const marco = new Date(year, 2, 31);
+        marco.setDate(31 - marco.getDay());
+        // Último domingo de outubro
+        const outubro = new Date(year, 9, 31);
+        outubro.setDate(31 - outubro.getDay());
+        return date >= marco && date < outubro;
+    }
+
+    const CICLOS = [
+        { key: 'simples',    nome: 'Simples' },
+        { key: 'biDiario',   nome: 'Bi-horário Diário' },
+        { key: 'biSemanal',  nome: 'Bi-horário Semanal' },
+        { key: 'triDiario',  nome: 'Tri-horário Diário' },
+        { key: 'triSemanal', nome: 'Tri-horário Semanal' },
+    ];
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function fmtMin(min) { return pad(Math.floor(min / 60) % 24) + ':' + pad(min % 60); }
+    function horaLisboa() {
+        return new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Lisbon" }));
+    }
+
+    // Período de um ciclo num dado instante (min = minuto do dia, dow = dia da semana 0=Dom, verao = booleano)
+    function periodoNoInstante(min, dow, verao, key) {
+        const isDomingo = dow === 0;
+        const isSabado = dow === 6;
+
+        switch (key) {
+            case 'simples':
+                return 'Simples';
+
+            case 'biDiario':
+                return (min >= horaEmMinutos(22,0) || min < horaEmMinutos(8,0)) ? 'Vazio' : 'Fora de Vazio';
+
+            case 'biSemanal':
+                if (isDomingo) return 'Vazio';
+                if (isSabado) {
+                    if (verao) return (min < horaEmMinutos(9,0) || (min >= horaEmMinutos(14,0) && min < horaEmMinutos(20,0)) || min >= horaEmMinutos(22,0)) ? 'Vazio' : 'Fora de Vazio';
+                    return (min < horaEmMinutos(9,30) || (min >= horaEmMinutos(13,0) && min < horaEmMinutos(18,30)) || min >= horaEmMinutos(22,0)) ? 'Vazio' : 'Fora de Vazio';
+                }
+                return min < horaEmMinutos(7,0) ? 'Vazio' : 'Fora de Vazio';
+
+            case 'triDiario':
+                if (min >= horaEmMinutos(22,0) || min < horaEmMinutos(8,0)) return 'Vazio';
+                if (verao) {
+                    if ((min >= horaEmMinutos(10,30) && min < horaEmMinutos(13,0)) || (min >= horaEmMinutos(19,30) && min < horaEmMinutos(21,0))) return 'Ponta';
+                    return 'Cheias';
+                }
+                if ((min >= horaEmMinutos(9,0) && min < horaEmMinutos(10,30)) || (min >= horaEmMinutos(18,0) && min < horaEmMinutos(20,30))) return 'Ponta';
+                return 'Cheias';
+
+            case 'triSemanal':
+                if (isDomingo) return 'Vazio';
+                if (isSabado) {
+                    if (verao) {
+                        if (min < horaEmMinutos(9,0) || (min >= horaEmMinutos(14,0) && min < horaEmMinutos(20,0)) || min >= horaEmMinutos(22,0)) return 'Vazio';
+                        return 'Cheias';
+                    }
+                    if (min < horaEmMinutos(9,30) || (min >= horaEmMinutos(13,0) && min < horaEmMinutos(18,30)) || min >= horaEmMinutos(22,0)) return 'Vazio';
+                    return 'Cheias';
+                }
+                if (min < horaEmMinutos(7,0)) return 'Vazio';
+                if (verao) {
+                    if (min >= horaEmMinutos(9,15) && min < horaEmMinutos(12,15)) return 'Ponta';
+                    return 'Cheias';
+                }
+                if ((min >= horaEmMinutos(9,30) && min < horaEmMinutos(12,0)) || (min >= horaEmMinutos(18,30) && min < horaEmMinutos(21,0))) return 'Ponta';
+                return 'Cheias';
+        }
+        return 'Simples';
+    }
+
+    // Constrói os segmentos do dia (0–24h) para desenhar a linha do tempo
+    function construirSegmentos(dow, verao, key) {
+        const segs = [];
+        let ini = 0;
+        let cur = periodoNoInstante(0, dow, verao, key);
+        for (let m = 1; m <= 1440; m++) {
+            const p = (m === 1440) ? null : periodoNoInstante(m, dow, verao, key);
+            if (p !== cur) {
+                segs.push({ periodo: cur, ini: ini, fim: m });
+                ini = m;
+                cur = p;
+            }
+        }
+        return segs;
+    }
+
+    // Minutos até à próxima mudança de período (null se não muda — ex.: Simples)
+    function minutosAteMudanca(nowMin, dow, verao, key) {
+        const atual = periodoNoInstante(nowMin, dow, verao, key);
+        let m = nowMin, d = dow;
+        for (let step = 1; step <= 60 * 24 * 8; step++) {
+            m++;
+            if (m >= 1440) { m -= 1440; d = (d + 1) % 7; }
+            if (periodoNoInstante(m, d, verao, key) !== atual) return step;
+        }
+        return null;
+    }
+
+    function fmtDuracao(seg) {
+        if (seg < 0) seg = 0;
+        const h = Math.floor(seg / 3600);
+        const m = Math.floor((seg % 3600) / 60);
+        if (h > 0) return 'faltam ' + h + 'h' + pad(m);
+        if (m > 0) return 'faltam ' + m + ' min';
+        return 'a mudar…';
+    }
+
+    const estado = {};   // key -> { periodo, step }
+    let ultimoMinuto = -1;
+
+    function construirCartoes() {
+        const container = document.getElementById('agora-ciclos');
+        container.innerHTML = CICLOS.map(function (c) {
+            return '<div class="agora-ciclo" data-key="' + c.key + '">' +
+                       '<div class="agora-ciclo-top">' +
+                           '<span class="agora-ciclo-nome">' + c.nome + '</span>' +
+                           '<span class="agora-ciclo-periodo" aria-live="polite"></span>' +
+                       '</div>' +
+                       '<div class="agora-timeline" aria-hidden="true"><div class="agora-track"></div><span class="agora-now"></span></div>' +
+                       '<div class="agora-ciclo-conta"></div>' +
+                   '</div>';
+        }).join('');
+    }
+
+    // Recalcula período + segmentos + próxima mudança (apenas quando muda o minuto)
+    function recomputar(agora) {
+        const verao = isSummer(agora);
+        const dow = agora.getDay();
+        const nowMin = agora.getHours() * 60 + agora.getMinutes();
+
+        CICLOS.forEach(function (c) {
+            const periodo = periodoNoInstante(nowMin, dow, verao, c.key);
+            const step = (c.key === 'simples') ? null : minutosAteMudanca(nowMin, dow, verao, c.key);
+            estado[c.key] = { periodo: periodo, step: step };
+
+            const card = document.querySelector('.agora-ciclo[data-key="' + c.key + '"]');
+            if (!card) return;
+
+            const cor = CORES[periodo] || CORES['Simples'];
+            card.style.background = cor.bg;
+            card.style.borderLeft = '4px solid ' + cor.border;
+
+            const pEl = card.querySelector('.agora-ciclo-periodo');
+            if (pEl.textContent !== periodo) pEl.textContent = periodo;
+            pEl.style.color = cor.text;
+
+            const segs = construirSegmentos(dow, verao, c.key);
+            const track = card.querySelector('.agora-track');
+            track.innerHTML = segs.map(function (s) {
+                const cs = CORES[s.periodo] || CORES['Simples'];
+                const w = ((s.fim - s.ini) / 1440 * 100).toFixed(3);
+                return '<span class="agora-seg" style="width:' + w + '%;background:' + cs.border + ';" title="' + s.periodo + ' ' + fmtMin(s.ini) + '–' + fmtMin(s.fim) + '"></span>';
+            }).join('');
+        });
+    }
+
+    // Atualiza relógio + marcador "agora" + contagem decrescente (a cada segundo)
+    function tick() {
+        const agora = horaLisboa();
+        const segNow = agora.getSeconds();
+        const nowMin = agora.getHours() * 60 + agora.getMinutes();
+
+        document.getElementById('agora-hora').textContent = pad(agora.getHours()) + ':' + pad(agora.getMinutes()) + ':' + pad(segNow);
+        document.getElementById('agora-estacao').textContent = isSummer(agora) ? '☀️ Horário de Verão' : '❄️ Horário de Inverno';
+
+        if (nowMin !== ultimoMinuto) {
+            ultimoMinuto = nowMin;
+            recomputar(agora);
+        }
+
+        const nowFrac = ((nowMin + segNow / 60) / 1440 * 100).toFixed(3);
+        CICLOS.forEach(function (c) {
+            const card = document.querySelector('.agora-ciclo[data-key="' + c.key + '"]');
+            if (!card) return;
+
+            const nowEl = card.querySelector('.agora-now');
+            if (nowEl) nowEl.style.left = nowFrac + '%';
+
+            const contaEl = card.querySelector('.agora-ciclo-conta');
+            const st = estado[c.key];
+            if (!st || st.step == null) {
+                contaEl.textContent = 'Preço único, 24h';
+                return;
+            }
+            const restante = st.step * 60 - segNow;
+            contaEl.textContent = 'até às ' + fmtMin((nowMin + st.step) % 1440) + ' · ' + fmtDuracao(restante);
+        });
+    }
+
+    // Barras visuais de 24h por baixo de cada tabela (reaproveita construirSegmentos/CORES)
+    const TL_FIGURAS = {
+        biDiario: [
+            { grupo: null, bars: [ { label: 'Todo o ano', dow: 3, verao: true } ] }
+        ],
+        biSemanal: [
+            { grupo: '☀️ Verão',  bars: [
+                { label: 'Dias úteis', dow: 3, verao: true },
+                { label: 'Sábado',     dow: 6, verao: true },
+                { label: 'Domingo',    dow: 0, verao: true },
+            ]},
+            { grupo: '❄️ Inverno', bars: [
+                { label: 'Dias úteis', dow: 3, verao: false },
+                { label: 'Sábado',     dow: 6, verao: false },
+                { label: 'Domingo',    dow: 0, verao: false },
+            ]},
+        ],
+        triDiario: [
+            { grupo: null, bars: [
+                { label: '☀️ Verão',  dow: 3, verao: true },
+                { label: '❄️ Inverno', dow: 3, verao: false },
+            ]}
+        ],
+        triSemanal: [
+            { grupo: '☀️ Verão',  bars: [
+                { label: 'Dias úteis', dow: 3, verao: true },
+                { label: 'Sábado',     dow: 6, verao: true },
+                { label: 'Domingo',    dow: 0, verao: true },
+            ]},
+            { grupo: '❄️ Inverno', bars: [
+                { label: 'Dias úteis', dow: 3, verao: false },
+                { label: 'Sábado',     dow: 6, verao: false },
+                { label: 'Domingo',    dow: 0, verao: false },
+            ]},
+        ],
+    };
+
+    function renderTabelasVisuais() {
+        const eixo = '<div class="tl-linha tl-eixo"><span class="tl-label"></span><span class="tl-eixo-escala"><span>0h</span><span>6h</span><span>12h</span><span>18h</span><span>24h</span></span></div>';
+        document.querySelectorAll('.tl-figura').forEach(function (fig) {
+            const key = fig.getAttribute('data-ciclo');
+            const cfg = TL_FIGURAS[key];
+            if (!cfg) return;
+            let html = eixo;
+            cfg.forEach(function (g) {
+                if (g.grupo) html += '<div class="tl-grupo">' + g.grupo + '</div>';
+                g.bars.forEach(function (b) {
+                    const barra = construirSegmentos(b.dow, b.verao, key).map(function (s) {
+                        const cs = CORES[s.periodo] || CORES['Simples'];
+                        const w = ((s.fim - s.ini) / 1440 * 100).toFixed(3);
+                        return '<span class="tl-seg" style="width:' + w + '%;background:' + cs.border + ';" title="' + s.periodo + ' ' + fmtMin(s.ini) + '–' + fmtMin(s.fim) + '"></span>';
+                    }).join('');
+                    html += '<div class="tl-linha"><span class="tl-label">' + b.label + '</span><span class="tl-barra">' + barra + '</span></div>';
+                });
+            });
+            fig.innerHTML = html;
+        });
+    }
+
+    construirCartoes();
+    renderTabelasVisuais();
+    tick();
+    const intervaloId = setInterval(tick, 1000);
+
+    // 'pagehide' é fiável com a bfcache dos browsers modernos (ao contrário de 'unload')
+    window.addEventListener('pagehide', function () { clearInterval(intervaloId); });
+})();
+</script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

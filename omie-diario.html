@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; connect-src 'self' https://dados.tiagofelicia.pt https://raw.githubusercontent.com https://huggingface.co https://*.hf.co https://docs.google.com https://re.jrc.ec.europa.eu https://pvgis.ec.europa.eu https://formspree.io https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; frame-src https://1drv.ms https://onedrive.live.com https://www.paypal.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io https://www.paypal.com; upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2c3e50" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+    
+    <title>Preços Mercado Diário (Day-Ahead) OMIE Spot: Eletricidade Hora-a-Hora | Soluções Diferentes</title>
+    <meta name="description" content="Consulte os preços diários e horários do Mercado Diário (Day-Ahead) de eletricidade (OMIE Spot) para Portugal. Consulte médias diárias, bi-horárias e tri-horárias atualizadas." />
+
+    <link rel="canonical" href="https://www.solucoesdiferentes.pt/omie-diario" />
+    <link rel="alternate" hreflang="pt-pt" href="https://www.solucoesdiferentes.pt/omie-diario" />
+    <link rel="alternate" hreflang="x-default" href="https://www.solucoesdiferentes.pt/omie-diario" />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Preço da Eletricidade Hoje (OMIE Spot Portugal)" />
+    <meta property="og:description" content="Veja o preço da luz para amanhã e os futuros. Gráficos e tabelas hora-a-hora." />
+    <meta property="og:url" content="https://www.solucoesdiferentes.pt/omie-diario" />
+    <meta property="og:image" content="https://www.solucoesdiferentes.pt/images/social/social-omie-diario.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="Preço da luz hoje e amanhã (OMIE) — Soluções Diferentes" />
+    <meta property="og:locale" content="pt_PT" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@solucoesdiferentes.pt" />
+
+    <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/images/site.webmanifest" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="/theme.js"></script>
+    <script src="/dados.js"></script>
+
+    <!-- Preload do CSV "atuais" — o browser começa o fetch ainda antes do JS arrancar -->
+    <link rel="preload" as="fetch" href="https://dados.tiagofelicia.pt/data/omie/omie_dados_atuais.csv" type="text/csv" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/highcharts@12.6.0/highcharts.js" integrity="sha384-SGSvmfhCM3hkGxTFp+XUzegWFyvDjY5Fp8XAwYgjU9m/ABGDZP155lxJcur+S8cc" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highcharts@12.6.0/modules/exporting.js" integrity="sha384-TJE9ncU0vXo5KwYXnmu7CAHlkWo/9nOhkrBOhU6kS72Ofi4FzykryDfh+eqxniIc" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highcharts@12.6.0/modules/export-data.js" integrity="sha384-LyBxgyr7zYolp2N2sb66TW4ia0O2OQgB2LmYesJ++QzVNKqeDDKyHSwuPcTXTp15" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highcharts@12.6.0/modules/accessibility.js" integrity="sha384-sS4HBvki1hEKWbZcSkuClp+4/vLJOuzc6ns5B+G8Yuzme2a+hYQ+DZNJMI11XefP" crossorigin="anonymous"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Dashboard Mercado Diário (Day-Ahead) OMIE Spot Portugal",
+      "url": "https://www.solucoesdiferentes.pt/omie-diario",
+      "description": "Ferramenta de visualização de preços do Mercado Diário (Day-Ahead) de eletricidade (OMIE Spot) e futuros (OMIP) para Portugal.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web browser",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.solucoesdiferentes.pt/#person",
+        "name": "Soluções Diferentes"
+      }
+    }
+    </script>
+
+    <style>
+        .painel-header { text-align: center; margin-bottom: 20px; }
+        .painel-header h1 { margin: 0 0 20px 0; font-size: 1.5em; color: #2c3e50; }
+        .painel-header p { margin: 5px 0 0; font-size: 0.9em; color: #666; }
+
+        .date-selector { margin-bottom: 20px; text-align: center; }
+        .date-selector label { font-weight: bold; margin-right: 10px; }
+        .date-selector input { padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-size: 1em; }
+
+        /* Contentor das setas e input */
+        .date-nav-wrapper { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px;}
+        /* Estilo dos botões de seta */
+        .btn-nav { background: #fff; border: 1px solid #ccc; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; font-size: 1.2em; display: flex; align-items: center; justify-content: center; transition: background 0.2s; color: #2c3e50;}
+        .btn-nav:hover { background: #e2e8f0; }        
+
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; width: 95%; max-width: 1200px; margin: auto; }
+        .coluna { display: flex; flex-direction: column; gap: 20px; }
+        .card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .card-title-bd { background-color: #A9D08E; color: black; padding: 5px 10px; margin: -10px -10px 10px -10px; border-radius: 8px 8px 0 0; font-size: 1em; text-align: center; }
+        .card-title-bs { background-color: #8EA9DB; color: black; padding: 5px 10px; margin: -10px -10px 10px -10px; border-radius: 8px 8px 0 0; font-size: 1em; text-align: center; }
+        .card-title-td { background-color: #BF8F00; color: white; padding: 5px 10px; margin: -10px -10px 10px -10px; border-radius: 8px 8px 0 0; font-size: 1em; text-align: center; }
+        .card-title-ts { background-color: #C65911; color: white; padding: 5px 10px; margin: -10px -10px 10px -10px; border-radius: 8px 8px 0 0; font-size: 1em; text-align: center; }
+        .data-item { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid #f0f0f0; }
+        .data-item:last-child { border-bottom: none; }
+        .label { font-weight: 600; }
+        .valor { font-weight: bold; font-size: 0.95em; }
+        .card-principal { text-align: center; border-style: solid; }
+        .valor-principal { font-size: 1.8em; font-weight: bold; color: #333; }
+        .futuros-info { font-size: 0.9em; min-height: 1.2em; padding: 8px 0 6px 0; border-top: 1px dashed #cbd5e1; margin-top: 8px; color: #495057; }
+        [data-theme="dark"] .futuros-info { border-top-color: #475569; color: #cbd5e1; }
+        .card-title-futuros { background-color: #495057; color: white; padding: 8px 10px; margin: -10px -10px 10px -10px; border-radius: 8px 8px 0 0; font-size: 1em; text-align: center; }
+        .card-futuros ul { margin: 0; padding: 0; list-style: none; font-size: 0.95em; }
+        .card-futuros ul li { display: flex; justify-content: space-between; padding: 3px 0; }
+        .card-portugal { border-color: #007bff; border-width: 5px; }
+        .card-title-media-pt { font-size: 1em; text-align: center; margin: -10px -10px 10px -10px; padding: 8px 10px; background-color: #007bff; color: white; border-radius: 2px 2px 0 0; }
+        .card-espanha { border-color: #28a745; border-width: 5px; }
+        .card-title-media-es { font-size: 1em; text-align: center; margin: -10px -10px 10px -10px; padding: 8px 10px; background-color: #28a745; color: white; border-radius: 2px 2px 0 0; }
+        .label-vazio, .label-fora-vazio, .label-cheias, .label-ponta { padding: 3px 8px; border-radius: 12px; color: white; font-size: 0.95em; font-weight: 600; }
+        .card:has(.card-title-bd) .label-vazio { background-color: #C6E0B4; color: #000000; }
+        .card:has(.card-title-bd) .label-fora-vazio { background-color: #E2EFDA; color: #000000; }
+        .card:has(.card-title-bs) .label-vazio { background-color: #B4C6E7; color: #000000; }
+        .card:has(.card-title-bs) .label-fora-vazio { background-color: #D9E1F2; color: #000000; }
+        .card:has(.card-title-td) .label-vazio { background-color: #FFD966; color: #000000; }
+        .card:has(.card-title-td) .label-cheias { background-color: #FFE699; color: #000000; }
+        .card:has(.card-title-td) .label-ponta { background-color: #FFF2CC; color: #000000; }
+        .card:has(.card-title-ts) .label-vazio { background-color: #F4B084; color: #000000; }
+        .card:has(.card-title-ts) .label-cheias { background-color: #F8CBAD; color: #000000; }
+        .card:has(.card-title-ts) .label-ponta { background-color: #FCE4D6; color: #000000; }
+
+        .grafico-tabela-grid { display: grid; grid-template-columns: 3fr 8fr; gap: 20px; width: 95%; max-width: 1200px; margin: 40px auto 20px auto; align-items: flex-start; }
+        @media (max-width: 900px) { .grafico-tabela-grid { grid-template-columns: 1fr; } }
+        .tabela-wrapper { border: 1px solid #ddd; border-radius: 8px; background-color: white; overflow-x: auto; }
+        .tabela-precos { width: 100%; border-collapse: collapse; font-size: 0.8em; }
+        .tabela-precos th, .tabela-precos td { padding: 8px 12px; text-align: center; border-bottom: 1px solid #eee; white-space: nowrap; }
+        .tabela-precos thead th { background-color: #343a40; color: white; position: sticky; top: 0; z-index: 1; }
+        .tabela-precos thead tr:last-child th { top: 30px; }
+        .tabela-precos tbody tr:nth-child(even) { background-color: #f9f9f9; }
+        .tabela-precos th:nth-child(1), .tabela-precos td:nth-child(1) { width: 34%; }
+        .tabela-precos th:nth-child(2), .tabela-precos td:nth-child(2) { width: 33%; }
+        .tabela-precos th:nth-child(3), .tabela-precos td:nth-child(3) { width: 33%; }
+        .link-section { text-align: center; margin: 30px auto; }
+        .link-section p { font-family: monospace; font-size: 0.9em; color: #555; background-color: #e9ecef; padding: 8px 12px; border-radius: 4px; display: inline-block; margin: 0; }
+        .content-support { max-width: 1200px; margin: 40px auto; padding: 0 15px; }
+         /* Estilo para Loading Indicator */
+        #loading-indicator { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.7); color: white; padding: 15px 25px; border-radius: 8px; z-index: 1000; font-size: 1.1em; }
+        /* Badge de data para prints */
+        .data-badge-secao { font-size: 0.72em; color: #888; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; padding: 2px 8px; display: inline-block; }
+        .data-badge-wrapper { width: 95%; max-width: 1200px; margin: 0 auto 4px auto; text-align: right; }
+        .chart-type-toggle { display: flex; justify-content: flex-end; gap: 6px; margin-bottom: 8px; }
+        .chart-type-toggle button { display: flex; align-items: center; gap: 6px; padding: 5px 14px; border: 1px solid #ccc; border-radius: 6px; background: white; font-size: 0.85em; cursor: pointer; color: #555; transition: all 0.15s ease; }
+        .chart-type-toggle button:hover { border-color: #999; background: #f5f5f5; }
+        .chart-type-toggle button.active { background: #343a40; color: white; border-color: #343a40; font-weight: 600; }
+        .chart-type-toggle svg { flex-shrink: 0; }
+        #minmax-barras { display: none; justify-content: center; flex-wrap: wrap; gap: 8px 20px; padding: 7px 12px; margin-bottom: 6px; background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 6px; font-size: 0.85em; }
+        #minmax-barras span { display: flex; align-items: center; gap: 5px; font-weight: 600; white-space: nowrap; }
+        #minmax-barras .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+        /* === DARK MODE — Estilos específicos desta página === */
+        [data-theme="dark"] #menu-placeholder { background: #0f172a !important; }
+        [data-theme="dark"] .painel-header h1 { color: #e2e8f0; }
+        [data-theme="dark"] .painel-header p { color: #94a3b8; }
+        [data-theme="dark"] .date-selector label { color: #cbd5e1; }
+        [data-theme="dark"] .date-selector input { background: #1e293b; color: #e2e8f0; border-color: #475569; }
+        [data-theme="dark"] .card { background: #1e293b; border-color: #475569; box-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        [data-theme="dark"] .card-principal { color: #e2e8f0; }
+        [data-theme="dark"] .valor-principal { color: #e2e8f0; }
+        [data-theme="dark"] .data-item { border-bottom-color: #334155; }
+        [data-theme="dark"] .label { color: #cbd5e1; }
+        [data-theme="dark"] .valor { color: #e2e8f0; }
+        [data-theme="dark"] .futuros-info { color: #94a3b8; border-top-color: #334155; }
+        [data-theme="dark"] .card-futuros ul li { color: #cbd5e1; }
+        [data-theme="dark"] .tabela-wrapper { background-color: #1e293b; border-color: #475569; }
+        [data-theme="dark"] .tabela-precos tbody tr:nth-child(even) { background-color: #0f172a; }
+        [data-theme="dark"] .tabela-precos tbody tr:nth-child(odd) { background-color: #1e293b; }
+        [data-theme="dark"] .tabela-precos th, [data-theme="dark"] .tabela-precos td { border-bottom-color: #475569; color: #e2e8f0; }
+        [data-theme="dark"] .tabela-precos thead th { background-color: #0f172a; }
+        [data-theme="dark"] .chart-type-toggle button { background: #1e293b; color: #94a3b8; border-color: #475569; }
+        [data-theme="dark"] .chart-type-toggle button:hover { background: #334155; border-color: #64748b; }
+        [data-theme="dark"] .chart-type-toggle button.active { background: #e2e8f0; color: #0f172a; border-color: #e2e8f0; }
+        [data-theme="dark"] #minmax-barras { background: #1e293b; border-color: #475569; color: #cbd5e1; }
+        [data-theme="dark"] #loading-indicator { background-color: rgba(15, 23, 42, 0.85); }
+        [data-theme="dark"] .data-badge-secao { background: #334155; border-color: #475569; color: #94a3b8; }
+        [data-theme="dark"] #grafico-container { background: #1e293b; border-radius: 8px; }
+        [data-theme="dark"] .btn-nav { background: #1e293b; color: #e2e8f0; border-color: #475569; }
+        [data-theme="dark"] .btn-nav:hover { background: #334155; }
+
+        /* ===== Botões pré-definidos de dia (Ontem/Hoje/Amanhã/Mais recente) ===== */
+        .date-presets { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+        .date-preset-btn { background: #fff; border: 1px solid #cbd5e1; padding: 6px 14px; border-radius: 16px; font-size: 0.85em; cursor: pointer; color: #475569; transition: background 0.15s, color 0.15s; }
+        .date-preset-btn:hover:not(:disabled) { background: #e2e8f0; }
+        .date-preset-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .date-preset-btn.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+        [data-theme="dark"] .date-preset-btn { background: #1e293b; color: #cbd5e1; border-color: #475569; }
+        [data-theme="dark"] .date-preset-btn:hover:not(:disabled) { background: #334155; }
+
+        /* ===== Toggle Fuso horário (PT / CET) ===== */
+        .fuso-toggle { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+        .fuso-toggle .fuso-label { font-size: 0.82em; color: #64748b; font-weight: 600; margin-right: 4px; }
+        .fuso-btn { background: #fff; border: 1px solid #cbd5e1; padding: 5px 12px; border-radius: 14px; font-size: 0.82em; cursor: pointer; color: #475569; transition: background 0.15s, color 0.15s; }
+        .fuso-btn:hover:not(.active) { background: #e2e8f0; }
+        .fuso-btn.active { background: #0ea5e9; color: #fff; border-color: #0ea5e9; font-weight: 600; }
+        [data-theme="dark"] .fuso-toggle .fuso-label { color: #94a3b8; }
+        [data-theme="dark"] .fuso-btn { background: #1e293b; color: #cbd5e1; border-color: #475569; }
+        [data-theme="dark"] .fuso-btn:hover:not(.active) { background: #334155; }
+        [data-theme="dark"] .fuso-btn.active { background: #0284c7; border-color: #0284c7; color: #fff; }
+        @media print { .fuso-toggle { display: none !important; } }
+
+        /* ===== Aviso ERSE em hora PT (mostrado só em modo CET) ===== */
+        .aviso-erse { background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; padding: 7px 11px; border-radius: 6px; font-size: 0.78em; text-align: center; line-height: 1.4; }
+        [data-theme="dark"] .aviso-erse { background: #1f2937; border-color: #b45309; color: #fed7aa; }
+
+        /* ===== Botão Partilhar ===== */
+        #btn-partilhar-diario { background: #fff; border: 1px solid #ccc; padding: 6px 14px; font-size: 0.9em; cursor: pointer; color: #2c3e50; border-radius: 5px; transition: background 0.2s; display: inline-flex; align-items: center; gap: 6px; margin-left: 10px; }
+        #btn-partilhar-diario:hover { background: #e2e8f0; }
+        [data-theme="dark"] #btn-partilhar-diario { background: #1e293b; color: #e2e8f0; border-color: #475569; }
+        [data-theme="dark"] #btn-partilhar-diario:hover { background: #334155; }
+        .toast-feedback { position: fixed; top: 20px; right: 20px; background: #28a745; color: white; padding: 11px 18px; border-radius: 6px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.25); font-weight: 500; font-size: 0.95em; }
+
+        /* ===== Hora do min/max em destaque ===== */
+        .hora-extremo { font-size: 0.78em; color: #6c757d; margin-left: 6px; font-weight: 500; }
+        [data-theme="dark"] .hora-extremo { color: #94a3b8; }
+
+        /* ===== Variação vs ontem / semana passada ===== */
+        .yoy-deltas { font-size: 0.78em; text-align: center; margin: 4px 0 8px 0; min-height: 1.4em; line-height: 1.5; }
+        .yoy-deltas .yoy-pair { white-space: nowrap; }
+        .yoy-deltas .yoy-sep { color: #aaa; margin: 0 6px; }
+        .yoy-deltas .yoy-up { color: #dc3545; font-weight: 600; }
+        .yoy-deltas .yoy-down { color: #28a745; font-weight: 600; }
+        .yoy-deltas .yoy-flat { color: #888; }
+        [data-theme="dark"] .yoy-deltas .yoy-up { color: #f87171; }
+        [data-theme="dark"] .yoy-deltas .yoy-down { color: #4ade80; }
+        [data-theme="dark"] .yoy-deltas .yoy-flat { color: #94a3b8; }
+
+        /* ===== Top Horas (mais baratas / mais caras) ===== */
+        #top-horas-section { width: 95%; max-width: 1200px; margin: 20px auto; }
+        #top-horas-section h2 { text-align: center; font-size: 1.05em; color: #2c3e50; margin: 0 0 14px 0; font-weight: 600; }
+        .top-horas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 700px) { .top-horas-grid { grid-template-columns: 1fr; } }
+        .top-horas-card { background: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 12px 16px; }
+        .top-horas-card-title { font-size: 0.92em; font-weight: 700; margin: 0 0 10px 0; display: flex; align-items: center; gap: 6px; }
+        .top-horas-baratas .top-horas-card-title { color: #16a34a; }
+        .top-horas-caras .top-horas-card-title { color: #dc2626; }
+        .top-horas-list { list-style: none; margin: 0; padding: 0; }
+        .top-horas-list li { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed #eef0f3; font-size: 0.92em; }
+        .top-horas-list li:last-child { border-bottom: none; }
+        .top-horas-list .hora { font-weight: 600; font-variant-numeric: tabular-nums; }
+        .top-horas-list .preco { font-weight: 700; font-variant-numeric: tabular-nums; }
+        .top-horas-baratas .preco { color: #16a34a; }
+        .top-horas-caras .preco { color: #dc2626; }
+        .top-horas-list .rank-badge { font-size: 0.75em; color: #94a3b8; margin-right: 8px; }
+        [data-theme="dark"] #top-horas-section h2 { color: #e2e8f0; }
+        [data-theme="dark"] .top-horas-card { background: #1e293b; border-color: #475569; }
+        [data-theme="dark"] .top-horas-list li { border-bottom-color: #334155; }
+        [data-theme="dark"] .top-horas-baratas .top-horas-card-title { color: #4ade80; }
+        [data-theme="dark"] .top-horas-caras .top-horas-card-title { color: #f87171; }
+        [data-theme="dark"] .top-horas-baratas .preco { color: #4ade80; }
+        [data-theme="dark"] .top-horas-caras .preco { color: #f87171; }
+
+        /* ===== Toggle "Sobrepor ontem" no gráfico ===== */
+        .chart-toggle-extras { display: inline-flex; align-items: center; gap: 6px; margin-left: 10px; padding: 5px 10px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; user-select: none; font-size: 0.85em; color: #475569; background: #fff; }
+        .chart-toggle-extras input { cursor: pointer; }
+        .chart-toggle-extras:hover { background: #f1f5f9; }
+        .chart-toggle-extras.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+        [data-theme="dark"] .chart-toggle-extras { background: #1e293b; color: #cbd5e1; border-color: #475569; }
+        [data-theme="dark"] .chart-toggle-extras:hover { background: #334155; }
+
+        /* ===== Modo Impressão ===== */
+        @page { size: A4; margin: 12mm; }
+        @media print {
+            /* Esconder elementos de UI/navegação */
+            #menu-placeholder, #footer-placeholder, .breadcrumb, .skip-link,
+            .date-presets, .date-selector,
+            #btn-partilhar-diario,
+            .chart-type-toggle, .chart-toggle-extras,
+            .highcharts-exporting-group, .highcharts-button {
+                display: none !important;
+            }
+            /* Garantir cores e fundos */
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            body { background: #fff !important; color: #000 !important; }
+            main { padding: 0 !important; }
+            .painel-header h1 { font-size: 1.3em !important; margin: 12px 0 !important; }
+            .card { box-shadow: none !important; break-inside: avoid; page-break-inside: avoid; }
+            .dashboard-grid { gap: 10px !important; }
+            .grafico-tabela-grid { break-inside: avoid; page-break-inside: avoid; }
+            #top-horas-section { break-inside: avoid; page-break-inside: avoid; }
+            /* FAQ: forçar todas as entradas abertas */
+            details.faq-item { display: block !important; }
+            details.faq-item > div { display: block !important; }
+            details.faq-item summary { cursor: default; }
+            /* Rodapé com URL e timestamp */
+            .painel-header::after {
+                content: 'tiagofelicia.pt/omie-diario — impresso em ' attr(data-print-date);
+                display: block;
+                font-size: 0.7em;
+                color: #666;
+                text-align: center;
+                margin-top: 8px;
+            }
+        }
+
+        /* ===== Hint de atalhos de teclado ===== */
+        .keyboard-hint { font-size: 0.7em; color: #94a3b8; margin-top: 4px; }
+        [data-theme="dark"] .keyboard-hint { color: #64748b; }
+</style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Início",
+      "item": "https://www.solucoesdiferentes.pt/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "OMIE Diário",
+      "item": "https://www.solucoesdiferentes.pt/omie-diario"
+    }
+  ]
+}
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O que é o OMIE e que preços são mostrados aqui?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O OMIE (Operador do Mercado Ibérico de Energia) gere o mercado grossista diário e intradiário de eletricidade para Portugal e Espanha (MIBEL). Os preços resultam de leilões onde a energia é comprada e vendida para o dia seguinte (Day-Ahead). Esta página mostra esses preços (€/MWh) para cada intervalo de 15 minutos (quarto-horário), já corrigidos para a hora de Portugal Continental (PT). Também são apresentados os preços originais para Espanha (ES) para comparação."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que significam as médias Simples, Bi-Horária e Tri-Horária?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "São médias dos preços quarto-horários de Portugal (€/MWh) durante diferentes períodos do dia selecionado, calculadas com base nos ciclos standard definidos pela ERSE. Simples: média de todos os preços reais do OMIE no dia. Bi-Horário (Diário/Semanal): média dos períodos de Vazio e Fora de Vazio. Tri-Horário (Diário/Semanal): média dos períodos de Ponta, Cheias e Vazio. No dia mais recente, os cálculos excluem os últimos quartos de hora após as 23h PT (ainda desconhecidos)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como é calculada a média de Espanha?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A média, máximo e mínimo para Espanha apresentados referem-se às 24 horas do dia espanhol. Como o dia espanhol começa e acaba uma hora mais cedo que o português, o cálculo inclui os preços de Espanha da última hora (23:00-24:00) na hora de Portugal do dia anterior, e os preços de Espanha das primeiras 23 horas (00:00-23:00) na hora de Portugal do dia selecionado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que são os Futuros OMIP?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OMIP é o mercado onde se negoceiam os preços de eletricidade para o futuro (próximo dia, mês, trimestre, ano). Os valores apresentados representam a expectativa do mercado para os preços futuros."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que significa o Futuro do dia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O valor Futuro do dia apresentado nos cartões de Portugal e Espanha é o preço do contrato futuro diário negociado no OMIP para o dia específico que está a visualizar. Este valor representa a expectativa que o mercado tinha (na data de atualização OMIP indicada) sobre qual seria o preço médio nesse dia. É útil para comparar a expectativa (futuro) com a realidade (média OMIE calculada)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Os Futuros Diários OMIP (PT) são diferentes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. O cartão Futuros Diários OMIP (PT) mostra os preços dos contratos futuros diários para os próximos dias (até um máximo de 3), tal como negociados no OMIP. Servem para dar uma indicação das expectativas do mercado para o futuro próximo, para além do dia selecionado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Estes preços OMIE são os que pago na fatura?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não diretamente, a menos que tenha uma tarifa indexada ao OMIE. Se tem uma tarifa indexada (ou dinâmica), o preço que paga pela energia varia hora a hora (ou quarto de hora) e está diretamente ligado a estes valores do OMIE, acrescido de uma margem do comercializador e outras taxas. Se tem uma tarifa fixa, o preço por kWh é constante, definido pelo seu comercializador. A sua fatura final inclui sempre outras componentes como tarifas de acesso às redes, taxas e impostos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "De onde vêm os dados e qual o período disponível?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Os dados são processados através da recolha automática de informação pública dos websites do OMIE (para os preços diários reais) e do OMIP (para os futuros). Esta página inclui o histórico de dados desde 01/01/2010."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como são escolhidas as Top 3 horas mais baratas e mais caras?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "São calculadas a partir das médias horárias do preço PT (média dos 4 quartos-horários de cada hora). As 3 horas com média mais baixa aparecem em mais baratas e as 3 com média mais alta em mais caras. São úteis para utilizadores em tarifa indexada que queiram programar consumo intensivo (carregar veículo elétrico, ligar máquina de lavar, etc.) nas horas mais favoráveis do dia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que significam as variações vs ontem e vs mesmo dia da semana passada?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mostram quanto o preço médio do dia subiu ou desceu em comparação com o dia anterior e com o mesmo dia da semana passada (7 dias antes). Passa o rato sobre cada percentagem para ver o valor de referência exato. Quando a referência é muito pequena (perto de 0 €/MWh), em vez de percentagem é mostrada a diferença absoluta em €/MWh."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como interagir com o gráfico, tabela e atalhos de teclado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Linhas/Barras alterna o tipo do gráfico. Sobrepor ontem adiciona o preço PT de ontem em cinza tracejado. As setas ←/→ do teclado navegam para o dia anterior/seguinte. Os botões Ontem/Hoje/Amanhã são atalhos rápidos. O botão Partilhar copia um resumo do dia. Ctrl+P imprime um relatório optimizado. Arrastar horizontalmente no gráfico faz zoom."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Saltar para o conteúdo</a>
+
+
+
+<div id="menu-placeholder"></div>
+<nav class="breadcrumb" aria-label="breadcrumb">
+    <ol>
+        <li><a href="/">Início</a></li>
+        <li>OMIE</li>
+        <li aria-current="page">OMIE Diário</li>
+    </ol>
+</nav>
+
+
+<main id="main-content">
+    <div class="painel-header" id="painel-header-main">
+        <div class="date-presets" role="group" aria-label="Atalhos de dia">
+            <button type="button" class="date-preset-btn" data-preset="ontem" title="Dia de ontem">« Ontem</button>
+            <button type="button" class="date-preset-btn" data-preset="hoje" title="Dia de hoje (PT)">Hoje</button>
+            <button type="button" class="date-preset-btn" data-preset="amanha" title="Dia de amanhã (se disponível)">Amanhã »</button>
+        </div>
+
+        <div class="fuso-toggle" role="group" aria-label="Fuso horário de visualização">
+            <span class="fuso-label">Fuso:</span>
+            <button type="button" class="fuso-btn active" data-fuso="pt" title="Ver dados em hora de Portugal Continental">🇵🇹 Hora PT</button>
+            <button type="button" class="fuso-btn" data-fuso="cet" title="Ver dados em hora CET (hora de mercado / Espanha)">🇪🇺 Hora CET (mercado)</button>
+        </div>
+
+        <div class="date-selector">
+            <label for="seletor-data">Selecione o dia:</label>
+            <div class="date-nav-wrapper">
+                <button type="button" class="btn-nav" id="btn-prev" title="Dia anterior (tecla ←)" aria-label="Dia anterior">&#10094;</button>
+                <input type="date" id="seletor-data">
+                <button type="button" class="btn-nav" id="btn-next" title="Dia seguinte (tecla →)" aria-label="Dia seguinte">&#10095;</button>
+                <button type="button" id="btn-partilhar-diario" title="Copiar/partilhar link e resumo deste dia" aria-label="Partilhar"><span aria-hidden="true">📤</span> Partilhar</button>
+            </div>
+        </div>
+
+        <p style="font-size: 0.70em; color: #555; margin-top: 0; margin-bottom: 15px;">
+            Dados disponíveis desde 01/01/2010
+        </p>
+        <h1>Eletricidade - Preços médios Mercado Diário OMIE para <span id="data-titulo-painel">Portugal</span></h1>
+        <p id="painel-subtitulo">Valores OMIE (€/MWh) corrigidos para a hora de Portugal</p>
+    </div>
+
+    <div id="loading-indicator" role="status" aria-live="polite">A carregar dados históricos...</div>
+
+    <div class="dashboard-grid">
+         <div class="coluna">
+            <div class="card card-principal card-portugal"> <h3 class="card-title-media-pt">Portugal - Simples</h3> <div class="valor-principal" id="media-pt" aria-label="Preço médio Portugal">--,-- €</div> <div class="yoy-deltas" id="yoy-pt-deltas"></div> <div class="futuros-info" id="futuros-container-pt"> Futuro do dia: <strong id="futuros-anterior-pt">--,-- €</strong> em <strong id="futuros-pt-data">--/--/----</strong> </div> <div class="data-item"><span class="label">Máximo quarto-horário PT</span><span class="valor" id="max-pt">--,-- €</span></div> <div class="data-item"><span class="label">Mínimo quarto-horário PT</span><span class="valor" id="min-pt">--,-- €</span></div> </div>
+             <div class="card card-principal card-espanha"> <h3 class="card-title-media-es">Espanha <small id="lbl-24h-es">(às 24h de ES)</small></h3> <div class="valor-principal" id="media-es" aria-label="Preço médio Espanha">--,-- €</div> <div class="yoy-deltas" id="yoy-es-deltas"></div> <div class="futuros-info" id="futuros-container-es"> Futuro do dia: <strong id="futuros-anterior-es">--,-- €</strong> em <strong id="futuros-es-data">--/--/----</strong> </div> <div class="data-item"><span class="label">Máximo quarto-horário ES</span><span class="valor" id="max-es">--,-- €</span></div> <div class="data-item"><span class="label">Mínimo quarto-horário ES</span><span class="valor" id="min-es">--,-- €</span></div> </div>
+             <div class="card card-futuros"> <h3 class="card-title-futuros">Futuros Diários OMIP (PT)</h3> <ul> <li id="futuro-1-item" style="display: none;"> <span id="futuros-1-label"></span> <strong id="futuros-1-valor"></strong> </li> <li id="futuro-2-item" style="display: none;"> <span id="futuros-2-label"></span> <strong id="futuros-2-valor"></strong> </li> <li id="futuro-3-item" style="display: none;"> <span id="futuros-3-label"></span> <strong id="futuros-3-valor"></strong> </li> </ul> </div>
+        </div>
+        <div class="coluna">
+            <div id="aviso-erse-fuso" class="aviso-erse" style="display:none;" role="note">
+                ⚠️ Os períodos ERSE (Vazio/Cheias/Ponta) estão definidos em <strong>hora PT</strong> e mantêm-se nesse fuso.
+            </div>
+            <div class="card"> <h3 class="card-title-bd" style="display:flex; justify-content:space-between; align-items:center;"><span style="visibility:hidden;">📅 --/--/----</span>Bi-horário Diário<span class="data-badge-secao" id="badge-data-cards" style="font-size:0.75em; background:rgba(255,255,255,0.5); border-color:rgba(0,0,0,0.15);">📅 --/--/----</span></h3> <div class="data-item"><span class="label label-vazio">Vazio</span><span class="valor" id="bh-diario-vazio">--,-- €</span></div> <div class="data-item"><span class="label label-fora-vazio">Fora Vazio</span><span class="valor" id="bh-diario-fora-vazio">--,-- €</span></div> </div>
+             <div class="card"> <h3 class="card-title-bs">Bi-horário Semanal</h3> <div class="data-item"><span class="label label-vazio">Vazio</span><span class="valor" id="bh-semanal-vazio">--,-- €</span></div> <div class="data-item"><span class="label label-fora-vazio">Fora Vazio</span><span class="valor" id="bh-semanal-fora-vazio">--,-- €</span></div> </div>
+             <div class="card"> <h3 class="card-title-td">Tri-horário Diário</h3> <div class="data-item"><span class="label label-vazio">Vazio</span><span class="valor" id="th-diario-vazio">--,-- €</span></div> <div class="data-item"><span class="label label-cheias">Cheias</span><span class="valor" id="th-diario-cheias">--,-- €</span></div> <div class="data-item"><span class="label label-ponta">Ponta</span><span class="valor" id="th-diario-ponta">--,-- €</span></div> </div>
+             <div class="card"> <h3 class="card-title-ts">Tri-horário Semanal</h3> <div class="data-item"><span class="label label-vazio">Vazio</span><span class="valor" id="th-semanal-vazio">--,-- €</span></div> <div class="data-item"><span class="label label-cheias">Cheias</span><span class="valor" id="th-semanal-cheias">--,-- €</span></div> <div class="data-item"><span class="label label-ponta">Ponta</span><span class="valor" id="th-semanal-ponta">--,-- €</span></div> </div>
+        </div>
+    </div>
+    
+    <div class="link-section"> <p>https://www.solucoesdiferentes.pt/omie-diario</p> </div>
+
+    <section id="top-horas-section" style="display: none;">
+        <h2>💡 Quando consumir / evitar? <small id="top-horas-subtitulo" style="font-weight:normal;color:#888;">(médias horárias PT)</small></h2>
+        <div class="top-horas-grid">
+            <div class="top-horas-card top-horas-baratas">
+                <h3 class="top-horas-card-title">⭐ 3 horas mais baratas</h3>
+                <ul class="top-horas-list" id="top-horas-baratas-lista"></ul>
+            </div>
+            <div class="top-horas-card top-horas-caras">
+                <h3 class="top-horas-card-title">🔴 3 horas mais caras</h3>
+                <ul class="top-horas-list" id="top-horas-caras-lista"></ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="link-section"> <p>https://www.solucoesdiferentes.pt/omie-diario</p> </div>
+
+    <div class="grafico-tabela-grid">
+        <div id="tabela-container" class="tabela-wrapper"></div>
+        <div style="min-width: 0; overflow: hidden;">
+            <div class="chart-type-toggle">
+                <button id="btn-tipo-linha" class="active" title="Gráfico de linhas">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="1,12 5,6 9,9 13,3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                    Linhas
+                </button>
+                <button id="btn-tipo-barras" title="Gráfico de barras">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="8" width="3" height="6" rx="1" fill="currentColor"/><rect x="6" y="4" width="3" height="10" rx="1" fill="currentColor"/><rect x="11" y="6" width="3" height="8" rx="1" fill="currentColor"/></svg>
+                    Barras
+                </button>
+                <label class="chart-toggle-extras" id="toggle-ontem-label" title="Sobrepor o preço PT do dia anterior no gráfico (linha cinza tracejada)"><input type="checkbox" id="toggle-ontem" /> Sobrepor ontem</label>
+            </div>
+            <div id="minmax-barras"></div>
+            <div id="grafico-container"></div>
+        </div>
+    </div>
+
+    <article class="content-support">
+        <h2>Compreender os Preços do Mercado Diário (Day-Ahead) OMIE</h2>
+
+            <details class="faq-item">
+                <summary><strong>O que é o OMIE e que preços são mostrados aqui?</strong></summary>
+                <div class="faq-content">
+                    <p>O <strong>OMIE (Operador do Mercado Ibérico de Energia)</strong> gere o mercado grossista diário e intradiário de eletricidade para Portugal e Espanha (MIBEL). Os preços resultam de leilões onde a energia é comprada e vendida para o dia seguinte (Day-Ahead).</p>
+                    <p>Esta página mostra esses preços (€/MWh) para cada <strong>intervalo de 15 minutos (quarto-horário)</strong>, já corrigidos para a <strong>hora de Portugal Continental (PT)</strong>. Também são apresentados os preços originais para Espanha (ES) para comparação.</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary><strong>O que significam as médias Simples, Bi-Horária e Tri-Horária?</strong></summary>
+                <div class="faq-content">
+                    <p>São médias dos preços quarto-horários de Portugal (€/MWh) durante diferentes períodos do dia selecionado, calculadas com base nos ciclos standard definidos pela ERSE:</p>
+                    <ul>
+                        <li><strong>Simples:</strong> Média de todos os preços *reais* do OMIE no dia selecionado (ver nota abaixo sobre o último dia).</li>
+                        <li><strong>Bi-Horário (Diário/Semanal):</strong> Média dos preços durante os períodos de <strong>Vazio</strong> e <strong>Fora de Vazio</strong>.</li>
+                        <li><strong>Tri-Horário (Diário/Semanal):</strong> Média dos preços durante os períodos de <strong>Ponta</strong>, <strong>Cheias</strong> e <strong>Vazio</strong>.</li>
+                    </ul>
+                    <p>Pode consultar as horas dos períodos em <a href="https://www.solucoesdiferentes.pt/periodos-horarios" target="_blank" rel="noopener noreferrer">https://www.solucoesdiferentes.pt/periodos-horarios</a></p>
+
+                    <p><strong>Nota Importante:</strong> No dia mais recente apresentado, os cálculos de médias, máximo e mínimo para Portugal <strong>excluem</strong> os últimos quartos de hora (normalmente após as 23h PT), pois os mesmos ainda não são conhecidos.</p>
+                </div>
+            </details>
+            
+            <details class="faq-item">
+                <summary><strong>Como é calculada a média de Espanha?</strong></summary>
+                <div class="faq-content">
+                    <p>A média, máximo e mínimo para Espanha apresentados referem-se às <strong>24 horas do dia espanhol</strong>. Como o dia espanhol começa e acaba uma hora mais cedo que o português, o cálculo inclui:</p>
+                    <ul>
+                        <li>Os preços de Espanha da última hora (23:00-24:00) na hora de Portugal do <strong>dia anterior</strong>.</li>
+                        <li>Os preços de Espanha das 23 horas (00:00-23:00) na hora de Portugal do <strong>dia selecionado</strong>.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary><strong>O que são os Futuros OMIP?</strong></summary>
+                <div class="faq-content">
+                    <p>OMIP é o mercado onde se negoceiam os preços de eletricidade para o futuro (próximo dia, mês, trimestre, ano). Os valores apresentados representam a expectativa do mercado para os preços futuros.</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary><strong>O que significa o "Futuro do dia"?</strong></summary>
+                <div class="faq-content">
+                    <p>O valor "Futuro do dia" apresentado nos cartões de Portugal e Espanha é o preço do <strong>contrato futuro diário negociado no OMIP</strong> para o dia específico que está a visualizar. Este valor representa a expectativa que o mercado tinha (na data de atualização OMIP indicada) sobre qual seria o preço médio nesse dia.</p>
+                    <p>É especialmente útil para comparar a expectativa (futuro) com a realidade (média OMIE calculada), particularmente no dia mais recente.</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary><strong>Os "Futuros Diários OMIP (PT)" são diferentes?</strong></summary>
+                <div class="faq-content">
+                    <p>Sim. O cartão "Futuros Diários OMIP (PT)" mostra os preços dos contratos futuros diários para os <strong>próximos dias</strong> (até um máximo de 3), tal como negociados no OMIP. Servem para dar uma indicação das expectativas do mercado para o futuro próximo, para além do dia selecionado.</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary><strong>Estes preços OMIE são os que pago na fatura?</strong></summary>
+                <div class="faq-content">
+                    <p><strong>Não diretamente, a menos que tenha uma tarifa indexada ao OMIE.</strong></p>
+                    <ul>
+                        <li>Se tem uma <strong>tarifa indexada</strong> (ou dinâmica), o preço que paga pela energia varia hora a hora (ou quarto de hora) e está diretamente ligado a estes valores do OMIE, acrescido de uma margem do comercializador e outras taxas.</li>
+                        <li>Se tem uma <strong>tarifa fixa</strong>, o preço por kWh é constante, definido pelo seu comercializador. No entanto, os preços do OMIE influenciam o custo de aquisição de energia para o comercializador e, indiretamente, os preços das tarifas fixas que ele oferece.</li>
+                    </ul>
+                    <p>Lembre-se que a sua fatura final inclui sempre outras componentes como tarifas de acesso às redes, taxas e impostos.</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary><strong>De onde vêm os dados e qual o período disponível?</strong></summary>
+                <div class="faq-content">
+                    <p>Os dados são processados através da recolha automática de informação pública dos websites do <strong>OMIE</strong> (para os preços diários "reais") e do <strong>OMIP</strong> (para os futuros).</p>
+                    <p>Esta página inclui o histórico de dados desde <strong>01/01/2010.</strong></p>
+
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary><strong>Como são escolhidas as "Top 3 horas" mais baratas/caras?</strong></summary>
+                <div class="faq-content">
+                    <p>São calculadas a partir das <strong>médias horárias</strong> do preço PT (média dos 4 quartos-horários de cada hora):</p>
+                    <ul>
+                        <li>As 3 horas com média mais baixa aparecem em <strong>"⭐ mais baratas"</strong>.</li>
+                        <li>As 3 horas com média mais alta aparecem em <strong>"🔴 mais caras"</strong>.</li>
+                    </ul>
+                    <p>São especialmente úteis para utilizadores em <strong>tarifa indexada</strong> que queiram programar consumo intensivo (carregar veículo elétrico, ligar máquina de lavar, etc.) nas horas mais favoráveis do dia.</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary><strong>O que significam as variações "vs ontem" e "vs mesmo dia da semana passada"?</strong></summary>
+                <div class="faq-content">
+                    <p>Mostram quanto o <strong>preço médio</strong> do dia subiu (<span style="color:#dc3545;">↗</span>) ou desceu (<span style="color:#28a745;">↘</span>) em comparação com:</p>
+                    <ul>
+                        <li><strong>Ontem</strong> — o dia anterior ao selecionado.</li>
+                        <li><strong>Mesmo dia da semana passada</strong> — exatamente 7 dias antes (compara, por exemplo, esta Quarta com a Quarta passada).</li>
+                    </ul>
+                    <p>Passa o rato sobre cada percentagem para ver o <strong>valor de referência exato</strong> usado na comparação.</p>
+                    <p>Quando o valor de referência é muito pequeno (perto de 0 €/MWh), em vez de percentagem é mostrada a diferença absoluta em €/MWh.</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary><strong>Como interagir com o gráfico, tabela e atalhos?</strong></summary>
+                <div class="faq-content">
+                    <ul>
+                        <li><strong>Linhas / Barras</strong> — alterna o tipo do gráfico (botões acima do gráfico).</li>
+                        <li><strong>Sobrepor ontem</strong> — adiciona o preço PT de ontem em <span style="color:#9aa0a6;">cinza tracejado</span>, permitindo comparar visualmente sem mudar de página. A escolha fica memorizada.</li>
+                        <li><strong>Setas ← / →</strong> (teclado) — navega para o <strong>dia anterior / seguinte</strong>.</li>
+                        <li><strong>Botões « Ontem · Hoje · Amanhã »</strong> — atalhos para os dias mais consultados.</li>
+                        <li><strong>📤 Partilhar</strong> — copia/partilha um resumo do dia com link direto.</li>
+                        <li><strong>Ctrl+P</strong> — imprime relatório do dia (esconde menus e controlos, mantém cards e gráfico).</li>
+                        <li><strong>Zoom no gráfico</strong> — arrasta horizontalmente sobre a área para ampliar; aparece um botão "Reset zoom" depois.</li>
+                    </ul>
+                </div>
+            </details>
+    </article></main>
+
+<div id="footer-placeholder"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    // --- CONFIGURAÇÕES ---
+    // Caminhos relativos a data/ — a origem (same-origin vs GitHub raw) e o
+    // fallback entre ambas são geridos por fetchDados() (dados.js).
+    const URL_DADOS_ATUAIS = "omie/omie_dados_atuais.csv";
+    const URL_HISTORICO_BASE = "omie/historico/omie_historico_";
+    const ANO_INICIO_HISTORICO = 2010;
+    // --- FIM CONFIGURAÇÕES ---
+
+    const seletorData = document.getElementById('seletor-data');
+    const loadingIndicator = document.getElementById('loading-indicator');
+
+    // --- ARMAZENAMENTO DE DADOS ---
+    let dadosAtuais = [];
+    let dadosHistoricos = {};
+    let dadosAtualizacao = {};
+    let dadosFuturosPT = [];
+    let dadosFuturosES = [];
+    let anoMinimoAtual = null;
+    let tipoGrafico = 'line';
+    let ultimosArgsGrafico = null;
+
+    // --- FUNÇÕES AUXILIARES ---
+    function formatarDataParaInput(dataStr) { if (!dataStr || typeof dataStr !== 'string' || !dataStr.includes('/')) { return null; } const [dia, mes, ano] = dataStr.split('/'); if (!dia || !mes || !ano || dia.length !== 2 || mes.length !== 2 || ano.length !== 4) { return null; } return `${ano}-${mes}-${dia}`; }
+    function formatarDataParaCSV(dataStr) { if (!dataStr || typeof dataStr !== 'string' || !dataStr.includes('-')) { return null; } const [ano, mes, dia] = dataStr.split('-'); if (!dia || !mes || !ano || dia.length !== 2 || mes.length !== 2 || ano.length !== 4) { return null; } return `${dia}/${mes}/${ano}`; }
+    function getDataAnteriorCSV(dataStrYYYYMMDD) { try { const dataAtual = new Date(dataStrYYYYMMDD + "T12:00:00Z"); dataAtual.setUTCDate(dataAtual.getUTCDate() - 1); const dia = String(dataAtual.getUTCDate()).padStart(2, '0'); const mes = String(dataAtual.getUTCMonth() + 1).padStart(2, '0'); const ano = dataAtual.getUTCFullYear(); return `${dia}/${mes}/${ano}`; } catch(e) { console.error("Erro data anterior:", e); return null; } }
+    /**
+     * Verifica se uma data (no formato YYYY-MM-DD) pertence à semana atual.
+     * @param {string} dataStrYYYYMMDD - A data a verificar (ex: "2025-10-25").
+     * @returns {boolean} - True se for da semana atual, false caso contrário.
+     */
+    function isDataNaSemanaAtual(dataStrYYYYMMDD) {
+        try {
+            // Obter a data selecionada como objeto Date (local)
+            // O <input type="date"> devolve o valor no fuso horário local
+            const [ano, mes, dia] = dataStrYYYYMMDD.split('-').map(Number);
+            // new Date(ano, mes - 1, dia) -> Ex: 25 Out 2025 00:00:00 (Local)
+            const dataSelecionada = new Date(ano, mes - 1, dia); 
+
+            const dataAtual = new Date(); // Data e hora de hoje (Local)
+
+            // Normalizar ambas para o início do dia para evitar problemas de hora
+            dataSelecionada.setHours(0, 0, 0, 0);
+            dataAtual.setHours(0, 0, 0, 0);
+
+            // Encontrar o início da semana (Segunda-feira) para a data selecionada
+            const dataSelClone = new Date(dataSelecionada.getTime());
+            const diaSemanaSel = dataSelClone.getDay(); // Domingo=0, Segunda=1...
+            // Ajusta para a Segunda-feira dessa semana
+            const diffSel = dataSelClone.getDate() - diaSemanaSel + (diaSemanaSel === 0 ? -6 : 1); 
+            dataSelClone.setDate(diffSel);
+
+            // Encontrar o início da semana (Segunda-feira) para a data atual
+            const dataAtualClone = new Date(dataAtual.getTime());
+            const diaSemanaAtual = dataAtualClone.getDay();
+            // Ajusta para a Segunda-feira desta semana
+            const diffAtual = dataAtualClone.getDate() - diaSemanaAtual + (diaSemanaAtual === 0 ? -6 : 1);
+            dataAtualClone.setDate(diffAtual);
+
+            // Comparar os timestamps (ambos estão normalizados para 00:00:00 Local da respetiva Segunda-feira)
+            return dataSelClone.getTime() === dataAtualClone.getTime();
+        } catch (e) {
+            console.error("Erro ao verificar a semana:", e);
+            return false; // Ser conservador e esconder o card em caso de erro
+        }
+    }
+
+    // Parser para CSV histórico (simples)
+    function parseCSVSimples(text) {
+        const lines = text.trim().split('\n'); if (lines[0].charCodeAt(0) === 0xFEFF) { lines[0] = lines[0].substring(1); }
+        const headers = lines.shift().split(',').map(h => h.trim());
+        const precos = lines.map(line => {
+            const values = line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || []; const row = {};
+            headers.forEach((header, index) => { let value = (values.length > index && values[index]) ? values[index].trim() : ''; if (value.startsWith('"') && value.endsWith('"')) { value = value.substring(1, value.length - 1); } if (header === 'preco_pt' || header === 'preco_es') { row[header] = (value && value !== "") ? parseFloat(value) : null; } else { row[header] = value; } });
+             try { const [dia, mes, ano] = row.dia.split('/'); const [horaInicioStr] = row.intervalo.substring(1).split('-'); const [horaInicio, minInicio] = horaInicioStr.split(':'); row.timestamp = Date.UTC(parseInt(ano), parseInt(mes)-1, parseInt(dia), parseInt(horaInicio), parseInt(minInicio)); row.localTimestamp = new Date(row.timestamp); } catch(e) { row.timestamp = null; row.localTimestamp = null; }
+            return row;
+        });
+        return precos;
+    }
+    // Parser para CSV atual (com múltiplas tabelas)
+    function parseCSVAtual(text) {
+        const tabelas = text.split('\nTABELA_');
+        const precos = parseCSVSimples(tabelas[0]);
+        function parseTabelaSimples(raw, tipo) { if (!raw) return tipo === 'obj' ? {} : []; const lines = raw.trim().split('\n'); lines.shift(); if (lines.length < 1) return tipo === 'obj' ? {} : []; const headerLine = lines.shift(); if (!headerLine) return tipo === 'obj' ? {} : []; const headers = headerLine.split(',').map(h => h.trim().replace(/^\uFEFF/, '')); if (tipo === 'obj') { const obj = {}; const keyHeaderIndex = headers.findIndex(h => h.toLowerCase() === 'chave'); const valueHeaderIndex = headers.findIndex(h => h.toLowerCase() === 'valor'); if (keyHeaderIndex === -1 || valueHeaderIndex === -1) { return {}; } lines.forEach(line => { const values = line.split(','); if (values.length > Math.max(keyHeaderIndex, valueHeaderIndex)) { const key = values[keyHeaderIndex]?.trim(); const value = values[valueHeaderIndex]?.trim(); if (key) { obj[key] = value; } } }); return obj; } else { const data = lines.map(line => { const values = line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || []; const row = {}; headers.forEach((header, index) => { let value = (values.length > index && values[index]) ? values[index].trim() : ''; if (value.startsWith('"') && value.endsWith('"')) { value = value.substring(1, value.length - 1); } if (header.toLowerCase() === 'valor' && value !== "") { row[header] = parseFloat(value); } else { row[header] = value; } }); if (row['Contrato']) { if (row['Contrato'].includes(' D ')) row.Tipo = 'Diários'; else if (row['Contrato'].includes(' Wk')) row.Tipo = 'Semanais'; else if (row['Contrato'].includes(' M ')) row.Tipo = 'Mensais'; else if (row['Contrato'].includes(' Q')) row.Tipo = 'Trimestrais'; else if (row['Contrato'].includes(' YR-')) row.Tipo = 'Anuais'; else row.Tipo = 'Outros'; } else { row.Tipo = 'Inválido'; } return row; }); return data; } }
+        const atualizacoes = parseTabelaSimples(tabelas.find(t => t.startsWith("ATUALIZACOES")), 'obj');
+        const futurosPT = parseTabelaSimples(tabelas.find(t => t.startsWith("FUTUROS_PT")), 'array');
+        const futurosES = parseTabelaSimples(tabelas.find(t => t.startsWith("FUTUROS_ES")), 'array');
+        return { precos, atualizacoes, futurosPT, futurosES };
+    }
+
+    function formatarValor(valor, casasDecimais = 2) { if (valor === null || typeof valor === 'undefined' || isNaN(valor)) { return '--,-- €'; } const textoFormatado = valor.toFixed(casasDecimais).replace('.', ',') + ' €'; return valor < 0 ? `<span style="color: red;">${textoFormatado}</span>` : textoFormatado; }
+    function calcularMedia(arr) { if (!Array.isArray(arr)) return null; const nums = arr.filter(v => v !== null && !isNaN(v)); return nums.length > 0 ? nums.reduce((a, b) => a + b, 0) / nums.length : null; }
+
+    // --- FUNÇÃO PARA CARREGAR DADOS HISTÓRICOS ---
+    async function carregarDadosHistoricos(ano) {
+        if (dadosHistoricos[ano] && !(dadosHistoricos[ano] instanceof Promise)) { return dadosHistoricos[ano]; }
+        if (dadosHistoricos[ano] instanceof Promise) { return await dadosHistoricos[ano]; }
+        const url = `${URL_HISTORICO_BASE}${ano}.csv`; loadingIndicator.style.display = 'block';
+        dadosHistoricos[ano] = fetchDados(url).then(response => { if (!response.ok) throw new Error(`Erro ${response.status}`); return response.text(); }) .then(csvText => { const dados = parseCSVSimples(csvText); dadosHistoricos[ano] = dados; return dados; }) .catch(error => { console.error(`Falha ${ano}:`, error); dadosHistoricos[ano] = []; return []; }) .finally(() => { const aCarregar = Object.values(dadosHistoricos).some(v => v instanceof Promise); if (!aCarregar) loadingIndicator.style.display = 'none'; });
+        return await dadosHistoricos[ano];
+    }
+
+    // --- FUNÇÃO PRINCIPAL ---
+    async function atualizarDashboard(dataSelecionada) {
+        const cardFuturos = document.querySelector('.card-futuros');
+        if (cardFuturos) {
+            // Mostrar o card se a data selecionada estiver dentro dos últimos 7 dias ou no futuro.
+            // Isto corrige o bug de domingo: quando o OMIE publica a segunda-feira (day-ahead)
+            // ao domingo, a segunda pertence à "semana seguinte" e o card ficava escondido.
+            const hojeParaFuturos = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Lisbon" }));
+            hojeParaFuturos.setHours(0, 0, 0, 0);
+            const seteDiasAtras = new Date(hojeParaFuturos);
+            seteDiasAtras.setDate(seteDiasAtras.getDate() - 7);
+            const [anoSel, mesSel, diaSel] = dataSelecionada.split('-').map(Number);
+            const dataSelObj = new Date(anoSel, mesSel - 1, diaSel);
+            dataSelObj.setHours(0, 0, 0, 0);
+            if (dataSelObj >= seteDiasAtras) {
+                cardFuturos.style.display = 'block';
+            } else {
+                cardFuturos.style.display = 'none';
+            }
+        }
+        const dataFormatadaCSV = formatarDataParaCSV(dataSelecionada);
+        if (!dataFormatadaCSV) { return; }
+        const anoSelecionado = parseInt(dataSelecionada.substring(0, 4));
+        const dataAnteriorCSV = getDataAnteriorCSV(dataSelecionada);
+        const anoAnterior = dataAnteriorCSV ? parseInt(dataAnteriorCSV.substring(6, 10)) : null;
+        // D-2 e D-8: necessários para construir janelas CET de ontem (dia-1) e semana-ant (dia-7) em modo CET.
+        const dataAnterior2CSV = getDataNDiasAntesCSV(dataSelecionada, 2);
+        const anoAnterior2 = dataAnterior2CSV ? parseInt(dataAnterior2CSV.substring(6, 10)) : null;
+        const dataSemAnteriorCSV = getDataNDiasAntesCSV(dataSelecionada, 7);
+        const anoSemAnterior = dataSemAnteriorCSV ? parseInt(dataSemAnteriorCSV.substring(6, 10)) : null;
+        const dataSemAnterior2CSV = getDataNDiasAntesCSV(dataSelecionada, 8);
+        const anoSemAnterior2 = dataSemAnterior2CSV ? parseInt(dataSemAnterior2CSV.substring(6, 10)) : null;
+
+        const anosACarregar = [];
+        const pushAnoSeFalta = (ano) => {
+            if (ano && ano >= ANO_INICIO_HISTORICO && ano < anoMinimoAtual && !(dadosHistoricos[ano] && !(dadosHistoricos[ano] instanceof Promise))) {
+                if (!anosACarregar.includes(ano)) anosACarregar.push(ano);
+            }
+        };
+        pushAnoSeFalta(anoSelecionado);
+        pushAnoSeFalta(anoAnterior);
+        pushAnoSeFalta(anoAnterior2);
+        pushAnoSeFalta(anoSemAnterior);
+        pushAnoSeFalta(anoSemAnterior2);
+        if (anosACarregar.length > 0) { const promises = anosACarregar.map(ano => carregarDadosHistoricos(ano)); await Promise.all(promises); }
+
+        // --- Obter os dados relevantes ---
+        let dadosDoDia = [];
+        if (anoSelecionado >= anoMinimoAtual) { dadosDoDia = dadosAtuais.filter(d => d.dia === dataFormatadaCSV); }
+        else if (dadosHistoricos[anoSelecionado]) { dadosDoDia = dadosHistoricos[anoSelecionado].filter(d => d.dia === dataFormatadaCSV); }
+        // Validar se conseguimos carregar os dados históricos.
+        // A mensagem vai para o contentor do gráfico (NÃO para o <main>,
+        // que contém o seletor de data — destruí-lo prendia o utilizador).
+        if (dadosDoDia.length === 0 && anoSelecionado < anoMinimoAtual) {
+            const _alvoMsg = document.getElementById('grafico-container');
+            if (_alvoMsg) {
+                _alvoMsg.innerHTML =
+                    `<p style="color: orange; text-align: center; padding: 20px;">
+                    📅 Dados históricos para ${dataFormatadaCSV} não disponíveis.<br>
+                    Por favor, selecione outra data.</p>`;
+            }
+            return;
+        }
+        const fetchDia = (csvLabel, ano) => {
+            if (!csvLabel) return [];
+            if (ano >= anoMinimoAtual) return dadosAtuais.filter(d => d.dia === csvLabel);
+            if (dadosHistoricos[ano]) return dadosHistoricos[ano].filter(d => d.dia === csvLabel);
+            return [];
+        };
+        let dadosDiaAnterior = fetchDia(dataAnteriorCSV, anoAnterior);
+        let dadosDiaAnterior2 = fetchDia(dataAnterior2CSV, anoAnterior2);
+        let dadosSemAnterior = fetchDia(dataSemAnteriorCSV, anoSemAnterior);
+        let dadosSemAnterior2 = fetchDia(dataSemAnterior2CSV, anoSemAnterior2);
+        _dadosOntemCached = dadosDiaAnterior;
+
+        if (dadosDoDia.length === 0) { return; };
+
+        // Obter a data/hora atual em Lisboa (independentemente do fuso do utilizador)
+        // Usamos "en-US" como 'locale' seguro para o parsing de 'new Date()'
+        const agoraLisboa = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Lisbon" }));
+        
+        // Formatar a data de "hoje" (em Lisboa) para YYYY-MM-DD
+        // Nota: toISOString() devolveria sempre UTC, podendo retornar o dia anterior
+        // entre as 00:00-00:59 em Lisboa no inverno (UTC+0). Usamos os valores locais.
+        const hojeEmLisboaYYYYMMDD = `${agoraLisboa.getFullYear()}-${String(agoraLisboa.getMonth() + 1).padStart(2, '0')}-${String(agoraLisboa.getDate()).padStart(2, '0')}`;
+        
+        // Obter a hora e minuto atuais de Lisboa
+        const horaAtualLisboa = agoraLisboa.getHours(); // (0-23)
+        const minutoAtualLisboa = agoraLisboa.getMinutes(); // (0-59)
+        
+        // Verificar se o dia selecionado no calendário é o dia de "hoje" (em Lisboa)
+        const isHoje = (dataSelecionada === hojeEmLisboaYYYYMMDD);
+
+        // --- Lógica de cálculo ---
+        const dataOMIE = dadosAtualizacao.Data_Valores_OMIE; const dataOMIP = dadosAtualizacao.Data_Valores_OMIP; const isUltimoDiaOMIE = (dataFormatadaCSV === dataOMIE); let dadosReaisDoDia; if (isUltimoDiaOMIE && anoSelecionado >= anoMinimoAtual && dadosDoDia.length > 4) { dadosReaisDoDia = dadosDoDia.slice(0, -4); } else { dadosReaisDoDia = dadosDoDia; }
+
+        // === Decisão de vista (PT vs CET) ===
+        // Em modo CET, construímos a janela CET = últimas 4 qh do dia PT anterior + primeiras (N-4) qh do dia PT atual.
+        // A janela CET do dia selecionado (mesmo o último publicado) está SEMPRE completa — corresponde ao
+        // market day CET inteiro já leiloado. Portanto vistaReais === vistaDia em CET (sem truncagem).
+        // O `slice(0, -4)` só se aplica em modo PT, onde a última hora PT pertence ao market day CET seguinte.
+        const fuso = _fusoAtivo;
+        const emCET = (fuso === 'cet');
+        const dadosViewDia = emCET ? construirVistaCET(dadosDiaAnterior, dadosDoDia) : dadosDoDia;
+        const dadosViewReais = emCET ? dadosViewDia : dadosReaisDoDia;
+
+        // Mostrar/ocultar aviso ERSE em hora PT (apenas em modo CET)
+        const avisoErse = document.getElementById('aviso-erse-fuso');
+        if (avisoErse) avisoErse.style.display = emCET ? 'block' : 'none';
+
+        // Em CET o dia ES já coincide com o market day → "(às 24h de ES)" deixa de fazer sentido
+        const lbl24hEs = document.getElementById('lbl-24h-es');
+        if (lbl24hEs) lbl24hEs.style.display = emCET ? 'none' : '';
+
+        // Atualizar legenda dinâmica do header conforme fuso ativo
+        const subtituloEl = document.getElementById('painel-subtitulo');
+        if (subtituloEl) subtituloEl.textContent = emCET
+            ? 'Valores OMIE (€/MWh) em hora CET (hora de mercado/Espanha)'
+            : 'Valores OMIE (€/MWh) corrigidos para a hora de Portugal';
+
+        // Atualizar badges de data para prints
+        const badgeCards = document.getElementById('badge-data-cards');
+        if (badgeCards) badgeCards.textContent = '📅 ' + dataFormatadaCSV;
+
+        // Atualizar Título Principal
+        const tituloH1 = document.querySelector("#painel-header-main h1");
+        if (tituloH1) {
+            const sufixoFuso = emCET ? ' <small style="font-size:0.65em;color:#0ea5e9;font-weight:600;">[em hora CET / mercado]</small>' : '';
+            const sufixoCorte = (isUltimoDiaOMIE && !emCET) ? '(até às 23h de PT)' : '';
+            tituloH1.innerHTML = `Eletricidade - Preços médios Mercado Diário OMIE para <span id="data-titulo-painel">${dataFormatadaCSV}</span> ${sufixoCorte}${sufixoFuso}`;
+        }
+
+        // Cálculos PT (usam a vista ativa: PT raw ou CET-alinhada)
+        const precosReaisPT = dadosViewReais.map(d => d.preco_pt).filter(p => p !== null);
+        const mediaPTAtual = calcularMedia(precosReaisPT);
+        const maxPTVal = precosReaisPT.length > 0 ? Math.max(...precosReaisPT) : null;
+        const minPTVal = precosReaisPT.length > 0 ? Math.min(...precosReaisPT) : null;
+        const maxPTHora = maxPTVal !== null ? getHoraDoExtremo(dadosViewReais, maxPTVal) : null;
+        const minPTHora = minPTVal !== null ? getHoraDoExtremo(dadosViewReais, minPTVal) : null;
+        const sufixoFusoHora = emCET ? ' CET' : '';
+        document.getElementById('media-pt').innerHTML = formatarValor(mediaPTAtual);
+        document.getElementById('max-pt').innerHTML = formatarValor(maxPTVal) + (maxPTHora ? ` <small class="hora-extremo">(às ${maxPTHora}${sufixoFusoHora})</small>` : '');
+        document.getElementById('min-pt').innerHTML = formatarValor(minPTVal) + (minPTHora ? ` <small class="hora-extremo">(às ${minPTHora}${sufixoFusoHora})</small>` : '');
+
+        // --- Cálculos Espanha (Regra 24h ES) ---
+        let precosDiaEspanhol = []; const ultimos4ESAnterior = dadosDiaAnterior.slice(-4).map(d => d.preco_es).filter(p => p !== null); const numQuartosDiaPT = dadosDoDia.length; const primeirosESAtual = dadosDoDia.slice(0, numQuartosDiaPT - 4).map(d => d.preco_es).filter(p => p !== null); precosDiaEspanhol = ultimos4ESAnterior.concat(primeirosESAtual);
+        const mediaESAtual = calcularMedia(precosDiaEspanhol);
+        const maxESVal = precosDiaEspanhol.length > 0 ? Math.max(...precosDiaEspanhol) : null;
+        const minESVal = precosDiaEspanhol.length > 0 ? Math.min(...precosDiaEspanhol) : null;
+        // Hora do extremo ES: em PT mode usa array PT-labelled; em CET mode usa a vista CET (com intervalos já relabelled para CET).
+        const arrayCompletoES = emCET
+            ? dadosViewDia
+            : [].concat(dadosDiaAnterior.slice(-4), dadosDoDia.slice(0, numQuartosDiaPT - 4));
+        const maxESHora = maxESVal !== null ? getHoraDoExtremoES(arrayCompletoES, maxESVal) : null;
+        const minESHora = minESVal !== null ? getHoraDoExtremoES(arrayCompletoES, minESVal) : null;
+        const sufixoFusoHoraES = emCET ? 'CET' : 'PT';
+        document.getElementById('media-es').innerHTML = formatarValor(mediaESAtual);
+        document.getElementById('max-es').innerHTML = formatarValor(maxESVal) + (maxESHora ? ` <small class="hora-extremo">(às ${maxESHora} ${sufixoFusoHoraES})</small>` : '');
+        document.getElementById('min-es').innerHTML = formatarValor(minESVal) + (minESHora ? ` <small class="hora-extremo">(às ${minESHora} ${sufixoFusoHoraES})</small>` : '');
+
+        // === YoY: variação vs ontem e vs mesmo dia da semana passada ===
+        // Em CET mode usamos janelas CET de ontem (vistaCET(D-2, D-1)) e sem-ant (vistaCET(D-8, D-7)).
+        const vistaCETOntem  = emCET ? construirVistaCET(dadosDiaAnterior2, dadosDiaAnterior)  : null;
+        const vistaCETSemAnt = emCET ? construirVistaCET(dadosSemAnterior2, dadosSemAnterior) : null;
+        const fonteOntem  = emCET ? vistaCETOntem  : dadosDiaAnterior;
+        const fonteSemAnt = emCET ? vistaCETSemAnt : dadosSemAnterior;
+        const mediaPTOntem  = calcularMedia(fonteOntem.map(d => d.preco_pt).filter(p => p !== null && !isNaN(p)));
+        const mediaPTSemAnt = calcularMedia(fonteSemAnt.map(d => d.preco_pt).filter(p => p !== null && !isNaN(p)));
+        const mediaESOntem  = calcularMedia(fonteOntem.map(d => d.preco_es).filter(p => p !== null && !isNaN(p)));
+        const mediaESSemAnt = calcularMedia(fonteSemAnt.map(d => d.preco_es).filter(p => p !== null && !isNaN(p)));
+        function renderYoyDeltas(elId, atual, ontem, semAnt) {
+            const el = document.getElementById(elId);
+            if (!el) return;
+            const parts = [];
+            const dOntem = fmtDeltaSpan(atual, ontem, 'vs ontem');
+            const dSem   = fmtDeltaSpan(atual, semAnt, 'vs mesmo dia da semana passada');
+            if (dOntem) parts.push(dOntem);
+            if (dSem)   parts.push(dSem);
+            el.innerHTML = parts.length ? parts.join('<span class="yoy-sep">·</span>') : '';
+        }
+        renderYoyDeltas('yoy-pt-deltas', mediaPTAtual, mediaPTOntem, mediaPTSemAnt);
+        renderYoyDeltas('yoy-es-deltas', mediaESAtual, mediaESOntem, mediaESSemAnt);
+
+        // === Top 3 horas mais baratas / caras (usa a vista ativa) ===
+        const topHoras = calcularTopHoras(dadosViewReais, 3);
+        renderTopHoras(topHoras, emCET);
+
+        // === Título dinâmico da tab ===
+        const mediaPTTitulo = mediaPTAtual !== null ? Math.round(mediaPTAtual) + '€' : '--€';
+        document.title = `OMIE ${dataFormatadaCSV} · ${mediaPTTitulo} — Soluções Diferentes`;
+
+        // Futuros do Dia
+        const containerFuturosPT = document.getElementById('futuros-container-pt'); const futuroDiarioPT = dadosFuturosPT.find(f => f.Contrato?.includes(" D ") && f.Descricao === dataFormatadaCSV); if (futuroDiarioPT) { document.getElementById('futuros-anterior-pt').innerHTML = formatarValor(futuroDiarioPT.Valor); document.getElementById('futuros-pt-data').textContent = dataOMIP; containerFuturosPT.style.display = 'block'; } else { containerFuturosPT.style.display = 'none'; }
+        const containerFuturosES = document.getElementById('futuros-container-es'); const futuroDiarioES = dadosFuturosES.find(f => f.Contrato?.includes(" D ") && f.Descricao === dataFormatadaCSV); if (futuroDiarioES) { document.getElementById('futuros-anterior-es').innerHTML = formatarValor(futuroDiarioES.Valor); document.getElementById('futuros-es-data').textContent = dataOMIP; containerFuturosES.style.display = 'block'; } else { containerFuturosES.style.display = 'none'; }
+
+        // Cálculos Ciclos
+        const ciclos = { bd: {}, bs: {}, td: {}, ts: {} }; for (const ciclo in ciclos) { ciclos[ciclo] = dadosReaisDoDia.reduce((acc, row) => { const periodo = row[ciclo.toUpperCase()]; if (!periodo) return acc; if (!acc[periodo]) acc[periodo] = []; if(row.preco_pt !== null && !isNaN(row.preco_pt)) { acc[periodo].push(row.preco_pt); } return acc; }, {}); } document.getElementById('bh-diario-vazio').innerHTML = formatarValor(calcularMedia(ciclos.bd?.['V'])); document.getElementById('bh-diario-fora-vazio').innerHTML = formatarValor(calcularMedia(ciclos.bd?.['F'])); document.getElementById('bh-semanal-vazio').innerHTML = formatarValor(calcularMedia(ciclos.bs?.['V'])); document.getElementById('bh-semanal-fora-vazio').innerHTML = formatarValor(calcularMedia(ciclos.bs?.['F'])); document.getElementById('th-diario-vazio').innerHTML = formatarValor(calcularMedia(ciclos.td?.['V'])); document.getElementById('th-diario-cheias').innerHTML = formatarValor(calcularMedia(ciclos.td?.['C'])); document.getElementById('th-diario-ponta').innerHTML = formatarValor(calcularMedia(ciclos.td?.['P'])); document.getElementById('th-semanal-vazio').innerHTML = formatarValor(calcularMedia(ciclos.ts?.['V'])); document.getElementById('th-semanal-cheias').innerHTML = formatarValor(calcularMedia(ciclos.ts?.['C'])); document.getElementById('th-semanal-ponta').innerHTML = formatarValor(calcularMedia(ciclos.ts?.['P']));
+
+        // === Ajustes para "Agora" quando estamos em CET ===
+        // Em CET, a hora-real CET = horaAtualLisboa + 1. Só é válida para o dia selecionado se PT < 23h
+        // (a partir de PT 23h estamos já no próximo market day em CET).
+        const isHojeView = emCET ? (isHoje && horaAtualLisboa < 23) : isHoje;
+        const horaAtualView = emCET ? ((horaAtualLisboa + 1) % 24) : horaAtualLisboa;
+
+        // Atualizar Tabela e Gráfico (usam a vista ativa)
+        // Em CET mode, o overlay "ontem" passa a usar a janela CET de ontem (em vez de PT raw)
+        const dadosOntemParaOverlay = emCET ? vistaCETOntem : dadosDiaAnterior;
+        atualizarTabela(dadosViewDia, dadosViewReais, isHojeView, horaAtualView, dataFormatadaCSV, emCET);
+        atualizarGrafico(dadosViewDia, dadosViewReais, dataFormatadaCSV, isUltimoDiaOMIE, isHojeView, horaAtualView, minutoAtualLisboa, dadosOntemParaOverlay, emCET);
+    }
+
+    // --- FUNÇÕES DE ATUALIZAÇÃO ---
+    function atualizarFuturosProximos() {
+        if (!dadosFuturosPT || dadosFuturosPT.length === 0) { return; }
+        const futurosDiariosPT = dadosFuturosPT.filter(f => f.Contrato?.includes(" D "))
+            .sort((a, b) => { const descA = a.Descricao; const descB = b.Descricao; const isAValid = typeof descA === 'string' && descA.includes('/'); const isBValid = typeof descB === 'string' && descB.includes('/'); if (!isAValid && !isBValid) return 0; if (!isAValid) return 1; if (!isBValid) return -1; try { const dA = formatarDataParaInput(descA); const dB = formatarDataParaInput(descB); if(!dA && !dB) return 0; if(!dA) return 1; if(!dB) return -1; return dA.localeCompare(dB); } catch(e){ return 0; } });
+        let diasEnc = 0; const dataMaxReal = seletorData.max;
+        for (const f of futurosDiariosPT) { if (!f.Descricao || typeof f.Descricao !== 'string' || !f.Descricao.includes('/')) continue; try { const dataF = formatarDataParaInput(f.Descricao); if (!dataF) continue; if (dataF > dataMaxReal && diasEnc < 3) { diasEnc++; const lbl = document.getElementById(`futuros-${diasEnc}-label`); const val = document.getElementById(`futuros-${diasEnc}-valor`); const itm = document.getElementById(`futuro-${diasEnc}-item`); if (lbl && val && itm) { const dO = new Date(dataF + "T12:00:00Z"); const dS = dO.toLocaleDateString('pt-PT', { weekday: 'short', timeZone: 'UTC' }); lbl.textContent = `Futuros para ${f.Descricao} - ${dS}`; val.innerHTML = formatarValor(f.Valor); itm.style.display = 'flex'; } } if (diasEnc >= 3) break; } catch(e){ console.error("Erro Futuros Próximos:", e, f); continue; } }
+        for (let i = diasEnc + 1; i <= 3; i++) { const itm = document.getElementById(`futuro-${i}-item`); if(itm) itm.style.display = 'none'; }
+    }
+    function atualizarTabela(dadosDoDiaCompleto, dadosReaisDoDia, isHoje, horaAtualLisboa, dataFormatadaCSV, emCET) {
+        const container = document.getElementById('tabela-container'); if (!container) return;
+        const lblHora = emCET ? 'Hora CET' : 'Hora PT';
+        let tableHTML = '<table class="tabela-precos">';
+        tableHTML += `<caption class="sr-only">Preços médios horários OMIE para Portugal e Espanha em ${dataFormatadaCSV || '--/--/----'} (€/MWh).</caption>`;
+        tableHTML += `<thead><tr><th scope="col"><span class="data-badge-secao" id="badge-data-tabela" style="background:rgba(255,255,255,0.15); border-color:rgba(255,255,255,0.3); color:#ccc; font-size:0.85em;">📅 ${dataFormatadaCSV || '--/--/----'}</span></th><th colspan="2" scope="colgroup">Preço médio horário</th></tr><tr><th scope="col">${lblHora}</th><th scope="col">Preço PT</th><th scope="col">Preço ES</th></tr></thead>`; tableHTML += '<tbody>';
+        
+        const dadosHorarios = []; 
+        let qh_idx = 0; 
+        const numHoras = Math.ceil(dadosDoDiaCompleto.length / 4);
+
+        for (let h = 0; h < numHoras; h++) { 
+            let nq = 4; 
+            let hFim = String(h + 1).padStart(2,'0'); 
+            if (hFim === '24') hFim = '00'; 
+            const hLbl = `[${String(h).padStart(2, '0')}:00-${hFim}:00[`; 
+            if (dadosDoDiaCompleto.length === 100 && h === 1) nq = 8; 
+            
+            const qComp = dadosDoDiaCompleto.slice(qh_idx, qh_idx + nq); 
+            const qReal = []; 
+            for (let i = 0; i < nq; i++) { 
+                if (dadosReaisDoDia && qh_idx + i < dadosReaisDoDia.length) { 
+                    qReal.push(dadosReaisDoDia[qh_idx + i]); 
+                } 
+            } 
+            
+            if (dadosDoDiaCompleto.length === 92 && h === 1) { 
+                dadosHorarios.push({ hora: hLbl, precoPT: null, precoES: null, isHoraAtual: false }); 
+                continue; 
+            } 
+            
+            // Lógica de Destaque: Verifica se é hoje E se o 'h' do loop é a hora atual
+            const isHoraAtual = (isHoje && h === horaAtualLisboa);
+
+            if(qComp.length > 0){ 
+                dadosHorarios.push({ 
+                    hora: hLbl, 
+                    precoPT: calcularMedia(qReal.map(d => d.preco_pt)), 
+                    precoES: calcularMedia(qComp.map(d => d.preco_es)),
+                    isHoraAtual: isHoraAtual // Guarda a informação de destaque
+                }); 
+                qh_idx += nq; 
+            } else if (h < 24) { 
+                dadosHorarios.push({ hora: hLbl, precoPT: null, precoES: null, isHoraAtual: false }); 
+            } 
+        }
+
+        // Criar o HTML da Tabela
+        dadosHorarios.forEach(item => { 
+            // Adiciona o estilo inline se 'isHoraAtual' for verdadeiro
+            const estiloLinha = item.isHoraAtual ? ' style="background-color: #FFF3E0; font-weight: bold;"' : '';
+            tableHTML += `<tr${estiloLinha}><th scope="row">${item.hora}</th><td>${formatarValor(item.precoPT)}</td><td>${formatarValor(item.precoES)}</td></tr>`;
+        }); 
+        
+        tableHTML += '</tbody></table>'; 
+        container.innerHTML = tableHTML;
+    }
+    function atualizarGrafico(dadosDoDiaCompleto, dadosReaisDoDia, dataTitulo, isUltimoDiaOMIE, isHoje, horaAtualLisboa, minutoAtualLisboa, dadosDiaAnterior, emCET) {
+        const container = document.getElementById('grafico-container'); if (!container) return;
+
+        // Guardar os argumentos para poder redesenhar ao mudar o tipo de gráfico
+        ultimosArgsGrafico = [dadosDoDiaCompleto, dadosReaisDoDia, dataTitulo, isUltimoDiaOMIE, isHoje, horaAtualLisboa, minutoAtualLisboa, dadosDiaAnterior, emCET];
+        
+        let seriesDataPT = dadosDoDiaCompleto.map(d => d.preco_pt); const seriesDataES = dadosDoDiaCompleto.map(d => d.preco_es);
+        if (isUltimoDiaOMIE && dadosDoDiaCompleto.length > 4) { const nf = dadosDoDiaCompleto.length - dadosReaisDoDia.length; if (nf > 0) { for (let i = 0; i < nf; i++) { seriesDataPT[dadosReaisDoDia.length + i] = null; } } }
+        const precosPTGrafico = seriesDataPT.filter(p => p !== null && !isNaN(p)); const precosESGrafico = seriesDataES.filter(p => p !== null && !isNaN(p)); const minPT = precosPTGrafico.length > 0 ? Math.min(...precosPTGrafico) : null; const maxPT = precosPTGrafico.length > 0 ? Math.max(...precosPTGrafico) : null; const minES = precosESGrafico.length > 0 ? Math.min(...precosESGrafico) : null; const maxES = precosESGrafico.length > 0 ? Math.max(...precosESGrafico) : null;
+        
+        // Configurações específicas por tipo de gráfico
+        const isBarras = (tipoGrafico === 'column');
+        const _dk = document.documentElement.getAttribute('data-theme') === 'dark';
+        const _txtC = _dk ? '#e2e8f0' : '#333';
+        const _bgC = _dk ? '#1e293b' : '#ffffff';
+
+        const chartTypeConfig = isBarras
+            ? { type: 'column', height: 770, zoomType: 'x', backgroundColor: _bgC, style: { color: _txtC } }
+            : { type: 'line',   height: 770, zoomType: 'x', backgroundColor: _bgC, style: { color: _txtC } };
+        const seriesExtraConfig = isBarras
+            ? { pointPadding: 0.05, groupPadding: 0.1 }
+            : { connectNulls: false };
+
+        const plotLines = [];
+        const formatLabelMinMax = (val) => formatarValor(val, 2);
+        const minmaxEl = document.getElementById('minmax-barras');
+
+        if (isBarras) {
+            // Em modo barras: sem plotLines (ficam tapadas pelas colunas),
+            // os valores de mínimo e máximo são mostrados numa faixa HTML acima do gráfico
+            const itens = [];
+            if (minPT !== null) itens.push(`<span><span class="dot" style="background:#007bff;"></span>Mín PT: ${formatLabelMinMax(minPT)}</span><span><span class="dot" style="background:#007bff;"></span>Máx PT: ${formatLabelMinMax(maxPT)}</span>`);
+            if (minES !== null) itens.push(`<span><span class="dot" style="background:#28a745;"></span>Mín ES: ${formatLabelMinMax(minES)}</span><span><span class="dot" style="background:#28a745;"></span>Máx ES: ${formatLabelMinMax(maxES)}</span>`);
+            if (minmaxEl) { minmaxEl.innerHTML = itens.join(''); minmaxEl.style.display = itens.length ? 'flex' : 'none'; }
+        } else {
+            // Em modo linhas: plotLines normais no eixo Y
+            if (minmaxEl) minmaxEl.style.display = 'none';
+            if (minPT !== null || minES !== null) { const minValPT = minPT ?? Infinity; const minValES = minES ?? Infinity; if (Math.abs(minValPT - minValES) < 0.01 && minPT !== null) { plotLines.push({ value: minValPT, color: 'green', width: 1.5, dashStyle: 'shortdash', zIndex: 4, label: { text: `Mínimo: ${formatLabelMinMax(minValPT)}`, align: 'right', style: { color: 'green', fontWeight: 'bold' } } }); } else { if (minPT !== null) plotLines.push({ value: minValPT, color: '#007bff', width: 1.5, dashStyle: 'shortdash', zIndex: 4, label: { text: `Mínimo PT: ${formatLabelMinMax(minValPT)}`, align: 'right', style: { color: '#007bff', fontWeight: 'bold' } } }); if (minES !== null) plotLines.push({ value: minValES, color: '#28a745', width: 1.5, dashStyle: 'shortdash', zIndex: 4, label: { text: `Mínimo ES: ${formatLabelMinMax(minValES)}`, align: 'right', y: 15, style: { color: '#28a745', fontWeight: 'bold' } } }); } }
+            if (maxPT !== null || maxES !== null) { const maxValPT = maxPT ?? -Infinity; const maxValES = maxES ?? -Infinity; if (Math.abs(maxValPT - maxValES) < 0.01 && maxPT !== null) { plotLines.push({ value: maxValPT, color: 'red', width: 1.5, dashStyle: 'shortdash', zIndex: 4, label: { text: `Máximo: ${formatLabelMinMax(maxValPT)}`, align: 'right', style: { color: 'red', fontWeight: 'bold' } } }); } else { if (maxPT !== null) plotLines.push({ value: maxValPT, color: '#007bff', width: 1.5, dashStyle: 'shortdash', zIndex: 4, label: { text: `Máximo PT: ${formatLabelMinMax(maxValPT)}`, align: 'right', style: { color: '#007bff', fontWeight: 'bold' } } }); if (maxES !== null) plotLines.push({ value: maxValES, color: '#28a745', width: 1.5, dashStyle: 'shortdash', zIndex: 4, label: { text: `Máximo ES: ${formatLabelMinMax(maxValES)}`, align: 'right', y: 15, style: { color: '#28a745', fontWeight: 'bold' } } }); } }
+        }
+
+        let xAxisConfig = {
+            categories: dadosDoDiaCompleto.map(d => d.intervalo),
+            title: { text: emCET ? 'Hora CET (mercado)' : 'Hora PT', style: { color: _txtC } },
+            crosshair: true,
+            labels: { rotation: -45, step: 4, align: 'right', style: { color: _txtC } },
+            plotBands: []
+        };
+
+        const tituloGrafico = `Valores quarto-horários de ${dataTitulo}${(isUltimoDiaOMIE && !emCET) ? ' (até às 23h de PT)' : ''}${emCET ? ' (em hora CET)' : ''}`;
+        const nomeFicheiroBase = `precos-omie-${dataTitulo.replace(/\//g, '-')}`;
+
+        // === Série "Ontem" (sobreposta, alinhada por índice) ===
+        let ontemSeries = null;
+        if (_mostrarOntem && Array.isArray(dadosDiaAnterior) && dadosDiaAnterior.length > 0) {
+            // Alinhar por índice — pode haver desvio em dias com DST diferente (92/100 quartos),
+            // mas para 99% dos casos os 96 quartos alinham bem.
+            const ontemData = dadosDoDiaCompleto.map((_, i) => {
+                if (i >= dadosDiaAnterior.length) return null;
+                const v = dadosDiaAnterior[i].preco_pt;
+                return (v === null || isNaN(v)) ? null : v;
+            });
+            // Em PT mode todas as linhas têm o mesmo .dia (D-1); em CET mode as 4 primeiras vêm de D-2.
+            // Usamos a última linha (sempre D-1 em ambos modos) para a etiqueta.
+            const lastIdxOntem = dadosDiaAnterior.length - 1;
+            const dOntemLabel = (dadosDiaAnterior[lastIdxOntem] && dadosDiaAnterior[lastIdxOntem].dia) ? dadosDiaAnterior[lastIdxOntem].dia : 'ontem';
+            ontemSeries = isBarras
+                ? { name: `PT ontem (${dOntemLabel})`, type: 'line', color: '#9aa0a6', data: ontemData, dashStyle: 'ShortDash', lineWidth: 1.5, marker: { enabled: false } }
+                : { name: `PT ontem (${dOntemLabel})`, color: '#9aa0a6', data: ontemData, dashStyle: 'ShortDash', lineWidth: 1.5, marker: { enabled: false }, connectNulls: false };
+        }
+
+        if (isHoje) {
+            const qhIndex = (horaAtualLisboa * 4) + Math.floor(minutoAtualLisboa / 15);
+            if (qhIndex >= 0 && qhIndex < dadosDoDiaCompleto.length) {
+                xAxisConfig.plotBands.push({
+                    from: qhIndex - 0.5,
+                    to: qhIndex + 0.5,
+                    color: 'rgba(255, 165, 0, 0.3)', 
+                    label: {
+                        text: 'Agora',
+                        style: { color: '#D98A00', fontWeight: 'bold' },
+                        align: 'center',
+                        verticalAlign: 'top',
+                        y: 15
+                    },
+                    zIndex: 3
+                });
+            }
+        }
+
+        try { 
+            const chart = Highcharts.chart('grafico-container', { 
+                chart: chartTypeConfig, 
+                title: { text: tituloGrafico, style: { color: _txtC } }, 
+                subtitle: { text: 'Pode arrastar horizontalmente no gráfico para fazer zoom.', style: { color: _txtC } },
+                xAxis: xAxisConfig, 
+                yAxis: { 
+                    title: { text: 'Preço (€/MWh)', style: { color: _txtC } }, 
+                    labels: { format: '{value:,.0f} €', style: { color: _txtC } }, 
+                    plotLines: plotLines 
+                }, 
+                tooltip: { 
+                    shared: true, 
+                    valueSuffix: ' €/MWh', 
+                    valueDecimals: 2 
+                }, 
+                legend: { 
+                    layout: 'horizontal', 
+                    align: 'center', 
+                    verticalAlign: 'bottom',
+                    itemStyle: { color: _txtC }
+                }, 
+                exporting: { 
+                    filename: nomeFicheiroBase, 
+                    enabled: true, 
+                    buttons: { 
+                        contextButton: { 
+                            menuItems: [ 
+                                'viewFullscreen', 'printChart', 'separator', 
+                                'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'separator', 
+                                'downloadCSV', 'downloadXLS', 'viewData' 
+                            ] 
+                        } 
+                    } 
+                }, 
+                series: [
+                    { name: 'Espanha', color: '#28a745', data: seriesDataES, ...seriesExtraConfig },
+                    { name: 'Portugal', color: '#007bff', data: seriesDataPT, ...seriesExtraConfig },
+                    ...(ontemSeries ? [ontemSeries] : [])
+                ]
+            });
+                        
+            // Lógica para mostrar o tooltip no carregamento
+            if (isHoje) {
+                // 1. Calcular o índice do quarto-hora (0-95)
+                const qhIndex = (horaAtualLisboa * 4) + Math.floor(minutoAtualLisboa / 15);
+
+                // 2. Validar o índice
+                if (qhIndex >= 0 && qhIndex < dadosDoDiaCompleto.length) {
+                    
+                    // 3. Obter os pontos das duas séries nesse índice
+                    // A série 'Espanha' é a 0, 'Portugal' é a 1
+                    const pointES = chart.series[0].points[qhIndex];
+                    const pointPT = chart.series[1].points[qhIndex];
+
+                    // 4. Verificar se os pontos existem (não são 'null')
+                    if (pointPT && pointES) {
+                        
+                        // 5. Desenhar o crosshair (linha vertical) e o tooltip
+                        // Passamos 'null' como primeiro argumento (evento do rato)
+                        chart.xAxis[0].drawCrosshair(null, pointPT); 
+                        chart.tooltip.refresh([pointES, pointPT]);
+                    }
+                }
+            }
+        }
+        catch (e) { console.error("Erro ao criar gráfico Highcharts:", e, e.stack); }
+    }
+
+    // --- TOGGLE TIPO DE GRÁFICO ---
+    const btnLinha = document.getElementById('btn-tipo-linha');
+    const btnBarras = document.getElementById('btn-tipo-barras');
+    if (btnLinha && btnBarras) {
+        btnLinha.addEventListener('click', () => {
+            if (tipoGrafico === 'line') return;
+            tipoGrafico = 'line';
+            btnLinha.classList.add('active');
+            btnBarras.classList.remove('active');
+            if (ultimosArgsGrafico) atualizarGrafico(...ultimosArgsGrafico);
+        });
+        btnBarras.addEventListener('click', () => {
+            if (tipoGrafico === 'column') return;
+            tipoGrafico = 'column';
+            btnBarras.classList.add('active');
+            btnLinha.classList.remove('active');
+            if (ultimosArgsGrafico) atualizarGrafico(...ultimosArgsGrafico);
+        });
+    }
+
+    // Reagir a mudanças de tema (dark mode toggle)
+    document.addEventListener('themeChanged', function() {
+        if (ultimosArgsGrafico) atualizarGrafico(...ultimosArgsGrafico);
+    });
+
+    // --- HELPERS: YoY deltas e Top horas ---
+    function getDataNDiasAntesCSV(dataStrYYYYMMDD, n) {
+        try {
+            const d = new Date(dataStrYYYYMMDD + "T12:00:00Z");
+            d.setUTCDate(d.getUTCDate() - n);
+            const dia = String(d.getUTCDate()).padStart(2, '0');
+            const mes = String(d.getUTCMonth() + 1).padStart(2, '0');
+            const ano = d.getUTCFullYear();
+            return `${dia}/${mes}/${ano}`;
+        } catch(e) { return null; }
+    }
+    function _calcDeltaPct(atual, anterior) {
+        if (atual === null || anterior === null) return null;
+        if (!isFinite(atual) || !isFinite(anterior)) return null;
+        if (Math.abs(anterior) < 1) return null;
+        return ((atual - anterior) / Math.abs(anterior)) * 100;
+    }
+    function _arrowKlass(value, threshold) {
+        const isUp = value > threshold;
+        const isDown = value < -threshold;
+        return {
+            arrow: isUp ? '↗' : (isDown ? '↘' : '➡'),
+            klass: isUp ? 'yoy-up' : (isDown ? 'yoy-down' : 'yoy-flat')
+        };
+    }
+    function fmtDeltaSpan(atual, anterior, prefixo) {
+        if (atual === null || anterior === null) return '';
+        const deltaPct = _calcDeltaPct(atual, anterior);
+        const tooltip = `Valor de referência: ${anterior.toFixed(2).replace('.', ',')} €/MWh`;
+        if (deltaPct !== null) {
+            const abs = Math.abs(deltaPct);
+            const { arrow, klass } = _arrowKlass(deltaPct, 0.5);
+            const sig = deltaPct > 0 ? '+' : '';
+            return `<span class="yoy-pair ${klass}" title="${tooltip}">${arrow} ${sig}${abs.toFixed(1).replace('.', ',')}% ${prefixo}</span>`;
+        }
+        if (isFinite(atual) && isFinite(anterior)) {
+            const diff = atual - anterior;
+            const { arrow, klass } = _arrowKlass(diff, 0.01);
+            const sig = diff > 0 ? '+' : '';
+            return `<span class="yoy-pair ${klass}" title="${tooltip}">${arrow} ${sig}${diff.toFixed(2).replace('.', ',')} € ${prefixo}</span>`;
+        }
+        return '';
+    }
+    // Top horas: agrupa quartos-horários em horas inteiras (média)
+    // Usa o `intervalo` para derivar a hora — funciona tanto para a vista PT como CET.
+    function calcularTopHoras(dadosReaisDoDia, topN) {
+        const horasMap = new Map();
+        dadosReaisDoDia.forEach((d, idx) => {
+            if (d.preco_pt === null || isNaN(d.preco_pt)) return;
+            let hora = null;
+            if (d.intervalo) {
+                const m = d.intervalo.match(/^\[(\d{2}):/);
+                if (m) hora = parseInt(m[1], 10);
+            }
+            if (hora === null && d.localTimestamp) hora = d.localTimestamp.getUTCHours();
+            if (hora === null) hora = Math.floor(idx / 4);
+            if (!horasMap.has(hora)) horasMap.set(hora, []);
+            horasMap.get(hora).push(d.preco_pt);
+        });
+        const horas = [];
+        horasMap.forEach((arr, hora) => {
+            if (arr.length === 0) return;
+            const media = arr.reduce((a, b) => a + b, 0) / arr.length;
+            horas.push({ hora, media });
+        });
+        if (horas.length === 0) return null;
+        const baratas = [...horas].sort((a, b) => a.media - b.media).slice(0, topN);
+        const caras = [...horas].sort((a, b) => b.media - a.media).slice(0, topN);
+        return { baratas, caras };
+    }
+    function renderTopHoras(top, emCET) {
+        const section = document.getElementById('top-horas-section');
+        const listaB = document.getElementById('top-horas-baratas-lista');
+        const listaC = document.getElementById('top-horas-caras-lista');
+        const h2Subtitulo = document.getElementById('top-horas-subtitulo');
+        if (!section || !listaB || !listaC) return;
+        if (h2Subtitulo) h2Subtitulo.textContent = emCET ? '(médias horárias em hora CET)' : '(médias horárias PT)';
+        if (!top || (!top.baratas.length && !top.caras.length)) {
+            section.style.display = 'none';
+            return;
+        }
+        const fmt = (v) => v.toFixed(2).replace('.', ',');
+        const fmtHora = (h) => `${String(h).padStart(2, '0')}:00 — ${String((h + 1) % 24).padStart(2, '0')}:00`;
+        listaB.innerHTML = top.baratas.map((item, i) =>
+            `<li><span class="hora"><span class="rank-badge">#${i+1}</span>${fmtHora(item.hora)}</span><span class="preco">${fmt(item.media)} €/MWh</span></li>`
+        ).join('');
+        listaC.innerHTML = top.caras.map((item, i) =>
+            `<li><span class="hora"><span class="rank-badge">#${i+1}</span>${fmtHora(item.hora)}</span><span class="preco">${fmt(item.media)} €/MWh</span></li>`
+        ).join('');
+        section.style.display = 'block';
+    }
+    // Hora do quarto-horário do min/max (formato "HH:MM" — início do slot)
+    function getHoraDoExtremo(arr, valorAlvo) {
+        const row = arr.find(d => d.preco_pt === valorAlvo);
+        if (!row || !row.intervalo) return null;
+        // intervalo formato "[HH:MM-HH:MM[" — extrair início
+        const m = row.intervalo.match(/^\[(\d{2}:\d{2})-/);
+        return m ? m[1] : null;
+    }
+    function getHoraDoExtremoES(arr, valorAlvo) {
+        const row = arr.find(d => d.preco_es === valorAlvo);
+        if (!row || !row.intervalo) return null;
+        const m = row.intervalo.match(/^\[(\d{2}:\d{2})-/);
+        return m ? m[1] : null;
+    }
+    // Toast feedback
+    function _toastFeedback(msg) {
+        const old = document.getElementById('toast-feedback');
+        if (old) old.remove();
+        const t = document.createElement('div');
+        t.id = 'toast-feedback';
+        t.className = 'toast-feedback';
+        t.textContent = msg;
+        document.body.appendChild(t);
+        setTimeout(() => { if (t.parentNode) t.remove(); }, 2500);
+    }
+    // Estado: sobrepor ontem no gráfico
+    let _mostrarOntem = false;
+    // Dados do dia anterior (PT) cached para o chart
+    let _dadosOntemCached = null;
+    // Estado: fuso horário ativo ('pt' = hora de Portugal | 'cet' = hora de mercado/Espanha)
+    let _fusoAtivo = 'pt';
+
+    /**
+     * Constrói a "vista CET" do dia selecionado:
+     *  - últimas 4 qh do dia PT anterior (corresponde a 00:00-01:00 CET do dia selecionado)
+     *  - + primeiras (N-4) qh do dia PT atual (corresponde a 01:00-24:00 CET do dia selecionado)
+     *  - Re-etiqueta o campo `intervalo` para refletir o tempo CET.
+     * Devolve um novo array (não muta os originais).
+     */
+    function construirVistaCET(dadosDiaAnteriorPT, dadosDoDiaPT) {
+        if (!Array.isArray(dadosDoDiaPT) || dadosDoDiaPT.length === 0) return [];
+        const ultimas4 = Array.isArray(dadosDiaAnteriorPT) ? dadosDiaAnteriorPT.slice(-4) : [];
+        const totalAlvo = dadosDoDiaPT.length; // mantém o mesmo nº de quartos (96 / 92 / 100)
+        const restantes = dadosDoDiaPT.slice(0, Math.max(0, totalAlvo - ultimas4.length));
+        const combinados = ultimas4.concat(restantes);
+        const pad = (n) => String(n).padStart(2, '0');
+        return combinados.map((row, idx) => {
+            const minutosInicio = idx * 15;
+            const minutosFim = minutosInicio + 15;
+            const hI = Math.floor(minutosInicio / 60);
+            const mI = minutosInicio % 60;
+            const hF = Math.floor(minutosFim / 60);
+            const mF = minutosFim % 60;
+            const hFLabel = (hF === 24) ? '24' : pad(hF % 24);
+            return { ...row, intervalo: `[${pad(hI)}:${pad(mI)}-${hFLabel}:${pad(mF)}[` };
+        });
+    }
+
+    // --- URL state (deep-linking de um dia) ---
+    function lerDataURL() {
+        const params = new URLSearchParams(window.location.search);
+        const data = params.get('data');
+        if (!data || !/^\d{4}-\d{2}-\d{2}$/.test(data)) return null;
+        return data;
+    }
+    function atualizarURLDia(dataStr, dataMaximaValida) {
+        let newURL;
+        if (dataStr === dataMaximaValida) {
+            // Dia mais recente = default → URL limpo
+            newURL = `${window.location.pathname}${window.location.hash}`;
+        } else {
+            const params = new URLSearchParams();
+            params.set('data', dataStr);
+            newURL = `${window.location.pathname}?${params.toString()}${window.location.hash}`;
+        }
+        window.history.replaceState(null, '', newURL);
+    }
+
+    // --- PROCESSO DE INICIALIZAÇÃO ---
+    fetchDados(URL_DADOS_ATUAIS)
+        .then(response => { if (!response.ok) throw new Error(`Erro de rede: ${response.statusText}`); return response.text(); })
+        .then(data => {
+            const parsedData = parseCSVAtual(data);
+            dadosAtuais = parsedData.precos; dadosAtualizacao = parsedData.atualizacoes; dadosFuturosPT = parsedData.futurosPT; dadosFuturosES = parsedData.futurosES;
+            if (dadosAtuais.length === 0) throw new Error("Ficheiro atual vazio."); if (!dadosAtualizacao.Data_Valores_OMIE) { throw new Error("Data_Valores_OMIE não encontrada."); }
+            const anosAtuais = dadosAtuais.map(d => d.dia ? parseInt(d.dia.substring(6, 10)) : NaN).filter(ano => !isNaN(ano)); // Adicionado check d.dia
+            if (anosAtuais.length > 0) { anoMinimoAtual = Math.min(...anosAtuais); } else { anoMinimoAtual = new Date().getFullYear(); }
+            const dataMaximaValida = formatarDataParaInput(dadosAtualizacao.Data_Valores_OMIE); if (!dataMaximaValida) { throw new Error("Data_Valores_OMIE inválida."); }
+            const dataMinimaGeral = `${ANO_INICIO_HISTORICO}-01-01`;
+            seletorData.min = dataMinimaGeral; seletorData.max = dataMaximaValida;
+
+            // Aplicar URL state se válido; caso contrário usar a data mais recente
+            const dataDoURL = lerDataURL();
+            const dataInicial = (dataDoURL && dataDoURL >= dataMinimaGeral && dataDoURL <= dataMaximaValida)
+                ? dataDoURL
+                : dataMaximaValida;
+            seletorData.value = dataInicial;
+            atualizarURLDia(dataInicial, dataMaximaValida);
+
+            seletorData.addEventListener('change', (e) => {
+                atualizarURLDia(e.target.value, dataMaximaValida);
+                atualizarBotoesPresetDia();
+                atualizarDashboard(e.target.value);
+            });
+
+            // === Botões pré-definidos (Ontem / Hoje / Amanhã / Mais recente) ===
+            function getHojeEmLisboaYYYYMMDD() {
+                const ag = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Lisbon" }));
+                return `${ag.getFullYear()}-${String(ag.getMonth() + 1).padStart(2, '0')}-${String(ag.getDate()).padStart(2, '0')}`;
+            }
+            function deslocarDiaISO(iso, n) {
+                const d = new Date(iso + "T12:00:00Z");
+                d.setUTCDate(d.getUTCDate() + n);
+                return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
+            }
+            function atualizarBotoesPresetDia() {
+                const hoje = getHojeEmLisboaYYYYMMDD();
+                const ontem = deslocarDiaISO(hoje, -1);
+                const amanha = deslocarDiaISO(hoje, 1);
+                const min = seletorData.min;
+                const max = seletorData.max;
+                const atual = seletorData.value;
+
+                const map = { ontem, hoje, amanha };
+                document.querySelectorAll('.date-preset-btn').forEach(btn => {
+                    const preset = btn.dataset.preset;
+                    const target = map[preset];
+                    if (!target) return;
+                    const fora = (target < min) || (target > max);
+                    btn.disabled = fora;
+                    btn.classList.toggle('active', !fora && target === atual);
+                });
+            }
+            document.querySelectorAll('.date-preset-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (btn.disabled) return;
+                    const preset = btn.dataset.preset;
+                    const hoje = getHojeEmLisboaYYYYMMDD();
+                    let target = null;
+                    if (preset === 'ontem')   target = deslocarDiaISO(hoje, -1);
+                    else if (preset === 'hoje')    target = hoje;
+                    else if (preset === 'amanha')  target = deslocarDiaISO(hoje, 1);
+                    if (!target) return;
+                    if (target < seletorData.min) target = seletorData.min;
+                    if (target > seletorData.max) target = seletorData.max;
+                    seletorData.value = target;
+                    seletorData.dispatchEvent(new Event('change'));
+                });
+            });
+
+            // === Toggle "Sobrepor ontem" no gráfico ===
+            const toggleOntem = document.getElementById('toggle-ontem');
+            const toggleOntemLabel = document.getElementById('toggle-ontem-label');
+            if (toggleOntem) {
+                // Persistência em localStorage
+                try {
+                    const saved = localStorage.getItem('omie_diario_mostrar_ontem');
+                    if (saved === '1') { toggleOntem.checked = true; _mostrarOntem = true; if (toggleOntemLabel) toggleOntemLabel.classList.add('active'); }
+                } catch(e) {}
+                toggleOntem.addEventListener('change', () => {
+                    _mostrarOntem = toggleOntem.checked;
+                    try { localStorage.setItem('omie_diario_mostrar_ontem', _mostrarOntem ? '1' : '0'); } catch(e) {}
+                    if (toggleOntemLabel) toggleOntemLabel.classList.toggle('active', _mostrarOntem);
+                    if (ultimosArgsGrafico) atualizarGrafico(...ultimosArgsGrafico);
+                });
+            }
+
+            // === Toggle Fuso horário (PT vs CET) ===
+            const fusoBtns = document.querySelectorAll('.fuso-btn');
+            try {
+                const savedFuso = localStorage.getItem('omie_diario_fuso');
+                if (savedFuso === 'cet' || savedFuso === 'pt') { _fusoAtivo = savedFuso; }
+            } catch(e) {}
+            function aplicarFusoBotoes() {
+                fusoBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.fuso === _fusoAtivo));
+            }
+            aplicarFusoBotoes();
+            fusoBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const novo = btn.dataset.fuso;
+                    if (!novo || novo === _fusoAtivo) return;
+                    _fusoAtivo = novo;
+                    try { localStorage.setItem('omie_diario_fuso', _fusoAtivo); } catch(e) {}
+                    aplicarFusoBotoes();
+                    atualizarDashboard(seletorData.value);
+                });
+            });
+
+            // === Botão Partilhar ===
+            const btnPartilhar = document.getElementById('btn-partilhar-diario');
+            if (btnPartilhar) {
+                btnPartilhar.addEventListener('click', async () => {
+                    atualizarURLDia(seletorData.value, dataMaximaValida);
+                    const url = window.location.href;
+                    const dataCSV = formatarDataParaCSV(seletorData.value) || seletorData.value;
+                    const cleanText = (id) => {
+                        const el = document.getElementById(id);
+                        return el ? (el.textContent || '').replace(/\s+/g, ' ').trim() : '';
+                    };
+                    const mediaPTtxt = cleanText('media-pt');
+                    const maxPTtxt   = cleanText('max-pt');
+                    const minPTtxt   = cleanText('min-pt');
+                    const titulo = 'OMIE — Preços diários (Soluções Diferentes)';
+                    const resumo = `📊 OMIE Day-Ahead — ${dataCSV}\nMédia PT: ${mediaPTtxt}\nMáximo: ${maxPTtxt}\nMínimo: ${minPTtxt}`;
+                    const textoCompleto = `${resumo}\n${url}`;
+                    if (navigator.share) {
+                        try { await navigator.share({ title: titulo, text: resumo, url }); return; }
+                        catch(e) { if (e && e.name === 'AbortError') return; }
+                    }
+                    try {
+                        await navigator.clipboard.writeText(textoCompleto);
+                        _toastFeedback('✓ Link e resumo copiados');
+                        return;
+                    } catch(e) {}
+                    try {
+                        const ta = document.createElement('textarea');
+                        ta.value = textoCompleto; ta.style.position = 'fixed'; ta.style.left = '-9999px';
+                        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+                        _toastFeedback('✓ Link e resumo copiados');
+                    } catch(e) { prompt('Copie este link:', textoCompleto); }
+                });
+            }
+
+            atualizarBotoesPresetDia();
+            atualizarDashboard(seletorData.value); // Chamar UMA VEZ
+            atualizarFuturosProximos();
+        })
+        .catch(error => {
+            console.error('Falha CRÍTICA:', error, error.stack);
+            // Mensagem no contentor do gráfico — preserva o seletor de data e o resto da página
+            const _alvoErro = document.getElementById('grafico-container');
+            if (_alvoErro) _alvoErro.innerHTML = `<p style="color: red; text-align: center; font-size: 1.2em; padding: 20px;">Ocorreu um erro crítico ao carregar os dados. Verifique a consola.</p>`;
+        });
+
+    // --- Lógica das Setas de Navegação ---
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+
+    function alterarData(dias) {
+        if (!seletorData.value) return; // Evita erros se o campo estiver vazio
+
+        // Separar ano, mês e dia para evitar problemas de mudança de hora (ex: 29 de Março)
+        const partes = seletorData.value.split('-');
+        const dataAtual = new Date(partes[0], partes[1] - 1, partes[2]);
+        
+        // Somar ou subtrair o dia
+        dataAtual.setDate(dataAtual.getDate() + dias);
+        
+        // Reconstruir a string no formato AAAA-MM-DD
+        const y = dataAtual.getFullYear();
+        const m = String(dataAtual.getMonth() + 1).padStart(2, '0');
+        const d = String(dataAtual.getDate()).padStart(2, '0');
+        const novaDataStr = `${y}-${m}-${d}`;
+
+        // Validar limites antes de aplicar
+        if (novaDataStr >= seletorData.min && novaDataStr <= seletorData.max) {
+            seletorData.value = novaDataStr;
+            seletorData.dispatchEvent(new Event('change')); // Dispara a atualização dos gráficos
+        }
+    }
+
+    btnPrev.addEventListener('click', () => alterarData(-1));
+    btnNext.addEventListener('click', () => alterarData(1));
+
+    // === Atalhos de teclado: ←/→ para dia anterior/seguinte ===
+    document.addEventListener('keydown', function(e) {
+        // Ignorar com modificadores (Ctrl/Cmd/Alt/Shift)
+        if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+        // Ignorar se o user estiver a editar texto (input, textarea, select, contenteditable)
+        const tag = e.target && e.target.tagName ? e.target.tagName.toLowerCase() : '';
+        if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+        if (e.target && e.target.isContentEditable) return;
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            alterarData(-1);
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            alterarData(1);
+        }
+    });
+
+    // === Modo Impressão: data de impressão + abrir FAQ ===
+    window.addEventListener('beforeprint', function() {
+        const painel = document.getElementById('painel-header-main');
+        if (painel) {
+            const now = new Date();
+            const dataStr = now.toLocaleDateString('pt-PT') + ' ' + now.toLocaleTimeString('pt-PT').substring(0, 5);
+            painel.setAttribute('data-print-date', dataStr);
+        }
+        document.querySelectorAll('details.faq-item').forEach(d => {
+            if (!d.hasAttribute('open')) {
+                d.setAttribute('open', '');
+                d.dataset.openedForPrint = '1';
+            }
+        });
+    });
+    window.addEventListener('afterprint', function() {
+        document.querySelectorAll('details.faq-item[data-opened-for-print="1"]').forEach(d => {
+            d.removeAttribute('open');
+            delete d.dataset.openedForPrint;
+        });
+    });
+    // -------------------------------------
+});
+</script>
+
+<script src="script.js"></script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

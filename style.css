@@ -1,0 +1,2152 @@
+/* Estilos Gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Classe de acessibilidade — esconde visualmente mas mantém para leitores de ecrã */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Skip link (acessibilidade — WCAG 2.1 Bypass Blocks).
+   Visualmente escondido até receber foco via teclado (Tab no início da página). */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 8px;
+    z-index: 10000;
+    padding: 10px 16px;
+    background: #2c3e50;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 0.95em;
+    text-decoration: none;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    transition: top 0.2s ease;
+}
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid #3498db;
+    outline-offset: 2px;
+}
+[data-theme="dark"] .skip-link {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+[data-theme="dark"] .skip-link:focus {
+    outline-color: #60a5fa;
+}
+
+/* ================================== */
+/* Estilo do Header (versão com logo ao lado do título)      */
+/* ================================== */
+
+/* O header principal, que serve como um contentor */
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    box-sizing: content-box;
+}
+
+/* O contentor do conteúdo do header (logo, título, subtitulo) */
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: content-box;
+}
+
+/* Novo contentor para o logo e o h1, para ficarem lado a lado */
+.header-title-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-sizing: content-box;
+}
+
+/* Estilo do logo, com o tamanho reduzido */
+header .logo {
+    height: 35px; /* Tamanho reduzido (aprox. 1/3 de 70-80px) */
+    width: auto;
+}
+
+/* Estilos para o texto do cabeçalho (Nome Soluções Diferentes) */
+.header-content h1, 
+.brand-name {
+    margin: 0;
+    font-size: 35px;
+    line-height: 1;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+.header-content p {
+    margin: 3px 0 0 0;
+    padding-left: 50px;
+    font-size: 16px;
+    line-height: 1.3;
+    color: #bdc3c7;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos do Rodapé */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #e7e7e7;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+nav {
+    background-color: #34495e;
+    padding: 1em;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+/* Estilos para Títulos Principais (H1) e Secundários (H2) das páginas de conteúdo */
+main h1, main h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Ajuste específico para o H1 não ficar gigante demais, se preferir */
+main h1 {
+    font-size: 1.5em; /* Um pouco maior que o H2, mas equilibrado */
+}
+
+/* Garante que o H1 da Homepage (Hero) NÃO ganha a linha azul (para não estragar o design da capa) */
+.hero-section h1 {
+    border-bottom: none;
+    padding-bottom: 0;
+    color: #333; /* Mantém a cor original da homepage */
+}
+
+.subtitulo-tabela {
+    font-style: italic;
+    color: #666;
+    margin-top: -15px;
+    margin-bottom: 20px;
+}
+
+/* Estilos das Tabelas OMIE e OMIP */
+.table-container {
+    overflow-x: auto; /* Permite scroll horizontal em ecrãs pequenos */
+}
+
+table {
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    width: 100%;
+    font-size: 12px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+/* Cores para cabeçalhos da tabela OMIE */
+.dia { background-color: white; color: black; }
+.simples { background-color: #A6A6A6; color: black; }
+.bi-horario-diario { background-color: #A9D08E; color: black; }
+.bi-horario_semanal { background-color: #8EA9DB; color: black; }
+.tri_horario_diario { background-color: #BF8F00; color: white; }
+.tri_horario_semanal { background-color: #C65911; color: white; }
+
+/* Cores para subcabeçalhos */
+.dia-sub { background-color: white; color: black; }
+.simples-sub { background-color: #D9D9D9; color: black; }
+.bi-horario-diario-vazio { background-color: #C6E0B4; color: black; }
+.bi-horario-diario-fora-vazio { background-color: #E2EFDA; color: black; }
+.bi-horario-semanal-vazio { background-color: #B4C6E7; color: black; }
+.bi-horario-semanal-fora-vazio { background-color: #D9E1F2; color: black; }
+.tri-horario-diario-vazio { background-color: #FFD966; color: black; }
+.tri-horario-diario-cheias { background-color: #FFE699; color: black; }
+.tri-horario-diario-ponta { background-color: #FFF2CC; color: black; }
+.tri-horario-semanal-vazio { background-color: #F4B084; color: black; }
+.tri-horario-semanal-cheias { background-color: #F8CBAD; color: black; }
+.tri-horario-semanal-ponta { background-color: #FCE4D6; color: black; }
+
+.valor-negativo {
+    color: red;
+}
+
+/* Estilos do Gráfico e Dropdowns */
+.dropdown-container {
+    display: flex;
+    justify-content: center; /* Centra os blocos na horizontal */
+    align-items: flex-start; /* Alinha os blocos pelo topo */
+    flex-wrap: wrap;         /* Permite que quebrem a linha em ecrãs pequenos */
+    gap: 25px;               /* Espaço entre cada bloco */
+    margin-bottom: 20px;
+}
+
+.dropdown-item {
+    display: flex;
+    flex-direction: column; /* Coloca o label em cima e o select em baixo */
+    gap: 8px;                /* Espaço entre o label e o select */
+}
+
+.dropdown-item label {
+    font-weight: bold;
+    text-align: center;      /* Centra o texto do label */
+    color: #333;
+}
+
+select {
+    padding: 8px;
+    font-size: 14px;
+    min-width: 200px; /* Garante uma largura mínima para os dropdowns */
+}
+
+/* Tabela de Simulação */
+#tabelaContainer {
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    overflow-x: auto;
+}
+#tabelaHoraria {
+    font-size: 12px;
+}
+#tabelaHoraria input {
+    font-size: 12px;
+    width: 80px;
+    text-align: center;
+}
+
+/* Estilos para a Secção de Apoio e Redes Sociais */
+#apoio, #redes-sociais {
+    text-align: center;
+}
+
+.social-links-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px; /* Espaço entre os ícones */
+    flex-wrap: wrap; /* Permite que os ícones quebrem a linha em ecrãs pequenos */
+    padding: 20px 0;
+}
+
+.social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    width: 100px; /* Largura de cada bloco de link */
+}
+
+.social-link:hover {
+    opacity: 0.7;
+}
+
+.social-icon {
+    width: 60px;  /* Tamanho do ícone */
+    height: 60px; /* Tamanho do ícone */
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+/* Estilos para páginas de conteúdo como 'Sobre' */
+.content-section {
+    line-height: 1.7; /* Aumenta o espaçamento entre linhas */
+    text-align: justify; /* Justifica o texto */
+}
+
+.content-section ul {
+    list-style-position: inside; /* Coloca os marcadores da lista dentro do bloco de texto */
+    padding-left: 20px;
+}
+/* Estilos para o Formulário de Sugestões */
+.form-container {
+    max-width: 600px;
+    margin: 30px auto; /* Centra o formulário */
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que o padding não afeta a largura total */
+    font-size: 1em;
+}
+
+.form-container button {
+    width: auto;
+    padding: 12px 25px;
+    border: 1px solid #3498db;
+    background-color: white;
+    color: #3498db;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-container button:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.footer-nav-links {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.footer-nav-links a {
+    margin: 0 8px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-nav-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px; /* Espaçamento entre os ícones */
+    margin-top: 15px;
+}
+
+.footer-social-icon {
+    width: 35px;  /* Tamanho reduzido para os ícones */
+    height: 35px; /* Tamanho reduzido para os ícones */
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.footer-social-icon:hover {
+    opacity: 1;
+}
+/* ================================== */
+/* Estilos para o Menu de Navegação Suspenso */
+/* ================================== */
+
+/* Remove estilos padrão da lista e ativa o flexbox */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilo para cada item principal do menu */
+nav > ul > li {
+    position: relative; /* Essencial para o posicionamento do dropdown */
+}
+
+/* ================================================= */
+/* Estilos para os Links Principais do Menu (Desktop e Mobile) */
+/* ================================================= */
+
+/* Estilo para os links principais do menu (Desktop) */
+nav > ul > li > a {
+    display: block;
+    padding: 1em 18px; /* Padding para desktop */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px; /* Tamanho de letra para desktop */
+    white-space: nowrap; /* Impede que os nomes dos menus quebrem em duas linhas */
+    transition: background-color 0.3s ease; /* Efeito suave ao passar o rato */
+}
+
+/* ================================================= */
+/* Regras para Ecrãs Pequenos (Smartphones/Tablets)  */
+/* ================================================= */
+@media (max-width: 768px) {
+    /* Diminui os links principais do menu */
+    nav > ul > li > a {
+        font-size: 12px;
+        padding: 1em 8px;
+    }
+
+    /* Diminui os links DENTRO do menu suspenso */
+    .dropdown-content a {
+        font-size: 12px; /* Tamanho de letra mais pequeno para os itens em mobile */
+        padding: 10px 14px;
+    }
+}
+
+/* Adiciona uma seta para indicar que é um dropdown */
+nav > ul > li.dropdown > a::after {
+    content: ' ▾'; /* Seta para baixo */
+    font-size: 0.8em;
+}
+
+/* O conteúdo do dropdown (escondido por defeito) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #34495e;
+    min-width: 250px; /* Largura mínima do dropdown */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1; /* Garante que o dropdown fica por cima de outros elementos */
+    padding: 0;
+    border-radius: 0 0 5px 5px;
+}
+
+/* Links dentro do dropdown */
+.dropdown-content a {
+    font-size: 15px; /* Tamanho de letra base para itens do dropdown (Desktop) */
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    border-bottom: 1px solid #4a627a;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+/* Cor do link ao passar o rato por cima */
+.dropdown-content a:hover {
+    background-color: #4a627a;
+}
+
+/* Mostra o dropdown quando se passa o rato no item principal */
+nav > ul > li:hover > .dropdown-content {
+    display: block;
+}
+
+/* Estilo para imagens de conteúdo */
+.content-image {
+    max-width: 100%; /* Garante que a imagem nunca é mais larga que o seu contentor */
+    height: auto;    /* Mantém a proporção da imagem */
+    display: block;  /* Remove espaços extra abaixo da imagem */
+    margin: 20px auto; /* Centra a imagem com margens verticais */
+    border-radius: 8px; /* Adiciona cantos arredondados */
+}
+/* Estilos para o link/botão de acesso a sites externos */
+.link-portal {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Remove decoração de link do logo no cabeçalho */
+.header-title-container > a {
+    border-bottom: none; /* Remove qualquer sublinhado do link */
+    line-height: 0;      /* Ajuda a alinhar a imagem perfeitamente */
+}
+
+/* === ESTILO SIMPLIFICADO PARA A REFERÊNCIA === */
+.link-section {
+    text-align: center;
+    margin: 30px auto;
+}
+
+.link-section p {
+    font-family: monospace;
+    font-size: 0.9em;
+    color: #555;
+    background-color: #e9ecef;
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 0;
+}
+
+/* Estilos para a secção de FAQ expansível */
+
+.faq-section-title {
+    margin-top: 2em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+.faq-item {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.faq-item summary {
+    cursor: pointer;
+    padding: 15px;
+    font-size: 1.1em;
+    position: relative;
+    outline: none; /* Remove a borda ao clicar */
+    transition: background-color 0.2s;
+}
+
+.faq-item summary:hover {
+    background-color: #f9f9f9;
+}
+
+/* Adiciona um ícone de seta para indicar que é expansível */
+.faq-item summary::after {
+    content: '▼';
+    position: absolute;
+    right: 20px;
+    font-size: 0.8em;
+    transition: transform 0.2s;
+}
+
+.faq-item[open] > summary::after {
+    transform: rotate(180deg);
+}
+
+.faq-content {
+    padding: 0 20px 20px 20px;
+    line-height: 1.6;
+}
+
+.faq-content p, .faq-content ul, .faq-content ol {
+    margin-top: 0;
+}
+
+/* Estilos para a apresentação dos simuladores (homepage + Sobre) */
+.simulator-showcase-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.simulator-card {
+    flex: 1;
+    min-width: 280px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    text-align: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.simulator-card:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+}
+
+.simulator-card h3,
+.simulator-card h4 {
+    margin-top: 0;
+    color: #0056b3;
+}
+
+/* --- Grelha da homepage: 3 cartões na 1.ª linha + 2 centrados na 2.ª --- */
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+}
+.home-grid > .simulator-card {
+    grid-column: span 2;
+    min-width: 0; /* anula o min-width:280px do flex, desnecessário em grelha */
+    display: flex;
+    flex-direction: column;
+}
+/* Os que sobram ficam centrados por baixo dos três de cima */
+.home-grid > .simulator-card:nth-child(4) { grid-column: 2 / span 2; }
+.home-grid > .simulator-card:nth-child(5) { grid-column: 4 / span 2; }
+/* Caso de 4 cartões (sobre.html): o 4.º fica sozinho e centrado */
+.home-grid > .simulator-card:nth-child(4):last-child { grid-column: 3 / span 2; }
+/* Empurra o botão para o fundo, alinhando-os entre cartões */
+.home-grid > .simulator-card p { flex: 1; }
+.home-grid > .simulator-card .button-link { align-self: center; }
+
+/* Selo "beta" nos cartões */
+.badge-beta {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 4px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    background-color: #fff3cd;
+    color: #7a5900;
+    border: 1px solid #ffe08a;
+    font-size: 0.62em;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+[data-theme="dark"] .badge-beta {
+    background-color: #3a3010;
+    color: #fde68a;
+    border-color: #7a5900;
+}
+
+/* Selo "beta" nos itens do menu (fundo escuro) */
+.menu-beta {
+    display: inline-block;
+    margin-left: 5px;
+    /* No drawer mobile o item é flex com space-between: sem isto o selo era
+       empurrado para a direita, para fora da área visível da gaveta. */
+    margin-right: auto;
+    padding: 1px 6px;
+    border-radius: 9px;
+    background-color: #f59e0b;
+    color: #1f2937;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+/* Tablet — 2 colunas */
+@media (max-width: 900px) {
+    .home-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .home-grid > .simulator-card,
+    .home-grid > .simulator-card:nth-child(4),
+    .home-grid > .simulator-card:nth-child(5),
+    .home-grid > .simulator-card:nth-child(4):last-child { grid-column: auto; }
+}
+
+.button-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.button-link:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+/* Caixa de divulgação de afiliação (DL 24/2014 / Diretiva 2005/29/CE) */
+.affiliate-disclosure {
+    max-width: 800px;
+    margin: 18px auto 25px auto;
+    padding: 14px 18px;
+    background-color: #fff8e1;
+    border-left: 4px solid #f59e0b;
+    border-radius: 4px;
+    font-size: 0.88em;
+    line-height: 1.55;
+    color: #5a4000;
+}
+.affiliate-disclosure strong {
+    color: #3d2c00;
+}
+
+[data-theme="dark"] .affiliate-disclosure {
+    background-color: #1e293b;
+    border-left-color: #f59e0b;
+    color: #fde68a;
+}
+[data-theme="dark"] .affiliate-disclosure strong {
+    color: #fef3c7;
+}
+
+/* Estilos para a página de Apoio */
+.support-options-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.support-card {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.support-card h3 {
+    margin-top: 0;
+}
+
+.support-card form {
+    margin-top: 15px;
+}
+
+/* Destaque para códigos de referenciação (ex.: código amigo Goldenergy) */
+.referral-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+.referral-code code {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.15em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 8px 14px;
+    background-color: #eef4ff;
+    border: 1px dashed #007bff;
+    border-radius: 5px;
+    color: #0056b3;
+    user-select: all;
+}
+.copy-code-btn {
+    padding: 8px 14px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.copy-code-btn:hover {
+    background-color: #0056b3;
+}
+
+[data-theme="dark"] .referral-code code {
+    background-color: #1e293b;
+    border-color: #60a5fa;
+    color: #93c5fd;
+}
+
+/* Detalhes de benefícios dentro de um cartão de apoio */
+.support-card-details {
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid #e2e8f0;
+    text-align: left;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+.support-card-details p {
+    margin: 0 0 8px 0;
+}
+.support-card-details ul {
+    margin: 0 0 12px 0;
+    padding-left: 20px;
+}
+.support-card-details li {
+    margin-bottom: 6px;
+}
+.support-card-details ul:last-child {
+    margin-bottom: 0;
+}
+
+.support-card-details .button-link {
+    margin-top: 4px;
+}
+.support-card-note {
+    margin-top: 16px !important;
+    padding-top: 12px;
+    border-top: 1px dashed #e2e8f0;
+    font-size: 0.85em;
+    font-style: italic;
+    color: #64748b;
+}
+.support-card-hint {
+    margin-top: 10px !important;
+    padding: 10px 12px;
+    background-color: #fff8e1;
+    border-left: 3px solid #f59e0b;
+    border-radius: 4px;
+    font-size: 0.85em;
+    color: #5a4000;
+}
+
+[data-theme="dark"] .support-card-details {
+    border-top-color: #334155;
+}
+[data-theme="dark"] .support-card-note {
+    border-top-color: #334155;
+    color: #94a3b8;
+}
+[data-theme="dark"] .support-card-hint {
+    background-color: #1e293b;
+    border-left-color: #f59e0b;
+    color: #fde68a;
+}
+
+/* Caixa de Call to Action para páginas de referência */
+.call-to-action-box {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #e7f1ff; /* Azul muito claro */
+    border-left: 5px solid #007bff;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.call-to-action-box h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #0056b3;
+}
+
+.call-to-action-box p {
+    margin-bottom: 15px;
+}
+
+/* Para garantir que os botões lado a lado têm espaço */
+.call-to-action-box .button-link {
+    margin: 5px;
+}
+
+/* Estilos para a nova página principal (index.html) */
+
+.hero-section {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #f8f9fa; /* Um cinzento muito claro */
+}
+
+.hero-section h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.hero-section p {
+    font-size: 1.2em;
+    color: #555;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.secondary-tools {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 30px 20px;
+}
+
+.secondary-tools h2 {
+    margin-bottom: 20px;
+}
+
+.resource-links a {
+    display: inline-block;
+    margin: 5px 10px;
+    padding: 8px 15px;
+    border: 1px solid #007bff;
+    color: #007bff;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.resource-links a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* ================================================================= */
+/* Homepage em smartphone — versão compacta                           */
+/* Objetivo: os 3 primeiros simuladores visíveis sem fazer scroll.    */
+/* ================================================================= */
+@media (max-width: 600px) {
+    /* Cabeçalho global mais baixo (aplica-se a todas as páginas) */
+    header { padding: 10px 14px; }
+    header .logo { height: 30px; }
+    .header-content h1,
+    .brand-name { font-size: 26px; }
+    .header-title-container { gap: 10px; }
+    .header-content p {
+        padding-left: 40px;
+        /* deixa espaço para o botão de modo escuro (fixo no canto superior direito) */
+        padding-right: 48px;
+        font-size: 12px;
+        line-height: 1.25;
+    }
+
+    /* Estas regras só afetam o index.html (main.home-main) */
+    .home-main {
+        margin: 6px auto;
+        padding: 12px;
+    }
+    .home-main section { margin-bottom: 14px; }
+
+    .home-main .hero-section {
+        padding: 12px;
+    }
+    .home-main .hero-section h1 {
+        font-size: 1.15em;
+        line-height: 1.25;
+        margin-top: 0; /* remove a margem por omissão do h1 */
+        margin-bottom: 5px;
+    }
+    .home-main .hero-section p {
+        font-size: 0.8em;
+        line-height: 1.35;
+        margin: 0;
+    }
+
+    .home-tools h2 {
+        font-size: 1.1em;
+        line-height: 1.3;
+        padding-bottom: 6px;
+        margin-bottom: 12px;
+    }
+
+    /* Cartões em lista compacta: título + resumo curto + seta */
+    .home-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin: 0;
+    }
+    .home-grid > .simulator-card {
+        position: relative;
+        display: block;
+        text-align: left;
+        padding: 8px 32px 8px 12px;
+        border-radius: 10px;
+    }
+    /* Sem "salto" ao tocar (o hover em touch fica preso) */
+    .home-grid > .simulator-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    .home-grid > .simulator-card h3,
+    .home-grid > .simulator-card h4 {
+        font-size: 0.95em;
+        line-height: 1.25;
+        margin: 0 0 3px 0;
+    }
+    .home-grid > .simulator-card p {
+        font-size: 0.8em;
+        line-height: 1.3;
+        margin: 0;
+        color: #555;
+        text-align: left;
+    }
+    /* Segunda frase da descrição (e o sufixo do título do Dual)
+       só aparecem a partir de tablet, para manter uma linha por cartão */
+    .home-grid .desc-extra,
+    .home-grid .title-extra { display: none; }
+
+    .home-grid > .simulator-card::after {
+        content: '›';
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        font-size: 1.6rem;
+        line-height: 1;
+        color: #007bff;
+    }
+    /* O botão passa a cobrir o cartão inteiro (área de toque maior),
+       mantendo o texto do link para leitores de ecrã. */
+    .home-grid > .simulator-card .button-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        margin: 0;
+        padding: 0;
+        background: none;
+        border-radius: 10px;
+        /* Esconde o texto do botão sem o remover da árvore de acessibilidade */
+        text-indent: -9999px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .home-grid > .simulator-card .button-link:hover,
+    .home-grid > .simulator-card .button-link:active {
+        background: none;
+    }
+    .home-grid > .simulator-card .button-link:focus-visible {
+        outline: 3px solid #3498db;
+        outline-offset: 2px;
+    }
+
+    /* Recursos secundários mais compactos */
+    .home-main .secondary-tools { padding: 16px 12px; }
+    .home-main .secondary-tools h2 { font-size: 1.1em; margin-bottom: 12px; }
+    .home-main .resource-links a { margin: 4px 5px; padding: 7px 12px; font-size: 0.85em; }
+    .home-main .call-to-action-box { padding: 14px; }
+    .home-main .call-to-action-box p { font-size: 0.9em; }
+}
+
+/* ====================================== */
+/* Breadcrumb (navegação hierárquica)      */
+/* ====================================== */
+.breadcrumb {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 0.85em;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+.breadcrumb ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+}
+.breadcrumb li {
+    display: inline-flex;
+    align-items: center;
+    color: #6c757d;
+}
+.breadcrumb li + li::before {
+    content: '›';
+    margin: 0 8px;
+    color: #adb5bd;
+    font-weight: bold;
+}
+.breadcrumb a {
+    color: #007bff;
+    text-decoration: none;
+}
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+.breadcrumb li[aria-current="page"] {
+    color: #495057;
+    font-weight: 500;
+}
+
+/* Dark mode */
+[data-theme="dark"] .breadcrumb {
+    background-color: #1e293b;
+    border-bottom-color: #334155;
+}
+[data-theme="dark"] .breadcrumb li {
+    color: #94a3b8;
+}
+[data-theme="dark"] .breadcrumb li + li::before {
+    color: #475569;
+}
+[data-theme="dark"] .breadcrumb a {
+    color: #60a5fa;
+}
+[data-theme="dark"] .breadcrumb li[aria-current="page"] {
+    color: #e2e8f0;
+}
+
+/* Em mobile, breadcrumb mais compacto */
+@media (max-width: 600px) {
+    .breadcrumb {
+        padding: 8px 14px;
+        font-size: 0.78em;
+    }
+    .breadcrumb li + li::before {
+        margin: 0 5px;
+    }
+}
+
+/* Novas classes para normalizar a largura das colunas nas tabelas de períodos horários */
+.col-periodo {
+    width: 25%;
+}
+.col-horario-geral { /* Para a tabela de 2 colunas */
+    width: 75%;
+}
+.col-verao {
+    width: 37.5%;
+}
+.col-inverno {
+    width: 37.5%;
+}
+
+/* Estilos para a caixa de código de referência */
+.referral-code-wrapper {
+    display: flex;
+    margin-top: 10px;
+}
+
+.referral-code-wrapper input[type="text"] {
+    flex-grow: 1; /* Faz o input ocupar o espaço disponível */
+    padding: 8px;
+    font-family: monospace;
+    font-size: 1.1em;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+    /* Remove a sombra do input em iOS */
+    appearance: none;
+    -webkit-appearance: none; 
+}
+
+.referral-code-wrapper button {
+    padding: 8px 12px;
+    font-size: 1em;
+    font-weight: bold;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* Remove a sombra do botão em iOS */
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.referral-code-wrapper button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo base para os cabeçalhos da tabela */
+#tabelaHoraria thead th {
+    position: relative;        /* Necessário para posicionar as setas */
+    cursor: pointer;           /* Mostra a mãozinha ao passar o rato */
+    user-select: none;         /* Impede seleção de texto ao clicar rápido */
+    padding-right: 25px;       /* Espaço extra à direita para não tapar o texto */
+    background-color: #f4f4f4; /* Cor de fundo suave */
+    transition: background-color 0.2s;
+}
+
+#tabelaHoraria thead th:hover {
+    background-color: #e2e2e2; /* Efeito hover */
+}
+
+/* DESENHAR AS SETAS (Estado neutro/inativo) */
+#tabelaHoraria thead th::after {
+    content: '▲\A▼';           /* Caracteres Unicode para setas + \A (nova linha) */
+    white-space: pre;          /* Permite que o \A funcione como enter */
+    font-size: 8px;            /* Tamanho pequenino */
+    line-height: 9px;          /* Altura da linha para ficarem juntas */
+    color: #ccc;               /* Cinzento claro (inativo) */
+    
+    /* Posicionamento absoluto à direita */
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%); /* Centraliza verticalmente */
+    text-align: center;
+}
+
+/* QUANDO ORDENADO ASCENDENTE (Seta para cima escura, baixo oculta) */
+#tabelaHoraria thead th.sort-asc::after {
+    content: '▲';              /* Mostra apenas a de cima */
+    color: #333;               /* Cor escura (ativo) */
+    font-size: 10px;           /* Ligeiramente maior */
+    white-space: normal;       /* Reset */
+}
+
+/* QUANDO ORDENADO DESCENDENTE (Seta para baixo escura, cima oculta) */
+#tabelaHoraria thead th.sort-desc::after {
+    content: '▼';              /* Mostra apenas a de baixo */
+    color: #333;               /* Cor escura (ativo) */
+    font-size: 10px;
+    white-space: normal;
+}
+
+/* Altura padrão para PC (Desktop/Tablet) */
+#container-chart {
+    height: 400px;
+    width: 100%;
+    min-width: 100%; /* Garante que ocupa a largura toda */
+}
+
+/* Altura para Telemóvel (ecrãs até 600px) */
+@media (max-width: 600px) {
+    #container-chart {
+        height: 1500px; /* A altura necessária para as 96 barras */
+    }
+}
+
+/* ================================== */
+/* DARK MODE — Estilos centralizados  */
+/* ================================== */
+
+/* --- Botão de toggle (flutuante, canto superior direito) --- */
+.dark-mode-toggle {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 1000;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.dark-mode-toggle:hover {
+    background: #e2e8f0;
+    transform: scale(1.1);
+}
+[data-theme="dark"] .dark-mode-toggle {
+    background: #1e293b;
+    border-color: #475569;
+    color: #fbbf24;
+}
+[data-theme="dark"] .dark-mode-toggle:hover {
+    background: #334155;
+}
+
+/* --- Base: body, main --- */
+[data-theme="dark"] body {
+    background-color: #0f172a;
+    color: #e2e8f0;
+}
+[data-theme="dark"] main {
+    background-color: #1e293b;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+/* --- Header --- */
+[data-theme="dark"] header {
+    background-color: #0f172a;
+}
+[data-theme="dark"] .brand-name {
+    color: #e2e8f0;
+}
+[data-theme="dark"] .header-content p {
+    color: #94a3b8;
+}
+
+/* --- Navegação --- */
+[data-theme="dark"] nav {
+    background-color: #1e293b;
+}
+[data-theme="dark"] .dropdown-content {
+    background-color: #1e293b;
+    border-color: #475569;
+}
+[data-theme="dark"] .dropdown-content a {
+    color: #e2e8f0;
+    border-bottom-color: #334155;
+}
+[data-theme="dark"] .dropdown-content a:hover {
+    background-color: #334155;
+}
+/* --- Footer --- */
+[data-theme="dark"] footer {
+    background-color: #0f172a;
+    border-top-color: #334155;
+}
+
+/* --- Títulos e texto --- */
+[data-theme="dark"] main h1,
+[data-theme="dark"] main h2 {
+    color: #e2e8f0;
+    border-bottom-color: #3b82f6;
+}
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 {
+    color: #e2e8f0;
+}
+[data-theme="dark"] p {
+    color: #cbd5e1;
+}
+[data-theme="dark"] .subtitulo-tabela {
+    color: #94a3b8;
+}
+
+/* --- Tabelas genéricas --- */
+[data-theme="dark"] table {
+    border-color: #475569;
+}
+[data-theme="dark"] th {
+    background-color: #334155;
+    color: #e2e8f0;
+    border-color: #475569;
+}
+[data-theme="dark"] td {
+    border-color: #475569;
+    color: #e2e8f0;
+}
+
+/* --- Tabela de simulação (ordenação) --- */
+[data-theme="dark"] #tabelaHoraria thead th {
+    background-color: #334155;
+    color: #e2e8f0;
+}
+[data-theme="dark"] #tabelaHoraria thead th:hover {
+    background-color: #475569;
+}
+[data-theme="dark"] #tabelaHoraria thead th::after {
+    color: #64748b;
+}
+[data-theme="dark"] #tabelaHoraria thead th.sort-asc::after,
+[data-theme="dark"] #tabelaHoraria thead th.sort-desc::after {
+    color: #e2e8f0;
+}
+[data-theme="dark"] #tabelaHoraria input {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-color: #475569;
+}
+[data-theme="dark"] #tabelaContainer {
+    color: #e2e8f0;
+}
+[data-theme="dark"] tfoot td {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+
+/* --- Dropdowns e inputs --- */
+[data-theme="dark"] select {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-color: #475569;
+}
+[data-theme="dark"] .dropdown-item label {
+    color: #cbd5e1;
+}
+[data-theme="dark"] label {
+    color: #cbd5e1;
+}
+
+/* --- Link section (referência URL) --- */
+[data-theme="dark"] .link-section p {
+    background-color: #334155;
+    color: #94a3b8;
+}
+
+/* --- Hero section (homepage) --- */
+[data-theme="dark"] .hero-section {
+    background-color: #0f172a;
+}
+[data-theme="dark"] .hero-section h1 {
+    color: #e2e8f0;
+}
+[data-theme="dark"] .hero-section p {
+    color: #94a3b8;
+}
+
+/* --- Secondary tools (homepage) --- */
+[data-theme="dark"] .secondary-tools {
+    background-color: #1e293b;
+}
+[data-theme="dark"] .resource-links a {
+    border-color: #3b82f6;
+    color: #3b82f6;
+}
+[data-theme="dark"] .resource-links a:hover {
+    background-color: #3b82f6;
+    color: #fff;
+}
+
+/* --- Cards (simuladores, apoio) --- */
+[data-theme="dark"] .simulator-card {
+    background-color: #1e293b;
+    border-color: #475569;
+}
+[data-theme="dark"] .simulator-card:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+[data-theme="dark"] .simulator-card h3,
+[data-theme="dark"] .simulator-card h4 {
+    color: #60a5fa;
+}
+[data-theme="dark"] .support-card {
+    background-color: #1e293b;
+    border-color: #475569;
+}
+/* Cartões compactos da homepage em smartphone */
+@media (max-width: 600px) {
+    [data-theme="dark"] .home-grid > .simulator-card p { color: #94a3b8; }
+    [data-theme="dark"] .home-grid > .simulator-card::after { color: #60a5fa; }
+}
+
+/* --- Call to action --- */
+[data-theme="dark"] .call-to-action-box {
+    background-color: #1e293b;
+    border-left-color: #3b82f6;
+}
+[data-theme="dark"] .call-to-action-box h4 {
+    color: #60a5fa;
+}
+
+/* --- Formulário --- */
+[data-theme="dark"] .form-container {
+    background-color: #1e293b;
+    border-color: #475569;
+}
+[data-theme="dark"] .form-container label {
+    color: #cbd5e1;
+}
+[data-theme="dark"] .form-container input[type="text"],
+[data-theme="dark"] .form-container input[type="email"],
+[data-theme="dark"] .form-container textarea {
+    background: #0f172a;
+    color: #e2e8f0;
+    border-color: #475569;
+}
+[data-theme="dark"] .form-container button {
+    background-color: #1e293b;
+    border-color: #3b82f6;
+    color: #3b82f6;
+}
+[data-theme="dark"] .form-container button:hover {
+    background-color: #3b82f6;
+    color: #fff;
+}
+
+
+/* --- FAQ --- */
+[data-theme="dark"] .faq-section-title {
+    border-bottom-color: #475569;
+}
+[data-theme="dark"] .faq-item {
+    border-bottom-color: #475569;
+}
+[data-theme="dark"] .faq-item summary {
+    color: #e2e8f0;
+}
+[data-theme="dark"] .faq-item summary:hover {
+    background-color: #334155;
+}
+[data-theme="dark"] .faq-content {
+    color: #cbd5e1;
+}
+
+/* --- Content sections (Sobre, etc.) --- */
+[data-theme="dark"] .content-section {
+    color: #cbd5e1;
+}
+
+/* --- Social links --- */
+[data-theme="dark"] .social-link {
+    color: #cbd5e1;
+}
+
+/* --- Link portal --- */
+[data-theme="dark"] .link-portal {
+    background-color: #1e293b;
+    border-color: #475569;
+}
+
+/* --- Referral code --- */
+[data-theme="dark"] .referral-code-wrapper input[type="text"] {
+    background-color: #0f172a;
+    color: #e2e8f0;
+    border-color: #475569;
+}
+
+/* --- Content images: border suave --- */
+[data-theme="dark"] .content-image {
+    border: 1px solid #475569;
+}
+
+/* --- Cores dos cabeçalhos OMIE (mantém legibilidade em dark) --- */
+[data-theme="dark"] .dia { background-color: #1e293b; color: #e2e8f0; }
+[data-theme="dark"] .dia-sub { background-color: #1e293b; color: #e2e8f0; }
+
+/* ============================================================== */
+/* MENU RESPONSIVO (anteriormente inline em menu.html)              */
+/* Mover para aqui evita FOUC ao injetar o menu via fetch.          */
+/* ============================================================== */
+
+/* Reserva de altura para o header+nav injetados via fetch (reduz CLS).
+   Valores medidos: desktop ≈182px (constante); mobile varia 151–192px
+   conforme o texto do subtítulo quebra — usar o mínimo para nunca criar
+   espaço vazio permanente. */
+#menu-placeholder {
+    min-height: 181px;
+}
+@media (max-width: 768px) {
+    #menu-placeholder {
+        min-height: 150px;
+    }
+}
+
+/* === DESKTOP: Transições suaves nos dropdowns === */
+.dropdown-content {
+    display: block !important;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s 0.25s;
+    pointer-events: none;
+}
+
+nav > ul > li:hover > .dropdown-content,
+nav > ul > li:focus-within > .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s 0s;
+    pointer-events: auto;
+}
+
+/* Seta roda ao abrir */
+nav > ul > li.dropdown > a::after {
+    content: ' ▾' !important;
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+nav > ul > li.dropdown:hover > a::after,
+nav > ul > li.dropdown:focus-within > a::after {
+    transform: rotate(180deg);
+}
+
+/* Hover suave nos itens do dropdown */
+.dropdown-content a {
+    transition: background-color 0.2s ease, padding-left 0.2s ease !important;
+}
+
+.dropdown-content a:hover {
+    padding-left: 22px !important;
+}
+
+/* === DESKTOP: Indicador de página ativa === */
+nav > ul > li > a.nav-active {
+    background-color: #4a627a;
+    position: relative;
+}
+
+nav > ul > li > a.nav-active::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    background: #3498db;
+    border-radius: 3px 3px 0 0;
+}
+
+.dropdown-content a.nav-active-item {
+    background-color: rgba(52, 152, 219, 0.15) !important;
+    border-left: 3px solid #3498db;
+}
+
+/* === DESKTOP: Megamenu para o Regulador === */
+.mega-dropdown {
+    display: block !important;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s 0.25s;
+    pointer-events: none;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    min-width: 580px;
+    background-color: #34495e;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    z-index: 100;
+    padding: 20px 24px;
+    border-radius: 0 0 8px 8px;
+    transform-origin: top center;
+}
+
+/* Centra o megamenu relativamente ao item */
+li.dropdown:hover > .mega-dropdown,
+li.dropdown:focus-within > .mega-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) translateX(-50%);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s 0s;
+    pointer-events: auto;
+}
+
+.mega-dropdown {
+    transform: translateY(8px) translateX(-50%);
+}
+
+.mega-columns {
+    display: flex;
+    gap: 24px;
+}
+
+.mega-column {
+    flex: 1;
+    min-width: 0;
+}
+
+.mega-column-title {
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #3498db;
+    padding: 0 0 8px 0;
+    margin-bottom: 4px;
+    border-bottom: 1px solid rgba(74, 98, 122, 0.5);
+}
+
+.mega-column a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 8px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.mega-column a:hover {
+    background-color: #4a627a;
+    padding-left: 16px;
+}
+
+.mega-column a.nav-active-item {
+    background-color: rgba(52, 152, 219, 0.15);
+    border-left: 3px solid #3498db;
+}
+
+.mega-divider {
+    width: 1px;
+    background: rgba(74, 98, 122, 0.5);
+    align-self: stretch;
+}
+
+/* === MOBILE: CSS completo === */
+
+.hamburger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    gap: 5px;
+    flex-direction: column;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+.hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+.nav-mobile-label {
+    display: none;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1100;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+.nav-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(320px, 85vw);
+    height: 100%;
+    background: #2c3e50;
+    z-index: 1200;
+    transform: translateX(100%);
+    pointer-events: none;
+    visibility: hidden;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0.35s;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.mobile-drawer.active {
+    transform: translateX(0);
+    pointer-events: auto;
+    visibility: visible;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0s;
+}
+
+.drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid #4a627a;
+    min-height: 56px;
+    background: #2c3e50;
+    flex-shrink: 0;
+}
+.drawer-header span { font-weight: bold; font-size: 1.05rem; color: white; }
+
+.drawer-close {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: #bdc3c7;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+.drawer-close:hover { background: #4a627a; color: white; }
+.drawer-close svg { width: 20px; height: 20px; }
+
+.drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
+
+.drawer-view {
+    padding: 0;
+    width: 100%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, visibility 0s 0.3s;
+}
+/* visibility:hidden (com delay igual à animação) impede que links de vistas
+   invisíveis recebam foco por teclado, sem cortar a transição de saída. */
+.drawer-view.hidden-left  { position: absolute; top: 0; left: 0; transform: translateX(-100%); opacity: 0; pointer-events: none; visibility: hidden; }
+.drawer-view.hidden-right { position: absolute; top: 0; left: 0; transform: translateX(100%);  opacity: 0; pointer-events: none; visibility: hidden; }
+.drawer-view.visible      { position: relative; transform: translateX(0); opacity: 1; pointer-events: auto; visibility: visible; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, visibility 0s 0s; }
+
+.mobile-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 0.85rem 1.1rem;
+    background: rgba(52, 73, 94, 0.6);
+    border: none;
+    border-bottom: 1px solid #4a627a;
+    color: #3498db;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.mobile-back-btn:hover { background: #4a627a; }
+.mobile-back-btn svg { width: 16px; height: 16px; }
+
+.mobile-section-title {
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #3498db;
+    padding: 1rem 1.1rem 0.35rem;
+}
+
+.mobile-nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1.1rem;
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    min-height: 48px;
+    border-bottom: 1px solid rgba(74, 98, 122, 0.4);
+}
+.mobile-nav-item:hover,
+.mobile-nav-item:active { background: #4a627a; }
+.mobile-nav-item svg { width: 16px; height: 16px; color: #bdc3c7; flex-shrink: 0; opacity: 0.6; }
+
+.mobile-nav-item.nav-active-mobile {
+    background-color: rgba(52, 152, 219, 0.15);
+    border-left: 3px solid #3498db;
+}
+
+.mobile-divider { height: 1px; background: #4a627a; margin: 0.25rem 0; }
+
+/* === MOBILE BREAKPOINT === */
+@media (max-width: 768px) {
+    nav {
+        position: sticky !important;
+        top: 0;
+        z-index: 1000;
+        min-height: 52px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
+    }
+    nav > ul { display: none !important; }
+    .nav-mobile-label { display: block !important; }
+    .hamburger { display: flex !important; }
+
+    /* Esconde megamenu em mobile */
+    .mega-dropdown { display: none !important; }
+}
+
+/* ============================================================== */
+/* Banner de consentimento de cookies                              */
+/* ============================================================== */
+.tf-cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    background: #f8fafc;
+    color: #1e293b;
+    padding: 16px 24px;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.18);
+    font-family: Arial, sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    border-top: 1px solid #cbd5e1;
+}
+.tf-cookie-banner-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.tf-cookie-banner-msg {
+    flex: 1;
+    min-width: 280px;
+    color: #1e293b;
+}
+.tf-cookie-banner-msg strong { color: #0f172a; }
+.tf-cookie-banner-sub {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.82rem;
+    color: #475569;
+}
+.tf-cookie-banner-sub a {
+    color: #2563eb;
+    text-decoration: underline;
+}
+.tf-cookie-banner-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+.tf-cookie-banner-btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.88rem;
+    font-family: inherit;
+    border: 1px solid transparent;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.tf-cookie-banner-accept {
+    background: #16a34a;
+    color: #fff;
+    border-color: #16a34a;
+}
+.tf-cookie-banner-accept:hover { background: #15803d; border-color: #15803d; }
+.tf-cookie-banner-reject {
+    background: transparent;
+    color: #475569;
+    border-color: #cbd5e1;
+}
+.tf-cookie-banner-reject:hover { background: #e2e8f0; color: #1e293b; }
+
+/* Dark mode */
+[data-theme="dark"] .tf-cookie-banner {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-top-color: #334155;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.45);
+}
+[data-theme="dark"] .tf-cookie-banner-msg { color: #e2e8f0; }
+[data-theme="dark"] .tf-cookie-banner-msg strong { color: #f1f5f9; }
+[data-theme="dark"] .tf-cookie-banner-sub { color: #94a3b8; }
+[data-theme="dark"] .tf-cookie-banner-sub a { color: #60a5fa; }
+[data-theme="dark"] .tf-cookie-banner-reject {
+    color: #cbd5e1;
+    border-color: #475569;
+}
+[data-theme="dark"] .tf-cookie-banner-reject:hover {
+    background: #334155;
+    color: #e2e8f0;
+}
+
+@media (max-width: 600px) {
+    .tf-cookie-banner { padding: 10px 14px; font-size: 0.8rem; line-height: 1.4; }
+    .tf-cookie-banner-inner { gap: 10px; }
+    .tf-cookie-banner-msg { min-width: 0; }
+    .tf-cookie-banner-sub { margin-top: 2px; font-size: 0.74rem; }
+    .tf-cookie-banner-actions { width: 100%; gap: 8px; }
+    .tf-cookie-banner-btn { flex: 1; padding: 9px 12px; font-size: 0.82rem; }
+}
+
+/* ============================================================== */
+/* Glossário global — decoração de termos técnicos                  */
+/* ============================================================== */
+abbr.gl-term {
+    text-decoration: underline dotted;
+    text-decoration-color: #94a3b8;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    border-bottom: none;
+    text-decoration-thickness: 1px;
+    color: inherit;
+}
+abbr.gl-term:hover,
+abbr.gl-term:focus-visible {
+    text-decoration-color: #2563eb;
+}
+abbr.gl-term:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+[data-theme="dark"] abbr.gl-term {
+    text-decoration-color: #64748b;
+}
+[data-theme="dark"] abbr.gl-term:hover,
+[data-theme="dark"] abbr.gl-term:focus-visible {
+    text-decoration-color: #60a5fa;
+}
+
+/* Tooltip popover do glossário */
+.gl-tooltip {
+    position: absolute;
+    z-index: 9998;
+    width: max-content;
+    max-width: 320px;
+    background: #ffffff;
+    color: #1e293b;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15), 0 2px 6px rgba(15, 23, 42, 0.08);
+    padding: 12px 14px 10px;
+    font-family: Arial, sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+    pointer-events: auto;
+}
+.gl-tooltip.gl-tooltip-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.gl-tooltip-cabec {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+.gl-tooltip-sigla {
+    font-weight: 700;
+    font-size: 1.05em;
+    color: #0f172a;
+    font-family: 'Courier New', monospace;
+}
+.gl-tooltip-full {
+    font-size: 0.9em;
+    color: #475569;
+}
+.gl-tooltip-cat { margin: 4px 0 6px; }
+.gl-tooltip-cat .gl-cat-badge {
+    display: inline-block;
+    font-size: 0.7em;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+.gl-tooltip-cat .gl-cat-badge.mercado      { background: #dbeafe; color: #1e40af; }
+.gl-tooltip-cat .gl-cat-badge.regulacao    { background: #ede9fe; color: #5b21b6; }
+.gl-tooltip-cat .gl-cat-badge.eletricidade { background: #fef3c7; color: #92400e; }
+.gl-tooltip-cat .gl-cat-badge.gas          { background: #ffedd5; color: #9a3412; }
+.gl-tooltip-cat .gl-cat-badge.solar        { background: #fef9c3; color: #854d0e; }
+.gl-tooltip-cat .gl-cat-badge.unidades     { background: #d1fae5; color: #065f46; }
+.gl-tooltip-cat .gl-cat-badge.horarios     { background: #cffafe; color: #155e75; }
+.gl-tooltip-cat .gl-cat-badge.docs         { background: #fce7f3; color: #9d174d; }
+.gl-tooltip-cat .gl-cat-badge.tarif        { background: #e0e7ff; color: #3730a3; }
+.gl-tooltip-def {
+    color: #334155;
+    margin: 4px 0 10px;
+}
+.gl-tooltip-btn {
+    display: inline-block;
+    background: #2563eb;
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85em;
+    transition: background 0.15s;
+}
+.gl-tooltip-btn:hover,
+.gl-tooltip-btn:focus-visible { background: #1d4ed8; color: #ffffff; }
+.gl-tooltip-btn:focus-visible {
+    outline: 2px solid #1d4ed8;
+    outline-offset: 2px;
+}
+.gl-tooltip-arrow {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    transform: rotate(45deg);
+}
+/* Tooltip acima do termo → seta no fundo */
+.gl-tooltip-above .gl-tooltip-arrow {
+    bottom: -8px;
+    border-top: none;
+    border-left: none;
+}
+/* Tooltip abaixo do termo → seta no topo */
+.gl-tooltip-below .gl-tooltip-arrow {
+    top: -8px;
+    border-bottom: none;
+    border-right: none;
+}
+
+/* Dark mode */
+[data-theme="dark"] .gl-tooltip {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-color: #334155;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .gl-tooltip-sigla { color: #f1f5f9; }
+[data-theme="dark"] .gl-tooltip-full { color: #94a3b8; }
+[data-theme="dark"] .gl-tooltip-def { color: #cbd5e1; }
+[data-theme="dark"] .gl-tooltip-arrow {
+    background: #1e293b;
+    border-color: #334155;
+}
+[data-theme="dark"] .gl-tooltip-cat .gl-cat-badge.mercado      { background: #1e3a8a; color: #bfdbfe; }
+[data-theme="dark"] .gl-tooltip-cat .gl-cat-badge.regulacao    { background: #3b1d6e; color: #ddd6fe; }
+[data-theme="dark"] .gl-tooltip-cat .gl-cat-badge.eletricidade { background: #3a3010; color: #fde68a; }
+[data-theme="dark"] .gl-tooltip-cat .gl-cat-badge.gas          { background: #3a2518; color: #fed7aa; }
+[data-theme="dark"] .gl-tooltip-cat .gl-cat-badge.solar        { background: #3a3010; color: #fde68a; }
+[data-theme="dark"] .gl-tooltip-cat .gl-cat-badge.unidades     { background: #14532d; color: #6ee7b7; }
+[data-theme="dark"] .gl-tooltip-cat .gl-cat-badge.horarios     { background: #155e75; color: #a5f3fc; }
+[data-theme="dark"] .gl-tooltip-cat .gl-cat-badge.docs         { background: #831843; color: #fbcfe8; }
+[data-theme="dark"] .gl-tooltip-cat .gl-cat-badge.tarif        { background: #312e81; color: #c7d2fe; }
+
+/* Mobile — tooltip ocupa quase todo o ecrã */
+@media (max-width: 480px) {
+    .gl-tooltip { max-width: calc(100vw - 24px); font-size: 0.85rem; }
+    .gl-tooltip-btn { padding: 8px 14px; font-size: 0.9em; }
+}

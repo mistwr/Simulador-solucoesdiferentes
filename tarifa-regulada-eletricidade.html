@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; connect-src 'self' https://dados.tiagofelicia.pt https://raw.githubusercontent.com https://huggingface.co https://*.hf.co https://docs.google.com https://re.jrc.ec.europa.eu https://pvgis.ec.europa.eu https://formspree.io https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; frame-src https://1drv.ms https://onedrive.live.com https://www.paypal.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io https://www.paypal.com; upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2c3e50" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+    
+    <title>Tarifa Regulada de Eletricidade 2026 (BTN) | Soluções Diferentes</title>
+    <meta name="description" content="Tabela com os preços da Tarifa Regulada de Eletricidade para 2026 em Portugal (Baixa Tensão Normal - BTN). Conheça os valores de referência do mercado regulado." />
+
+    <link rel="canonical" href="https://www.solucoesdiferentes.pt/tarifa-regulada-eletricidade" />
+    <link rel="alternate" hreflang="pt-pt" href="https://www.solucoesdiferentes.pt/tarifa-regulada-eletricidade" />
+    <link rel="alternate" hreflang="x-default" href="https://www.solucoesdiferentes.pt/tarifa-regulada-eletricidade" />
+    
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Preços da Tarifa Regulada 2026" />
+    <meta property="og:description" content="Saiba quanto custa a eletricidade no mercado regulado (CUR) em 2026." />
+    <meta property="og:url" content="https://www.solucoesdiferentes.pt/tarifa-regulada-eletricidade" />
+    <meta property="og:image" content="https://www.solucoesdiferentes.pt/images/social/social-share.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="Soluções Diferentes — Simuladores de Energia" />
+    <meta property="og:locale" content="pt_PT" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@solucoesdiferentes.pt" />
+
+    <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/images/site.webmanifest" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="/theme.js"></script>
+    
+    <style>
+    .tr-wrapper{
+    max-width:900px;
+    margin:30px auto;
+    font-family:Arial, Helvetica, sans-serif;
+    }
+
+    .tr-header-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+    }
+
+    .tr-title{
+    font-size:26px;
+    font-weight:bold;
+    }
+
+    .tr-brand{
+    text-align:right;
+    font-size:14px;
+    }
+
+    .tr-brand img{
+    height:60px; width:auto;
+    }
+
+    .tr-brand a{
+    color:#1a73e8;
+    text-decoration:none;
+    }
+
+    .tr-date{
+    text-align:center;
+    margin:15px 0;
+    font-size:18px;
+    }
+
+    .tr-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:15px;
+    }
+
+    .tr-table th,
+    .tr-table td{
+    border:2px solid #444;
+    padding:6px;
+    text-align:center;
+    }
+
+    .tr-head{
+    background:#e6e6e6;
+    font-weight:bold;
+    }
+
+    .tr-sub{
+    background:#efefef;
+    font-weight:bold;
+    }
+
+    .tr-gray95{
+    background:#F2F2F2;
+    }
+
+    .tr-green{
+    background:#E2EFDA;
+    }
+
+    .tr-yellow{
+    background:#FFE699;
+    }
+
+    .tr-gray{
+    background:#D0CECE;
+    }
+
+    .tr-pale-blue{
+    background:#DDEBF7;
+    }
+
+    .tr-blue{
+    background:#B4C6E7;
+    }
+
+    .tr-orange{
+    background:#F8CBAD;
+    }
+
+    /* mobile */
+
+    @media(max-width:700px){
+
+    .tr-title{
+    font-size:20px;
+    }
+
+    .tr-table{
+    font-size:13px;
+    }
+
+    .tr-brand img{
+    height:45px;
+    }
+
+    }
+
+    /* === DARK MODE — Estilos específicos desta página === */
+    [data-theme="dark"] .tr-wrapper { color: #e2e8f0; }
+    [data-theme="dark"] .tr-title { color: #e2e8f0; }
+    [data-theme="dark"] .tr-brand a { color: #60a5fa; }
+    [data-theme="dark"] .tr-date { color: #94a3b8; }
+    [data-theme="dark"] .tr-table th, [data-theme="dark"] .tr-table td { border-color: #64748b; color: #e2e8f0; }
+    [data-theme="dark"] .tr-head { background: #334155; color: #e2e8f0; }
+    [data-theme="dark"] .tr-sub { background: #1e293b; color: #cbd5e1; }
+    [data-theme="dark"] .tr-gray95 { background: #283040; }
+    [data-theme="dark"] .tr-green { background: #1a3a2a; }
+    [data-theme="dark"] .tr-yellow { background: #3a3010; }
+    [data-theme="dark"] .tr-gray { background: #334155; }
+    [data-theme="dark"] .tr-pale-blue { background: #1a2a3a; }
+    [data-theme="dark"] .tr-blue { background: #1e3050; }
+    [data-theme="dark"] .tr-orange { background: #3a2518; }
+
+    </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Tarifa Regulada de Eletricidade 2026 (BTN)",
+    "description": "Preços e condições da Tarifa Regulada de venda a clientes finais em Baixa Tensão Normal para 2026.",
+    "author": {
+      "@type": "Person",
+      "@id": "https://www.solucoesdiferentes.pt/#person",
+      "name": "Soluções Diferentes"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Soluções Diferentes Simuladores",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.solucoesdiferentes.pt/images/favicon-96x96.png"
+      }
+    }
+  }
+  </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Início",
+      "item": "https://www.solucoesdiferentes.pt/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tarifa Regulada de Eletricidade",
+      "item": "https://www.solucoesdiferentes.pt/tarifa-regulada-eletricidade"
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Saltar para o conteúdo</a>
+
+
+
+<div id="menu-placeholder"></div>
+<nav class="breadcrumb" aria-label="breadcrumb">
+    <ol>
+        <li><a href="/">Início</a></li>
+        <li>Regulador</li>
+        <li aria-current="page">Tarifa Regulada de Eletricidade</li>
+    </ol>
+</nav>
+
+
+<main id="main-content">
+    <section class="content-section">
+        <h1>Tarifa Regulada de Eletricidade 2026</h1>
+        
+        <p>A tarifa regulada de eletricidade é uma tarifa com preços definidos anualmente pela ERSE, disponível através do chamado Comercializador de Último Recurso (CUR). Embora a maioria dos consumidores domésticos se encontre no mercado livre, a tarifa regulada serve como um importante ponto de referência para o setor.</p>
+        <p>Consulte na tabela abaixo os preços para a Baixa Tensão Normal (BTN) que vigoram em 2026.</p>
+
+        <div class="tr-wrapper">
+
+        <div class="tr-header-top">
+
+        <div class="tr-title">
+        Tarifa Regulada de Eletricidade 2026
+        </div>
+
+        <div class="tr-brand">
+        <img src="images/Logo_Solucoes_Diferentes.png" alt="" width="307" height="151">
+        <br>
+        <a href="https://www.solucoesdiferentes.pt">https://www.solucoesdiferentes.pt</a>
+        </div>
+
+        </div>
+
+        <div class="tr-date">
+        Em vigor a partir de 01/01/2026
+        </div>
+
+        <table class="tr-table">
+        <caption class="sr-only">Tarifa Regulada de Eletricidade 2026 — Tarifa Transitória de venda a clientes finais BTN (≤20,7 kVA e >2,3 kVA): preços de potência contratada (EUR/dia) e energia ativa (EUR/kWh).</caption>
+
+        <tr class="tr-head">
+        <th colspan="2" scope="colgroup">TARIFA TRANSITÓRIA DE VENDA CLIENTES FINAIS (≤20,7 kVA e >2,3 kVA)</th>
+        <th scope="col">PREÇOS</th>
+        </tr>
+
+        <tr class="tr-sub">
+        <th scope="col">Potência contratada</th>
+        <th scope="col">(kVA)</th>
+        <th scope="col">EUR/dia</th>
+        </tr>
+
+        <tr>
+        <td rowspan="8">Tarifa simples, bi-horária e tri-horária</td>
+        <td class="tr-green">3,45</td>
+        <td class="tr-green">0,1917</td>
+        </tr>
+
+        <tr>
+        <td class="tr-gray95">4,60</td>
+        <td class="tr-gray95">0,2499</td>
+        </tr>
+
+        <tr>
+        <td class="tr-green">5,75</td>
+        <td class="tr-green">0,3079</td>
+        </tr>
+
+        <tr>
+        <td class="tr-gray95">6,90</td>
+        <td class="tr-gray95">0,3659</td>
+        </tr>
+
+        <tr>
+        <td class="tr-green">10,35</td>
+        <td class="tr-green">0,5397</td>
+        </tr>
+
+        <tr>
+        <td class="tr-gray95">13,80</td>
+        <td class="tr-gray95">0,7136</td>
+        </tr>
+
+        <tr>
+        <td class="tr-green">17,25</td>
+        <td class="tr-green">0,8875</td>
+        </tr>
+
+        <tr>
+        <td class="tr-gray95">20,70</td>
+        <td class="tr-gray95">1,0614</td>
+        </tr>
+
+        <tr class="tr-sub">
+        <th colspan="2" scope="colgroup">Energia ativa</th>
+        <th scope="col">EUR/kWh</th>
+        </tr>
+
+        <tr class="tr-yellow">
+        <td colspan="2">Tarifa simples</td>
+        <td>0,1654</td>
+        </tr>
+
+        <tr class="tr-gray">
+        <td rowspan="2">Tarifa bi-horária</td>
+        <td>Horas de fora de vazio</td>
+        <td>0,1988</td>
+        </tr>
+
+        <tr class="tr-gray">
+        <td>Horas de vazio</td>
+        <td>0,1087</td>
+        </tr>
+
+        <tr class="tr-pale-blue">
+        <td rowspan="3">Tarifa tri-horária</td>
+        <td>Hora ponta</td>
+        <td>0,2495</td>
+        </tr>
+
+        <tr class="tr-pale-blue">
+        <td>Hora cheias</td>
+        <td>0,1690</td>
+        </tr>
+
+        <tr class="tr-pale-blue">
+        <td>Hora vazio</td>
+        <td>0,1087</td>
+        </tr>
+
+        </table>
+
+        <table class="tr-table">
+        <caption class="sr-only">Tarifa Regulada de Eletricidade 2026 — Tarifa Transitória de venda a clientes finais BTN (≤2,3 kVA): preços de potência contratada (EUR/dia) e energia ativa (EUR/kWh).</caption>
+
+        <tr class="tr-head">
+        <th colspan="2" scope="colgroup">TARIFA TRANSITÓRIA DE VENDA A CLIENTES FINAIS EM BTN (≤2,3 kVA)</th>
+        <th scope="col">PREÇOS</th>
+        </tr>
+
+        <tr class="tr-sub">
+        <th scope="col">Potência contratada</th>
+        <th scope="col">(kVA)</th>
+        <th scope="col">EUR/dia</th>
+        </tr>
+
+        <tr>
+        <td rowspan="2">Tarifa simples, bi-horária e tri-horária</td>
+        <td class="tr-green">1,15</td>
+        <td class="tr-green">0,0893</td>
+        </tr>
+
+        <tr>
+        <td class="tr-gray95">2,30</td>
+        <td class="tr-gray95">0,1500</td>
+        </tr>
+
+        <tr class="tr-sub">
+        <th colspan="2" scope="colgroup">Energia ativa</th>
+        <th scope="col">EUR/kWh</th>
+        </tr>
+
+        <tr class="tr-yellow">
+        <td colspan="2">Tarifa simples</td>
+        <td>0,1620</td>
+        </tr>
+
+        <tr class="tr-gray">
+        <td rowspan="2">Tarifa bi-horária</td>
+        <td>Horas de fora de vazio</td>
+        <td>0,1988</td>
+        </tr>
+
+        <tr class="tr-gray">
+        <td>Horas de vazio</td>
+        <td>0,1087</td>
+        </tr>
+
+        <tr class="tr-pale-blue">
+        <td rowspan="3">Tarifa tri-horária</td>
+        <td>Hora ponta</td>
+        <td>0,2495</td>
+        </tr>
+
+        <tr class="tr-pale-blue">
+        <td>Hora cheias</td>
+        <td>0,1690</td>
+        </tr>
+
+        <tr class="tr-pale-blue">
+        <td>Hora vazio</td>
+        <td>0,1087</td>
+        </tr>
+
+        </table>        
+
+        <br>
+
+        <table class="tr-table">
+        <caption class="sr-only">Tarifa Regulada de Eletricidade 2026 — Tarifa Transitória de venda a clientes finais BTN (&gt;20,7 kVA): preços de médias e longas utilizações.</caption>
+
+        <tr class="tr-head">
+        <th colspan="2" scope="colgroup">TARIFA TRANSITÓRIA DE VENDA A CLIENTES FINAIS EM BTN (>20,7 kVA)</th>
+        <th scope="col">PREÇOS</th>
+        </tr>
+
+        <tr class="tr-sub">
+        <th scope="col">Potência contratada</th>
+        <th scope="col">(kVA)</th>
+        <th scope="col">EUR/dia</th>
+        </tr>
+
+        <tr class="tr-blue">
+        <td rowspan="3">Tarifa de médias utilizações</td>
+        <td>27,6</td>
+        <td>1,3655</td>
+        </tr>
+
+        <tr class="tr-blue">
+        <td>34,5</td>
+        <td>1,6966</td>
+        </tr>
+
+        <tr class="tr-blue">
+        <td>41,4</td>
+        <td>2,0278</td>
+        </tr>
+        <tr class="tr-blue">
+        <td rowspan="3">Tarifa de longas utilizações</td>
+        <td>27,6</td>
+        <td>2,1134</td>
+        </tr>
+
+        <tr class="tr-blue">
+        <td>34,5</td>
+        <td>2,6346</td>
+        </tr>
+
+        <tr class="tr-blue">
+        <td>41,4</td>
+        <td>3,1558</td>
+        </tr>
+        <tr class="tr-sub">
+        <th colspan="2" scope="colgroup">Energia ativa</th>
+        <th scope="col">EUR/kWh</th>
+        </tr>
+
+        <tr class="tr-orange">
+        <td rowspan="3">Tarifa de médias utilizações</td>
+        <td>Horas de ponta</td>
+        <td>0,3043</td>
+        </tr>
+
+        <tr class="tr-orange">
+        <td>Horas cheias</td>
+        <td>0,1623</td>
+        </tr>
+
+        <tr class="tr-orange">
+        <td>Horas de vazio</td>
+        <td>0,0965</td>
+        </tr>
+        <tr class="tr-orange">
+        <td rowspan="3">Tarifa de longas utilizações</td>
+        <td>Horas de ponta</td>
+        <td>0,2615</td>
+        </tr>
+
+        <tr class="tr-orange">
+        <td>Horas cheias</td>
+        <td>0,1561</td>
+        </tr>
+
+        <tr class="tr-orange">
+        <td>Horas de vazio</td>
+        <td>0,0954</td>
+        </tr>
+        </table>
+
+        </div>
+
+        <div class="call-to-action-box">
+            <h4>Compare a Tarifa Regulada com o Mercado Livre</h4>
+            <p>Será que a tarifa regulada é a mais barata para si? Use o simulador para comparar estes preços com todas as ofertas do mercado livre.</p>
+            <a href="eletricidade-tiagofelicia" class="button-link">Comparar no Simulador</a>
+        </div>
+    </section>
+</main>
+
+<div id="footer-placeholder"></div>
+
+
+  <script src="script.js"></script>
+  
+<script src="cookie-consent.js"></script>
+</body>
+</html>
