@@ -30,6 +30,9 @@
     <link rel="shortcut icon" href="/images/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
     <link rel="manifest" href="/images/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700&display=swap">
     <link rel="stylesheet" href="style.css" />
     <script src="/theme.js"></script>
    
@@ -100,38 +103,153 @@
 <div id="menu-placeholder"></div>
 
 <main id="main-content" class="home-main">
-    <section class="hero-section">
-        <h1>Simuladores de Energia: Compare Tarifas de Eletricidade e Gás</h1>
-        <p>Ferramentas independentes e transparentes para o ajudar a tomar as melhores decisões e a poupar todos os meses.</p>
+    <section class="hero-section hero-modern">
+        <div class="hero-bg" aria-hidden="true">
+            <span class="hero-orb hero-orb-a"></span>
+            <span class="hero-orb hero-orb-b"></span>
+        </div>
+        <div class="hero-inner">
+            <div class="hero-copy">
+                <p class="hero-eyebrow">Telecomunicações &amp; Energia</p>
+                <h1>Compare. Poupe.<br>Decida com dados reais.</h1>
+                <p>Simuladores gratuitos e independentes de eletricidade, gás natural e autoconsumo solar — para poupar todos os meses na fatura.</p>
+                <div class="hero-cta-group">
+                    <a href="#ferramentas" class="button-link hero-cta-primary">Simular Agora</a>
+                    <a href="contacto" class="hero-cta-secondary">Fale com um especialista →</a>
+                </div>
+                <ul class="hero-trustpoints">
+                    <li>✓ 100% gratuito</li>
+                    <li>✓ Sem registo</li>
+                    <li>✓ Resultado em 2 minutos</li>
+                </ul>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+                <svg viewBox="0 0 480 480" class="hero-svg" role="img" aria-hidden="true">
+                    <defs>
+                        <radialGradient id="sdGlowCyan" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.55"/>
+                            <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+                        </radialGradient>
+                        <radialGradient id="sdGlowGreen" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#34d399" stop-opacity="0.5"/>
+                            <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+                        </radialGradient>
+                        <linearGradient id="sdTowerGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#f8fafc"/>
+                            <stop offset="100%" stop-color="#94a3b8"/>
+                        </linearGradient>
+                        <linearGradient id="sdFiberGrad" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#38bdf8"/>
+                            <stop offset="50%" stop-color="#34d399"/>
+                            <stop offset="100%" stop-color="#fbbf24"/>
+                        </linearGradient>
+                        <filter id="sdSoftGlow" x="-60%" y="-60%" width="220%" height="220%">
+                            <feGaussianBlur stdDeviation="7" result="blur"/>
+                            <feMerge>
+                                <feMergeNode in="blur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <circle cx="240" cy="220" r="200" fill="url(#sdGlowCyan)"/>
+                    <circle cx="300" cy="300" r="160" fill="url(#sdGlowGreen)"/>
+
+                    <g class="sd-orbit" style="transform-origin:240px 220px;">
+                        <circle cx="240" cy="220" r="150" fill="none" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="2 10"/>
+                        <circle cx="240" cy="70" r="5" fill="#38bdf8" filter="url(#sdSoftGlow)"/>
+                        <circle cx="390" cy="220" r="4" fill="#34d399" filter="url(#sdSoftGlow)"/>
+                        <circle cx="240" cy="370" r="4" fill="#fbbf24" filter="url(#sdSoftGlow)"/>
+                        <circle cx="90" cy="220" r="4" fill="#38bdf8" filter="url(#sdSoftGlow)"/>
+                    </g>
+
+                    <g transform="translate(240,150)">
+                        <circle r="20" fill="none" stroke="#38bdf8" stroke-width="3" class="sd-pulse" style="animation-delay:0s"/>
+                        <circle r="20" fill="none" stroke="#38bdf8" stroke-width="3" class="sd-pulse" style="animation-delay:.9s"/>
+                        <circle r="20" fill="none" stroke="#38bdf8" stroke-width="3" class="sd-pulse" style="animation-delay:1.8s"/>
+                    </g>
+
+                    <g class="sd-float" filter="url(#sdSoftGlow)">
+                        <path d="M240 120 L200 340 L220 340 L240 180 L260 340 L280 340 Z" fill="url(#sdTowerGrad)"/>
+                        <path d="M215 220 L265 220 M210 260 L270 260 M205 300 L275 300" stroke="#94a3b8" stroke-width="3"/>
+                        <circle cx="240" cy="112" r="6" fill="#fbbf24"/>
+                    </g>
+
+                    <g transform="translate(95,300) rotate(-8)" class="sd-float" style="animation-delay:.4s" filter="url(#sdSoftGlow)">
+                        <rect x="0" y="0" width="90" height="55" rx="4" fill="#1e3a5f" stroke="#38bdf8" stroke-width="2"/>
+                        <path d="M0 18h90M0 36h90M22 0v55M45 0v55M67 0v55" stroke="#38bdf8" stroke-opacity="0.5" stroke-width="1.5"/>
+                    </g>
+
+                    <g transform="translate(330,290)" class="sd-flicker" filter="url(#sdSoftGlow)">
+                        <path d="M30 0 L0 55 L20 55 L8 100 L55 40 L32 40 Z" fill="#fbbf24"/>
+                    </g>
+
+                    <path d="M120 420 C180 380 300 380 360 420" fill="none" stroke="url(#sdFiberGrad)" stroke-width="3" stroke-linecap="round" class="sd-fiber"/>
+                    <path d="M100 440 C180 410 300 410 380 440" fill="none" stroke="url(#sdFiberGrad)" stroke-width="2" stroke-opacity="0.6" stroke-linecap="round" class="sd-fiber" style="animation-delay:.5s"/>
+                </svg>
+            </div>
+        </div>
+        <div class="trust-bar">
+            <span class="trust-label">Parceiros oficiais</span>
+            <div class="trust-logos">
+                <span>MEO</span><span>NOS</span><span>Vodafone</span><span>DIGI</span><span>NOWO</span><span>Endesa</span><span>Iberdrola</span><span>EDP</span><span>Galp</span><span>Repsol</span>
+            </div>
+        </div>
     </section>
 
-    <section class="content-section home-tools">
+    <section class="content-section home-tools" id="ferramentas">
         <h2>As Principais Ferramentas</h2>
         <div class="simulator-showcase-container home-grid">
-            <div class="simulator-card">
-                <h3>⚡ Simulador de Eletricidade</h3>
+            <div class="simulator-card card-elet">
+                <h3><span class="card-icon">⚡</span> Simulador de Eletricidade</h3>
                 <p>Compare todos os tarifários de eletricidade em Portugal, fixos e indexados.<span class="desc-extra"> Use os seus consumos da E-Redes e descubra a opção mais económica.</span></p>
                 <a href="eletricidade-tiagofelicia" class="button-link">Poupar na Eletricidade</a>
             </div>
-            <div class="simulator-card">
-                <h3>🔥 Simulador de Gás Natural</h3>
+            <div class="simulator-card card-gas">
+                <h3><span class="card-icon">🔥</span> Simulador de Gás Natural</h3>
                 <p>Compare os tarifários de gás, fixos e indexados ao MIBGAS.<span class="desc-extra"> Insira os dados da sua fatura e encontre a oferta mais vantajosa para o seu perfil de consumo.</span></p>
                 <a href="gas-natural-tiagofelicia" class="button-link">Poupar no Gás</a>
             </div>
-            <div class="simulator-card">
-                <h3>⚡🔥 Simulador Dual<span class="title-extra"> (Eletricidade + Gás)</span> <span class="badge-beta">beta</span></h3>
-                <p>Encontre a combinação de eletricidade e gás mais barata para a sua casa.<span class="desc-extra"> Inclui as ofertas DUAL, com preços próprios para pacotes conjuntos. <strong>Está em versão beta:</strong> os resultados podem ainda ter erros e a base de ofertas dual está a crescer — agradeço que me reporte qualquer problema.</span></p>
+            <div class="simulator-card card-dual">
+                <h3><span class="card-icon">⚡🔥</span> Simulador Dual<span class="title-extra"> (Eletricidade + Gás)</span> <span class="badge-beta">beta</span></h3>
+                <p>Encontre a combinação de eletricidade e gás mais barata para a sua casa.<span class="desc-extra"> Inclui as ofertas DUAL, com preços próprios para pacotes conjuntos. <strong>Está em versão beta:</strong> os resultados podem ainda ter erros e a base de ofertas dual está a crescer — agradecemos que nos reporte qualquer problema.</span></p>
                 <a href="dual-tiagofelicia" class="button-link">Comparar Dual</a>
             </div>
-            <div class="simulator-card">
-                <h3>☀️ Simulador de Autoconsumo Solar</h3>
+            <div class="simulator-card card-solar">
+                <h3><span class="card-icon">☀️</span> Simulador de Autoconsumo Solar</h3>
                 <p>Planeia instalar painéis solares? Calcule a poupança e o retorno do investimento (Payback).<span class="desc-extra"> Compare propostas comerciais de forma informada.</span></p>
                 <a href="autoconsumo-tiagofelicia" class="button-link">Analisar Investimento</a>
             </div>
-            <div class="simulator-card">
-                <h3>🤝 Códigos Amigo</h3>
-                <p>Veja quanto vale cada código amigo (referral) de eletricidade e gás.<span class="desc-extra"> Códigos da comunidade e os meus, e como são considerados nos simuladores.</span></p>
+            <div class="simulator-card card-referral">
+                <h3><span class="card-icon">🤝</span> Códigos Amigo</h3>
+                <p>Veja quanto vale cada código amigo (referral) de eletricidade e gás.<span class="desc-extra"> Códigos partilhados pela comunidade e como são considerados nos simuladores.</span></p>
                 <a href="codigos-amigo" class="button-link">Ver Códigos Amigo</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section home-why">
+        <h2>Porquê usar os nossos simuladores</h2>
+        <div class="why-grid">
+            <div class="why-item">
+                <span class="why-icon">📊</span>
+                <h4>Dados oficiais</h4>
+                <p>Preços ANACOM, ERSE, OMIE e MIBGAS, atualizados diariamente — sem estimativas.</p>
+            </div>
+            <div class="why-item">
+                <span class="why-icon">🔒</span>
+                <h4>Processamento local</h4>
+                <p>O seu consumo é calculado no seu browser. Não enviamos os seus dados para nenhum servidor.</p>
+            </div>
+            <div class="why-item">
+                <span class="why-icon">🆓</span>
+                <h4>Totalmente gratuito</h4>
+                <p>Sem registos, sem subscrições, sem letras pequenas. Compare quantas vezes precisar.</p>
+            </div>
+            <div class="why-item">
+                <span class="why-icon">🤝</span>
+                <h4>Apoio real</h4>
+                <p>Se preferir, fale com a nossa equipa e tratamos da mudança de tarifário por si.</p>
             </div>
         </div>
     </section>
@@ -145,10 +263,10 @@
         </div>
     </section>
 
-    <section class="call-to-action-box">
-        <h4>Gosta destas ferramentas?</h4>
-        <p>Se os simuladores lhe foram úteis, considere apoiar o projeto. O seu contributo é fundamental para manter as ferramentas gratuitas e atualizadas.</p>
-        <a href="apoio" class="button-link">💖 Apoiar o Projeto</a>
+    <section class="call-to-action-box home-cta">
+        <h4>Precisa de ajuda a escolher?</h4>
+        <p>A Soluções Diferentes tem parcerias diretas com os principais operadores de telecomunicações e comercializadores de energia. Fale connosco e encontramos a melhor solução para si, sem qualquer custo adicional.</p>
+        <a href="contacto" class="button-link">📞 Fale Connosco</a>
     </section>
 </main>
 
