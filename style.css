@@ -2150,3 +2150,303 @@ abbr.gl-term:focus-visible {
     .gl-tooltip { max-width: calc(100vw - 24px); font-size: 0.85rem; }
     .gl-tooltip-btn { padding: 8px 14px; font-size: 0.9em; }
 }
+
+/* ================================================================= */
+/* HOMEPAGE — Hero moderna (index.html apenas; classe .hero-modern)   */
+/* Bloco autónomo, não altera nenhuma regra existente acima.          */
+/* ================================================================= */
+
+.hero-section.hero-modern {
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    padding: 0;
+    background: radial-gradient(120% 140% at 15% 15%, #0e2340 0%, #060b18 55%, #05070f 100%);
+    isolation: isolate;
+}
+[data-theme="dark"] .hero-section.hero-modern {
+    background: radial-gradient(120% 140% at 15% 15%, #0e2340 0%, #060b18 55%, #05070f 100%);
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+.hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.35;
+}
+.hero-orb-a {
+    width: 420px; height: 420px;
+    background: #38bdf8;
+    top: -120px; right: -100px;
+    animation: sd-drift-a 16s ease-in-out infinite alternate;
+}
+.hero-orb-b {
+    width: 320px; height: 320px;
+    background: #34d399;
+    bottom: -140px; left: 10%;
+    animation: sd-drift-b 20s ease-in-out infinite alternate;
+}
+@keyframes sd-drift-a { from { transform: translate(0,0); } to { transform: translate(-30px, 40px); } }
+@keyframes sd-drift-b { from { transform: translate(0,0); } to { transform: translate(40px, -30px); } }
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 72px 24px 48px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.hero-copy { flex: 1 1 480px; min-width: 280px; }
+.hero-visual { flex: 1 1 380px; max-width: 420px; margin: 0 auto; }
+.hero-svg { width: 100%; height: auto; display: block; }
+
+.hero-eyebrow {
+    display: inline-block;
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #38bdf8;
+    margin: 0 0 14px;
+    padding: 0;
+}
+.hero-section.hero-modern h1 {
+    font-family: "Sora", Arial, sans-serif;
+    font-size: 2.7em;
+    line-height: 1.12;
+    font-weight: 700;
+    color: #f8fafc;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+}
+.hero-section.hero-modern p {
+    color: #b6c2d4;
+    font-size: 1.1em;
+    max-width: 560px;
+    margin: 0 0 28px;
+    line-height: 1.55;
+}
+.hero-cta-group {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+.hero-section.hero-modern .hero-cta-primary {
+    background: linear-gradient(120deg, #38bdf8, #34d399);
+    color: #06131f;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 10px;
+    box-shadow: 0 8px 26px -8px rgba(56, 189, 248, 0.55);
+}
+.hero-cta-secondary {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(226,232,240,0.35);
+    padding-bottom: 2px;
+}
+.hero-cta-secondary:hover { border-color: #38bdf8; color: #38bdf8; }
+
+/* --- Ilustração animada --- */
+.sd-float { animation: sd-float 5s ease-in-out infinite; }
+@keyframes sd-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.sd-orbit { animation: sd-orbit 26s linear infinite; }
+@keyframes sd-orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.sd-pulse {
+    transform-origin: center;
+    animation: sd-pulse-ring 2.7s ease-out infinite;
+}
+@keyframes sd-pulse-ring {
+    0% { transform: scale(0.7); opacity: 0.9; }
+    70% { opacity: 0; }
+    100% { transform: scale(2.6); opacity: 0; }
+}
+
+.sd-flicker { animation: sd-flicker 3.4s ease-in-out infinite; }
+@keyframes sd-flicker {
+    0%, 18%, 22%, 78%, 100% { opacity: 1; }
+    20%, 80% { opacity: 0.45; }
+}
+
+.sd-fiber {
+    stroke-dasharray: 6 10;
+    animation: sd-fiber-flow 3s linear infinite;
+}
+@keyframes sd-fiber-flow { to { stroke-dashoffset: -160; } }
+
+/* --- Barra de parceiros --- */
+.trust-bar {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(148,163,184,0.15);
+    padding: 18px 24px 22px;
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+.trust-label {
+    font-size: 0.75em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #64748b;
+    white-space: nowrap;
+}
+.trust-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.trust-logos span {
+    font-weight: 700;
+    font-size: 0.85em;
+    color: #cbd5e1;
+    background: rgba(148,163,184,0.08);
+    border: 1px solid rgba(148,163,184,0.18);
+    padding: 5px 13px;
+    border-radius: 20px;
+}
+
+/* --- CTA final da homepage (usa a classe partilhada .call-to-action-box + .home-cta) --- */
+.call-to-action-box.home-cta {
+    background: linear-gradient(120deg, #0e2340, #0a1830);
+    border: 1px solid rgba(56,189,248,0.25);
+}
+.call-to-action-box.home-cta h4,
+.call-to-action-box.home-cta p { color: #e2e8f0; }
+
+/* --- Responsivo --- */
+@media (max-width: 900px) {
+    .hero-inner { flex-direction: column; padding: 40px 20px 28px; text-align: center; }
+    .hero-copy, .hero-visual { flex: none; width: 100%; }
+    .hero-cta-group { justify-content: center; }
+    .hero-section.hero-modern p { margin-left: auto; margin-right: auto; }
+    .hero-visual { max-width: 300px; }
+}
+
+@media (max-width: 600px) {
+    /* Mantém o objetivo de compactação mobile já definido acima no ficheiro:
+       ilustração e barra de parceiros saem para caber os 3 simuladores sem scroll. */
+    .home-main .hero-section.hero-modern .hero-inner { padding: 20px 16px 10px; }
+    .home-main .hero-section.hero-modern .hero-visual { display: none; }
+    .home-main .hero-section.hero-modern h1 { font-size: 1.3em; }
+    .home-main .hero-section.hero-modern p { font-size: 0.85em; margin-bottom: 14px; }
+    .home-main .hero-eyebrow { font-size: 0.7em; margin-bottom: 8px; }
+    .home-main .hero-cta-group { gap: 12px; }
+    .home-main .hero-section.hero-modern .hero-cta-primary { padding: 10px 18px; font-size: 0.9em; }
+    .home-main .trust-bar { padding: 10px 16px 14px; gap: 10px; }
+    .home-main .trust-label { display: none; }
+    .home-main .trust-logos { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .home-main .trust-logos span { font-size: 0.72em; padding: 4px 10px; white-space: nowrap; }
+    .hero-orb { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-orb, .sd-float, .sd-orbit, .sd-pulse, .sd-flicker, .sd-fiber {
+        animation: none !important;
+    }
+}
+
+/* ================================================================= */
+/* HOMEPAGE — Continuação: selo de confiança, emblemas e secção       */
+/* "Porquê usar". Bloco autónomo, apenas adiciona.                    */
+/* ================================================================= */
+
+.hero-trustpoints {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin: 18px 0 0;
+    padding: 0;
+}
+.hero-trustpoints li {
+    color: #94a3b8;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+/* --- Emblemas dos cards da homepage --- */
+.home-grid > .simulator-card .card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.1em;
+    margin-right: 6px;
+    vertical-align: middle;
+    background: radial-gradient(circle, rgba(56,189,248,0.16), rgba(56,189,248,0) 70%);
+}
+.home-grid > .simulator-card {
+    border-top: 3px solid transparent;
+}
+.home-grid > .card-elet     { border-top-color: #38bdf8; }
+.home-grid > .card-gas      { border-top-color: #fb923c; }
+.home-grid > .card-dual     { border-top-color: #a78bfa; }
+.home-grid > .card-solar    { border-top-color: #fbbf24; }
+.home-grid > .card-referral { border-top-color: #34d399; }
+
+/* --- Secção "Porquê usar" --- */
+.home-why { text-align: center; padding: 40px 20px 10px; }
+.home-why h2 { margin-bottom: 28px; }
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.why-item {
+    padding: 22px 16px;
+    border-radius: 12px;
+    background: rgba(56,189,248,0.05);
+    border: 1px solid rgba(148,163,184,0.15);
+}
+.why-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    background: radial-gradient(circle, rgba(56,189,248,0.18), rgba(56,189,248,0) 72%);
+}
+.why-item h4 { margin: 0 0 8px; font-size: 1em; }
+.why-item p { margin: 0; font-size: 0.88em; color: #64748b; line-height: 1.5; }
+[data-theme="dark"] .why-item p { color: #94a3b8; }
+[data-theme="dark"] .why-item { background: rgba(56,189,248,0.06); border-color: rgba(148,163,184,0.12); }
+
+@media (max-width: 780px) {
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .home-main .hero-trustpoints { gap: 6px 14px; margin-top: 12px; }
+    .home-main .hero-trustpoints li { font-size: 0.72em; }
+    .home-main .home-why { padding: 22px 14px 4px; }
+    .home-main .home-why h2 { font-size: 1.15em; margin-bottom: 16px; }
+    .home-main .why-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .home-main .why-item { padding: 14px 10px; }
+    .home-main .why-icon { width: 38px; height: 38px; font-size: 1.1em; margin-bottom: 6px; }
+    .home-main .why-item h4 { font-size: 0.88em; }
+    .home-main .why-item p { font-size: 0.78em; }
+}
