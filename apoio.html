@@ -1,159 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; connect-src 'self' https://dados.tiagofelicia.pt https://raw.githubusercontent.com https://huggingface.co https://*.hf.co https://docs.google.com https://re.jrc.ec.europa.eu https://pvgis.ec.europa.eu https://formspree.io https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; frame-src https://1drv.ms https://onedrive.live.com https://www.paypal.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io https://www.paypal.com; upgrade-insecure-requests">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#2c3e50" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
-    
-    <title>Apoiar o Projeto | Soluções Diferentes - Simuladores de Energia</title>
-    <meta name="description" content="Gosta das ferramentas? O seu apoio é fundamental para manter os simuladores gratuitos, atualizados e sem publicidade. Saiba como contribuir." />
-
-    <link rel="canonical" href="https://www.solucoesdiferentes.pt/apoio" />
-    <link rel="alternate" hreflang="pt-pt" href="https://www.solucoesdiferentes.pt/apoio" />
-    <link rel="alternate" hreflang="x-default" href="https://www.solucoesdiferentes.pt/apoio" />
-    
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Apoie o Projeto de Simuladores de Energia" />
-    <meta property="og:description" content="Contribua para manter os simuladores de eletricidade e gás gratuitos e independentes." />
-    <meta property="og:url" content="https://www.solucoesdiferentes.pt/apoio" />
-    <meta property="og:image" content="https://www.solucoesdiferentes.pt/images/social/social-share.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content="Soluções Diferentes — Simuladores de Energia" />
-    <meta property="og:locale" content="pt_PT" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@solucoesdiferentes.pt" />
-
-    <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
-    <link rel="shortcut icon" href="/images/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
-    <link rel="manifest" href="/images/site.webmanifest" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="/theme.js"></script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Apoiar o Projeto Soluções Diferentes",
-    "description": "Página de doações e apoio ao projeto de simuladores de energia. Opções de contributo via Buy Me a Coffee, PayPal e códigos de referenciação.",
-    "url": "https://www.solucoesdiferentes.pt/apoio",
-    "inLanguage": "pt-PT",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Soluções Diferentes — Simuladores de Energia",
-      "url": "https://www.solucoesdiferentes.pt/"
-    },
-    "author": {
-      "@type": "Person",
-      "@id": "https://www.solucoesdiferentes.pt/#person",
-      "name": "Soluções Diferentes",
-      "url": "https://www.solucoesdiferentes.pt/",
-      "image": "https://www.solucoesdiferentes.pt/images/Logo_Solucoes_Diferentes.png",
-      "jobTitle": "Analista de Dados de Energia",
-      "description": "Criador e mantenedor de simuladores independentes e gratuitos de tarifários de eletricidade, gás natural e autoconsumo solar fotovoltaico para o mercado português.",
-      "nationality": {
-        "@type": "Country",
-        "name": "Portugal"
-      },
-      "knowsAbout": [
-        "Mercado de eletricidade em Portugal",
-        "Mercado Ibérico de Energia (MIBEL)",
-        "OMIE — Mercado Diário (Day-Ahead)",
-        "OMIP — Mercado a Prazo / Futuros",
-        "Tarifários indexados e dinâmicos",
-        "Tarifas reguladas (CUR) — ERSE",
-        "Tarifa Social de Energia",
-        "Tarifas de Acesso às Redes (TAR)",
-        "Períodos horários BTN (Vazio, Cheias, Ponta)",
-        "Perfis de consumo e perfis de perdas",
-        "Diagrama de carga E-Redes",
-        "Autoconsumo solar fotovoltaico",
-        "PVGIS — modelo de produção fotovoltaica",
-        "ENTSO-E Transparency Platform",
-        "Análise de dados de energia",
-        "Regulamentação ERSE — Eletricidade e Gás Natural"
-      ],
-      "sameAs": [
-        "https://www.facebook.com/solucoesdiferentes.pt",
-        "https://www.facebook.com/profile.php?id=61555007360529",
-        "https://www.instagram.com/solucoesdiferentes.pt/",
-        "https://www.solucoesdiferentes.pt",
-        "https://www.solucoesdiferentes.pt",
-        "https://github.com/tiagofelicia"
-      ]
-    }
-  }
-  </script>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Início",
-      "item": "https://www.solucoesdiferentes.pt/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Apoio",
-      "item": "https://www.solucoesdiferentes.pt/apoio"
-    }
-  ]
-}
-    </script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Apoiar o MyPoupar | Desenvolvimento REBORN AI</title>
+  <meta name="description" content="Ajude a continuar a desenvolver o MyPoupar, os simuladores e o REBORN AI. Apoie o projeto através da nossa loja online." />
+  <link rel="stylesheet" href="style.css" />
+  <script src="/theme.js"></script>
+  <style>
+    .support-wrap{max-width:920px;margin:0 auto;padding:48px 20px 72px}
+    .support-hero{text-align:center;padding:42px 28px;border-radius:28px;background:linear-gradient(135deg,#071b12,#0b2a1a);color:#fff;box-shadow:0 24px 60px rgba(0,0,0,.18)}
+    .support-badge{display:inline-block;padding:7px 12px;border-radius:999px;background:rgba(66,201,91,.14);border:1px solid rgba(66,201,91,.35);color:#7df092;font-weight:800;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+    .support-hero h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;margin:18px 0 14px}
+    .support-hero p{max-width:700px;margin:0 auto;color:#cfe2d5;line-height:1.7}
+    .support-cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .support-btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:14px;font-weight:800;text-decoration:none;transition:.2s}
+    .support-btn.primary{background:#42C95B;color:#07130b;box-shadow:0 12px 28px rgba(66,201,91,.25)}
+    .support-btn.secondary{border:1px solid rgba(255,255,255,.18);color:#fff;background:rgba(255,255,255,.06)}
+    .support-btn:hover{transform:translateY(-2px)}
+    .support-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+    .support-card{padding:22px;border-radius:18px;border:1px solid rgba(66,201,91,.18);background:rgba(66,201,91,.045)}
+    .support-card h3{margin:8px 0 6px}
+    .support-card p{color:#64748b;line-height:1.55;font-size:.92rem}
+    .credit{text-align:center;margin-top:26px;color:#64748b;font-size:.85rem}
+    @media(max-width:760px){.support-grid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Saltar para o conteúdo</a>
-
-
-
 <div id="menu-placeholder"></div>
-<nav class="breadcrumb" aria-label="breadcrumb">
-    <ol>
-        <li><a href="/">Início</a></li>
-        <li aria-current="page">Apoio</li>
-    </ol>
-</nav>
 
-    
-<main id="main-content">
-    <section class="content-section">
-        <h1>Apoie a Soluções Diferentes</h1>
+<main id="main-content" class="support-wrap">
+  <section class="support-hero">
+    <span class="support-badge">MyPoupar · REBORN AI</span>
+    <h1>Ajuda-nos a continuar a construir.</h1>
+    <p>O MyPoupar, os simuladores e os agentes REBORN AI são desenvolvidos para ajudar pessoas a comparar, poupar e decidir melhor. Se queres apoiar a evolução do projeto, podes fazê-lo através da nossa loja online.</p>
+    <div class="support-cta">
+      <a class="support-btn primary" href="https://solucoesdiferentes.myshopify.com/" target="_blank" rel="noopener noreferrer">🛍️ Apoiar através da loja</a>
+      <a class="support-btn secondary" href="/contacto">Falar connosco</a>
+    </div>
+  </section>
 
-        <p>Estas ferramentas são disponibilizadas gratuitamente pela Soluções Diferentes para ajudar a comunidade a comparar tarifários de energia e telecomunicações em Portugal.</p>
-        <p>Se está a pensar mudar de operador de telecomunicações ou de comercializador de energia, fale connosco — temos parcerias diretas com os principais operadores (MEO, NOS, Vodafone, DIGI, Endesa, Iberdrola, entre outros) e podemos ajudar a encontrar a melhor solução para si, sem qualquer custo adicional.</p>
+  <section class="support-grid" aria-label="Como o apoio ajuda">
+    <article class="support-card"><div>⚡</div><h3>Simuladores</h3><p>Ajuda-nos a manter dados, cálculos e ferramentas de energia atualizados e disponíveis.</p></article>
+    <article class="support-card"><div>🤖</div><h3>REBORN AI</h3><p>Financia novos agentes, automação, IA local e integração com os nossos sistemas comerciais.</p></article>
+    <article class="support-card"><div>💚</div><h3>MyPoupar</h3><p>Permite continuar a criar ferramentas que ajudam clientes a reduzir custos em telecomunicações e energia.</p></article>
+  </section>
 
-        <div style="text-align:center; margin-top:30px;">
-            <a href="/contacto" class="button-link">📞 Fale connosco</a>
-        </div>
+  <p class="credit">MyPoupar · Criadora do projeto · Feito por REBORN AI</p>
 </main>
 
 <div id="footer-placeholder"></div>
-
 <script src="script.js"></script>
 <script src="cookie-consent.js"></script>
-<script>
-  // Copiar códigos de referenciação (ex.: código amigo Goldenergy)
-  document.addEventListener('click', function (e) {
-    const btn = e.target.closest('.copy-code-btn');
-    if (!btn) return;
-    const target = document.getElementById(btn.dataset.copyTarget);
-    if (!target) return;
-    const code = target.textContent.trim();
-    navigator.clipboard.writeText(code).then(function () {
-      const original = btn.textContent;
-      btn.textContent = 'Copiado!';
-      setTimeout(function () { btn.textContent = original; }, 2000);
-    }).catch(function () {});
-  });
-</script>
 </body>
 </html>
