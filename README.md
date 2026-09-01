@@ -1,13 +1,19 @@
-# Soluções Diferentes — Telecomunicações & Energia
+# MyPoupar — Simuladores de Energia
 
-**[www.solucoesdiferentes.pt](https://www.solucoesdiferentes.pt)** — Ferramentas para comparar tarifários de eletricidade, gás natural e autoconsumo solar em Portugal.
+Ferramentas MyPoupar para comparar tarifários de eletricidade, gás natural e autoconsumo solar em Portugal.
 
-Todo o processamento corre localmente no browser — os dados de consumo do utilizador nunca são enviados para nenhum servidor.
+O processamento dos consumos corre localmente no browser sempre que possível. Os módulos utilizam dados públicos e fontes técnicas de mercado para apoiar comparações transparentes.
 
-## Contacto
+## Marca
+**MyPoupar** — Telecomunicações & Energia  
+**Feito por REBORN AI**
+
+## Contacto técnico
 📞 +351 915 006 353 · ✉️ geral@solucoesdiferentes.pt
 
-## Tecnologias
-HTML5, CSS3 e JavaScript (ES6+) puros, sem backend — alojado via GitHub Pages / Netlify.
+> O contacto técnico atual é mantido para continuidade operacional até ser substituído por um endereço MyPoupar.
 
-© 2026 Soluções Diferentes.
+## Tecnologias
+HTML5, CSS3 e JavaScript (ES6+), com páginas estáticas e fontes de dados externas quando necessárias.
+
+© 2026 MyPoupar.
