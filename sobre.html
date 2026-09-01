@@ -1,205 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; connect-src 'self' https://dados.tiagofelicia.pt https://raw.githubusercontent.com https://huggingface.co https://*.hf.co https://docs.google.com https://re.jrc.ec.europa.eu https://pvgis.ec.europa.eu https://formspree.io https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; frame-src https://1drv.ms https://onedrive.live.com https://www.paypal.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io https://www.paypal.com; upgrade-insecure-requests">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#2c3e50" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
-    
-    <title>Sobre o Projeto de Simuladores de Energia | Soluções Diferentes</title>
-    <meta name="description" content="Conheça a história e a missão por trás dos simuladores de eletricidade, gás natural e autoconsumo. Um projeto independente focado em dar poder e transparência aos consumidores de energia em Portugal." />
-
-    <link rel="canonical" href="https://www.solucoesdiferentes.pt/sobre" />
-    <link rel="alternate" hreflang="pt-pt" href="https://www.solucoesdiferentes.pt/sobre" />
-    <link rel="alternate" hreflang="x-default" href="https://www.solucoesdiferentes.pt/sobre" />
-    
-    <meta property="og:type" content="profile" />
-    <meta property="og:title" content="Soluções Diferentes: Simuladores de Energia" />
-    <meta property="og:description" content="Ferramentas independentes para ajudar os portugueses a poupar na fatura da luz e gás." />
-    <meta property="og:url" content="https://www.solucoesdiferentes.pt/sobre" />
-    <meta property="og:image" content="https://www.solucoesdiferentes.pt/images/social/social-share.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content="Soluções Diferentes — Simuladores de Energia" />
-    <meta property="og:locale" content="pt_PT" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@solucoesdiferentes.pt" />
-
-    <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
-    <link rel="shortcut icon" href="/images/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
-    <link rel="manifest" href="/images/site.webmanifest" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="/theme.js"></script>
-    
-    <style>
-        /* === DARK MODE — Estilos específicos desta página === */
-        [data-theme="dark"] .social-icon { filter: invert(0.85) brightness(1.2); }
-        [data-theme="dark"] .footer-social-icon { filter: invert(0.85) brightness(1.2); }
-    </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "Sobre o Projeto de Simuladores de Energia de Soluções Diferentes",
-    "description": "A história, missão e valores por trás dos simuladores gratuitos de eletricidade, gás natural e autoconsumo para o mercado português.",
-    "url": "https://www.solucoesdiferentes.pt/sobre",
-    "inLanguage": "pt-PT",
-    "mainEntity": {
-      "@type": "Person",
-      "@id": "https://www.solucoesdiferentes.pt/#person",
-      "name": "Soluções Diferentes",
-      "url": "https://www.solucoesdiferentes.pt/",
-      "image": "https://www.solucoesdiferentes.pt/images/Logo_Solucoes_Diferentes.png",
-      "jobTitle": "Analista de Dados de Energia",
-      "description": "Criador e mantenedor de simuladores independentes e gratuitos de tarifários de eletricidade, gás natural e autoconsumo solar fotovoltaico para o mercado português. Foca-se na transparência do setor energético e na análise objetiva de dados de mercado.",
-      "nationality": {
-        "@type": "Country",
-        "name": "Portugal"
-      },
-      "knowsAbout": [
-        "Mercado de eletricidade em Portugal",
-        "Mercado Ibérico de Energia (MIBEL)",
-        "OMIE — Mercado Diário (Day-Ahead)",
-        "OMIP — Mercado a Prazo / Futuros",
-        "Tarifários indexados e dinâmicos",
-        "Tarifas reguladas (CUR) — ERSE",
-        "Tarifa Social de Energia",
-        "Tarifas de Acesso às Redes (TAR)",
-        "Períodos horários BTN (Vazio, Cheias, Ponta)",
-        "Perfis de consumo e perfis de perdas",
-        "Diagrama de carga E-Redes",
-        "Autoconsumo solar fotovoltaico",
-        "PVGIS — modelo de produção fotovoltaica",
-        "ENTSO-E Transparency Platform",
-        "Análise de dados de energia",
-        "Regulamentação ERSE — Eletricidade e Gás Natural"
-      ],
-      "sameAs": [
-        "https://www.facebook.com/solucoesdiferentes.pt",
-        "https://www.facebook.com/profile.php?id=61555007360529",
-        "https://www.instagram.com/solucoesdiferentes.pt/",
-        "https://www.solucoesdiferentes.pt",
-        "https://www.solucoesdiferentes.pt",
-        "https://github.com/tiagofelicia"
-      ]
-    }
-  }
-  </script>
-    <script type="application/ld+json">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; connect-src 'self' https://dados.tiagofelicia.pt https://raw.githubusercontent.com https://huggingface.co https://*.hf.co https://docs.google.com https://re.jrc.ec.europa.eu https://pvgis.ec.europa.eu https://formspree.io https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.sheetjs.com https://unpkg.com; frame-src https://1drv.ms https://onedrive.live.com https://www.paypal.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io https://www.paypal.com; upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#2c3e50" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+<title>Sobre os Simuladores MyPoupar | Energia e Poupança</title>
+<meta name="description" content="Conheça a missão dos simuladores MyPoupar: comparar eletricidade, gás natural e autoconsumo com dados transparentes e ferramentas gratuitas." />
+<link rel="canonical" href="https://www.solucoesdiferentes.pt/sobre" />
+<link rel="alternate" hreflang="pt-pt" href="https://www.solucoesdiferentes.pt/sobre" />
+<link rel="alternate" hreflang="x-default" href="https://www.solucoesdiferentes.pt/sobre" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="MyPoupar — Simuladores de Energia" />
+<meta property="og:description" content="Ferramentas transparentes para ajudar consumidores em Portugal a comparar energia e tomar decisões informadas." />
+<meta property="og:url" content="https://www.solucoesdiferentes.pt/sobre" />
+<meta property="og:image" content="https://www.solucoesdiferentes.pt/images/social/social-share.jpg" />
+<meta property="og:image:alt" content="MyPoupar — Simuladores de Energia" />
+<meta property="og:locale" content="pt_PT" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+<link rel="shortcut icon" href="/images/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+<link rel="manifest" href="/images/site.webmanifest" />
+<link rel="stylesheet" href="style.css" />
+<script src="/theme.js"></script>
+<script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Início",
-      "item": "https://www.solucoesdiferentes.pt/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Sobre",
-      "item": "https://www.solucoesdiferentes.pt/sobre"
-    }
-  ]
+  "@context":"https://schema.org",
+  "@type":"AboutPage",
+  "name":"Sobre os Simuladores MyPoupar",
+  "description":"Missão, princípios e funcionamento dos simuladores de energia MyPoupar.",
+  "url":"https://www.solucoesdiferentes.pt/sobre",
+  "inLanguage":"pt-PT",
+  "mainEntity":{"@type":"Organization","name":"MyPoupar","url":"https://mypoupar.pt/"}
 }
-    </script>
+</script>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Saltar para o conteúdo</a>
-
-
-
 <div id="menu-placeholder"></div>
-<nav class="breadcrumb" aria-label="breadcrumb">
-    <ol>
-        <li><a href="/">Início</a></li>
-        <li aria-current="page">Sobre</li>
-    </ol>
-</nav>
+<nav class="breadcrumb" aria-label="breadcrumb"><ol><li><a href="/">Início</a></li><li aria-current="page">Sobre</li></ol></nav>
+<main id="main-content">
+<section class="content-section">
+<h1>Sobre os Simuladores MyPoupar</h1>
+<h3>A nossa missão: tornar a poupança mais simples</h3>
+<p>O mercado de energia muda constantemente e nem sempre é fácil perceber qual a opção mais adequada. A MyPoupar reúne ferramentas de comparação para ajudar cada pessoa a analisar consumos, preços e condições com mais clareza.</p>
+<p>O objetivo é simples: <strong>comparar com dados, explicar de forma transparente e ajudar a tomar uma decisão informada</strong>.</p>
 
+<h3>Ferramentas gratuitas e orientadas por dados</h3>
+<p>Os simuladores utilizam dados públicos, fontes técnicas e informação de mercado para comparar eletricidade, gás natural, autoconsumo solar e indicadores energéticos. Sempre que possível, os cálculos são executados localmente no browser.</p>
+<div class="simulator-showcase-container home-grid">
+<div class="simulator-card"><h4>⚡ Simulador de Eletricidade</h4><p>Compare tarifários fixos e indexados e use os seus consumos para perceber a diferença entre ofertas.</p><a href="eletricidade-tiagofelicia" class="button-link">Aceder ao Simulador</a></div>
+<div class="simulator-card"><h4>🔥 Simulador de Gás Natural</h4><p>Compare tarifários de gás e analise as opções disponíveis para o seu perfil de consumo.</p><a href="gas-natural-tiagofelicia" class="button-link">Aceder ao Simulador</a></div>
+<div class="simulator-card"><h4>⚡🔥 Simulador Dual <span class="badge-beta">beta</span></h4><p>Analise eletricidade e gás em conjunto e compare combinações de ofertas.</p><a href="dual-tiagofelicia" class="button-link">Aceder ao Simulador</a></div>
+<div class="simulator-card"><h4>☀️ Autoconsumo Solar</h4><p>Estime poupança, retorno do investimento e desempenho de soluções fotovoltaicas.</p><a href="autoconsumo-tiagofelicia" class="button-link">Aceder ao Simulador</a></div>
+</div>
 
-    <main id="main-content">
-        <section class="content-section">
-            <h1>Sobre o Projeto</h1>
+<h3>Transparência primeiro</h3>
+<p>As comparações são apoiadas por fontes como ERSE, OMIE, MIBGAS, E-Redes, PVGIS e outras fontes públicas ou técnicas identificadas nos respetivos módulos. As fórmulas e dados devem poder ser verificados e atualizados à medida que o mercado muda.</p>
 
-            <h3>A minha Missão: Dar Poder aos Consumidores de Energia</h3>
-            <p>O mercado de energia em Portugal é complexo e está em constante mudança. A missão deste projeto é simples: fornecer ferramentas <strong>gratuitas, independentes e transparentes</strong> que permitam a qualquer pessoa, com ou sem conhecimentos técnicos, tomar as melhores decisões para a sua carteira e para o seu futuro energético.</p>
-            <p>Acredito que, com a informação certa, cada consumidor pode poupar significativamente na sua fatura e avaliar com confiança um investimento em energias renováveis.</p>
-    
-            <h3>A Evolução: Do Excel à Web</h3>
-            <p>Tudo começou em 2022 com um simulador em Excel para Autoconsumo, focado em ajudar os utilizadores a analisar os seus dados da E-Redes. O sucesso e a utilidade desta ferramenta levaram à criação de outros simuladores de tarifários para Eletricidade e Gás Natural em 2024, sempre com o objetivo de desmistificar os custos e as tarifas.</p>
-            <p>O passo seguinte foi natural: transformar estas poderosas folhas de cálculo em aplicações web interativas, acessíveis a todos, em qualquer dispositivo. Hoje, o projeto orgulha-se de apresentar um conjunto completo de simuladores online de ponta:</p>
-            
-            <div class="simulator-showcase-container home-grid">
-                <div class="simulator-card">
-                    <h4>⚡ Simulador de Eletricidade</h4>
-                    <p>Compare tarifários fixos e indexados.<span class="desc-extra"> Analise o seu perfil de consumo real com o ficheiro da E-Redes e descubra qual a oferta mais económica para si.</span></p>
-                    <a href="eletricidade-tiagofelicia" class="button-link">Aceder ao Simulador</a>
-                </div>
-                <div class="simulator-card">
-                    <h4>🔥 Simulador de Gás Natural</h4>
-                    <p>Encontre o tarifário de gás mais barato, fixo ou indexado ao MIBGAS.<span class="desc-extra"> Insira o seu escalão de consumo e compare todas as ofertas do mercado.</span></p>
-                    <a href="gas-natural-tiagofelicia" class="button-link">Aceder ao Simulador</a>
-                </div>
-                <div class="simulator-card">
-                    <h4>⚡🔥 Simulador Dual<span class="title-extra"> (Eletricidade + Gás)</span> <span class="badge-beta">beta</span></h4>
-                    <p>Compare as duas energias em conjunto e encontre o pacote mais barato.<span class="desc-extra"> Cruza todas as combinações de comercializadores e inclui as ofertas DUAL, com preços próprios para pacotes conjuntos. <strong>Está em versão beta:</strong> os resultados podem ainda ter erros e a base de ofertas dual está a crescer.</span></p>
-                    <a href="dual-tiagofelicia" class="button-link">Aceder ao Simulador</a>
-                </div>
-                <div class="simulator-card">
-                    <h4>☀️ Simulador de Autoconsumo Solar</h4>
-                    <p>Analise a viabilidade de um sistema fotovoltaico.<span class="desc-extra"> Calcule a poupança, o tempo de retorno (Payback) e compare propostas comerciais de forma justa.</span></p>
-                    <a href="autoconsumo-tiagofelicia" class="button-link">Aceder ao Simulador</a>
-                </div>
-            </div>
+<h3>MyPoupar + REBORN AI</h3>
+<p><strong>MyPoupar</strong> é a identidade do produto e da experiência de poupança. <strong>REBORN AI</strong> é a tecnologia que liga inteligência, automação e agentes ao ecossistema MyPoupar.</p>
+<p>Nos módulos comerciais, esta arquitetura pode trabalhar em conjunto com os agentes REBORN AI e com o SD Dialer para transformar uma comparação numa próxima ação concreta, mantendo a separação entre dados técnicos, recomendação e contacto comercial.</p>
 
-            <h3>Sobre o Autor</h3>
-            <p>Este projeto é uma iniciativa pessoal de Soluções Diferentes, motivada pela paixão por análise de dados e pelo desejo de trazer mais transparência e conhecimento ao setor energético em Portugal.</p>
-    
-            <h3>Transparência e Dados Abertos</h3>
-            <p>A confiança é a base deste projeto. Todos os cálculos são baseados em dados públicos e oficiais, seja dos comercializadores, da ERSE (Entidade Reguladora dos Serviços Energéticos) ou do OMIE (Operador do Mercado Ibérico de Energia). As fontes de dados e as fórmulas de cálculo estão abertas a escrutínio para garantir total transparência.</p>
-            <p>Aconselho todos a experimentar os simuladores e a partilhar o seu feedback para que possa continuar a melhorar e a servir a comunidade.</p>
-        </section>
-
-        <section id="redes-sociais">
-            <h2>Redes Sociais</h2>
-            <p>Poderá seguir o projeto aqui:</p>
-            <div class="social-links-container">
-                <a href="https://www.facebook.com/solucoesdiferentes.pt" target="_blank" rel="noopener noreferrer" class="social-link">
-                    <img src="/images/icons/x-dark.svg" alt="X / Twitter" class="social-icon">
-                    <p>X / Twitter</p>
-                </a>
-                <a href="https://www.facebook.com/profile.php?id=61555007360529" target="_blank" rel="noopener noreferrer" class="social-link">
-                    <img src="/images/icons/facebook-dark.svg" alt="Facebook" class="social-icon">
-                    <p>Facebook</p>
-                </a>
-                <a href="https://www.instagram.com/solucoesdiferentes.pt/" target="_blank" rel="noopener noreferrer" class="social-link">
-                    <img src="/images/icons/instagram-dark.svg" alt="Instagram" class="social-icon">
-                    <p>Instagram</p>
-                </a>
-                <a href="https://www.solucoesdiferentes.pt" target="_blank" rel="noopener noreferrer" class="social-link">
-                    <img src="/images/icons/youtube-dark.svg" alt="Youtube" class="social-icon">
-                    <p>Youtube</p>
-                </a>
-                <a href="https://www.solucoesdiferentes.pt" target="_blank" rel="noopener noreferrer" class="social-link">
-                    <img src="/images/icons/tiktok-dark.svg" alt="TikTok" class="social-icon">
-                    <p>TikTok</p>
-                </a>
-            </div>
-        </section>
-    </main>
-
+<h3>Um sistema em evolução</h3>
+<p>Os simuladores continuam a evoluir com novos dados, melhorias de interface e integração entre energia, telecomunicações e inteligência artificial. O objetivo é que uma pessoa consiga começar numa comparação e chegar a uma solução sem ter de saltar entre várias ferramentas desconectadas.</p>
+</section>
+</main>
 <div id="footer-placeholder"></div>
-
-  
-  <script src="script.js"></script>
+<script src="script.js"></script>
 <script src="cookie-consent.js"></script>
 </body>
 </html>
